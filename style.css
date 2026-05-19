@@ -1,0 +1,1578 @@
+/* ============================================================
+   PRIME COUNCIL · LANDING PAGE
+   style.css — Otimizado para produção
+   ============================================================ */
+
+
+/* ============================================================
+   1. TOKENS DE DESIGN
+   ============================================================ */
+:root {
+  --ink:        #0D0D0D;
+  --ink-mid:    #2C2A27;
+  --bone:       #F4F1EB;
+  --paper:      #FFFFFF;
+  --rule:       #DDD9D0;
+  --rule-soft:  #EAE6DE;
+  --muted:      #7A7570;
+  --gold:       #9A7B4A;
+  --gold-light: #BFA06B;
+  --gold-pale:  #EDE0C8;
+
+  --on-dark-primary:   rgba(244,241,235,0.92);
+  --on-dark-secondary: rgba(244,241,235,0.72);
+  --on-dark-muted:     rgba(244,241,235,0.52);
+  --on-dark-faint:     rgba(244,241,235,0.38);
+
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+
+  --radius:    3px;
+  --radius-lg: 5px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.08);
+
+  --t: 0.22s ease;
+}
+
+
+/* ============================================================
+   2. RESET / BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Cor base para seções escuras (CORE DARK apenas) */
+#hero,
+#evento {
+  color: var(--on-dark-primary);
+}
+
+/* ul > li sem classe em seções escuras */
+#evento ul li {
+  color: var(--on-dark-secondary);
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bone);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding-top: 60px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+/* ============================================================
+   3. LAYOUT GLOBAL
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+
+/* ============================================================
+   4. TIPOGRAFIA — UTILITÁRIOS
+   ============================================================ */
+.section-lbl {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+
+.gold-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-light);
+  margin: 0 auto 28px;
+}
+.inv { color: var(--paper); }
+
+.lead {
+  font-size: 14.5px;
+  color: var(--muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.78;
+}
+.lead.inv { color: var(--on-dark-secondary); }
+
+
+/* ============================================================
+   5. COMPONENTES — BOTÕES
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: var(--radius);
+  padding: 13px 28px;
+  cursor: pointer;
+  transition:
+    background var(--t),
+    transform var(--t),
+    box-shadow var(--t),
+    color var(--t),
+    border-color var(--t);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.btn-primary:hover {
+  background: var(--ink-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(13,13,13,0.2);
+}
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--paper);
+  border-color: var(--gold);
+}
+.btn-gold:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(154,123,74,0.28);
+}
+
+.btn-sm  { padding: 9px 16px;  font-size: 10.5px; }
+.header-ctas .btn { max-width: 220px; }
+.btn-lg  { padding: 15px 36px; font-size: 12px; }
+
+
+/* ============================================================
+   6. COMPONENTES — BLOCOS REUTILIZÁVEIS
+   ============================================================ */
+
+/* Cabeçalho de seção */
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-header h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+  line-height: 1.18;
+}
+.section-header h2 em  { font-style: italic; color: var(--gold); }
+.section-header h2.inv { color: var(--paper); }
+.section-header .lead  { color: var(--muted); }
+.section-header .lead.inv { color: var(--on-dark-secondary); }
+#prova .section-header .lead {
+  max-width: 720px;
+  white-space: nowrap;
+}
+
+/* Caixa CTA */
+.cta-box {
+  text-align: center;
+  padding: 40px;
+  margin-top: 52px;
+  background: rgba(154,123,74,0.06);
+  border: 1px solid rgba(154,123,74,0.18);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+}
+.cta-box p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  margin-bottom: 20px;
+}
+
+/* Wrap de CTA abaixo de seções */
+.section-cta-wrap {
+  margin-top: 48px;
+  text-align: center;
+}
+
+/* Nota/legenda */
+.cta-note {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* Separadores decorativos */
+.rule-black { height: 3px; background: var(--ink); }
+.rule-gold  { height: 1px; background: var(--gold-light); }
+
+/* Link rodapé sublinhado */
+.link-footer-underline {
+  color: inherit;
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   7. HEADER FIXO
+   ============================================================ */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(191,160,107,0.14);
+  height: 60px;
+  transition: box-shadow var(--t);
+}
+/* Adicionado via JS ao fazer scroll */
+.site-header.scrolled {
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100%;
+  padding: 0 28px;
+  max-width: 1340px;
+  margin: 0 auto;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-mark {
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(191,160,107,0.2);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.logo-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+.logo-bars span {
+  display: block;
+  background: var(--gold-light);
+  border-radius: 1px;
+  width: 3px;
+}
+.logo-bars span:nth-child(1) { height: 6px; }
+.logo-bars span:nth-child(2) { height: 10px; }
+.logo-bars span:nth-child(3) { height: 14px; }
+
+.header-brand-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  display: block;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+.header-nav-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  padding: 4px 8px;
+  transition: color var(--t);
+}
+.header-nav-link:hover { color: rgba(255,255,255,0.92); }
+
+.h-sep {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.header-ctas {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: center;
+}
+
+
+/* ============================================================
+   8. SEÇÃO 1 · HERO
+   ============================================================ */
+#hero {
+  background: var(--ink);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent, transparent 60px,
+    rgba(191,160,107,0.02) 60px,
+    rgba(191,160,107,0.02) 61px
+  );
+  pointer-events: none;
+}
+#hero::after {
+  content: '';
+  position: absolute;
+  top: -15%; right: -8%;
+  width: 55%; height: 75%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(154,123,74,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 72px 28px 64px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-h1 {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 3.1vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--paper);
+  max-width: 800px;
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.hero-h1 em { font-style: italic; color: var(--gold-light); }
+
+.hero-invest {
+  font-size: 14px;
+  color: var(--on-dark-secondary);
+  line-height: 1.72;
+  max-width: 580px;
+  margin: 0 auto 32px;
+}
+.hero-invest strong { color: var(--on-dark-primary); font-weight: 500; }
+
+.hero-ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.hero-testdrive {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 700px;
+}
+.hero-badge {
+  font-size: 11px;
+  color: var(--on-dark-secondary);
+  border: 1px solid rgba(191,160,107,0.22);
+  border-radius: 20px;
+  padding: 5px 14px;
+  letter-spacing: 0.06em;
+  background: rgba(255,255,255,0.03);
+  white-space: nowrap;
+}
+
+.hero-urgency {
+  margin-top: 16px;
+  font-size: 11px;
+  color: var(--gold-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+
+/* ============================================================
+   9. SEÇÃO 2 · PARA QUEM
+   ============================================================ */
+#para-quem {
+  background: var(--paper);
+  padding: 88px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.audience-card {
+  background: var(--paper);
+  padding: 36px 28px 40px;
+  border-top: 2px solid var(--gold);
+  transition: background var(--t);
+  display: flex;
+  flex-direction: column;
+}
+.audience-card:hover { background: #FDFBF7; }
+.audience-card h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.audience-situation {
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 0;
+  line-height: 1.55;
+}
+
+.audience-exclusion {
+  margin-top: 36px;
+  padding: 18px 24px;
+  background: var(--bone);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.exclusion-label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.audience-exclusion p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+
+/* ============================================================
+   10. SEÇÃO 3 · O PROBLEMA REAL
+   ============================================================ */
+#problema {
+  background: var(--bone);
+  padding: 88px 0 72px;
+}
+#problema .section-header {
+  margin-bottom: 48px;
+}
+
+/* Pivot de causa */
+.qp-pivot {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 0 8px;
+  border-top: 1px solid rgba(191,160,107,0.12);
+}
+/* .qp-pivot-label: mesmo sistema que .section-lbl — margin-bottom diferente */
+.qp-pivot-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 20px;
+}
+.qp-pivot-headline {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.12;
+  margin: 0 auto 28px;
+  text-align: center;
+  white-space: nowrap;
+}
+.qp-pivot-headline em { font-style: italic; color: var(--gold); }
+/* ============================================================
+   11. SEÇÃO 4 · DIAGNÓSTICO IRFE
+   ============================================================ */
+#diagnostico {
+  background: var(--paper);
+  padding: 88px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.irfe-outer-label {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.diagnostico-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 52px 48px;
+  box-shadow: var(--shadow-md);
+  overflow: visible;
+}
+
+.irfe-headline {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.irfe-headline h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.irfe-headline h2 em { font-style: italic; color: var(--gold); }
+.irfe-headline p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.78;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.irfe-headline p strong { color: var(--ink); font-weight: 500; }
+
+/* Duas caixas simétricas lado a lado */
+.irfe-boxes-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-top: 2rem;
+}
+
+.irfe-info-box {
+  background: var(--bone);
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.irfe-info-box p { margin: 0; }
+
+/* Caixa esquerda */
+.irfe-outputs {
+  padding: 16px 18px;
+  background: var(--bone);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+}
+.irfe-outputs-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+}
+.irfe-output-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.irfe-output-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+.irfe-output-icon {
+  color: var(--gold);
+  font-size: 9px;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+/* Caixa direita */
+.irfe-progression {
+  background: var(--bone);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+}
+.irfe-progression p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-mid);
+  line-height: 1.68;
+  margin: 0;
+}
+.irfe-progression strong { font-style: normal; color: var(--gold); }
+
+/* 4 eixos em linha horizontal */
+.irfe-eixos-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.irfe-eixo-card {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: var(--bone);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  cursor: default;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease;
+}
+.irfe-eixo-card:hover {
+  background: var(--rule-soft);
+  border-color: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.eixo-seq {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold-pale);
+  line-height: 1;
+  flex-shrink: 0;
+}
+.irfe-eixo-card:hover .eixo-seq { color: var(--gold); }
+
+.eixo-body h3 {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--ink);
+}
+
+/* CTA abaixo dos eixos */
+.irfe-entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule-soft);
+  margin-top: 4px;
+}
+.irfe-entry-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin: 0 auto;
+  text-align: center;
+}
+.diagnostico-cta-meta {
+  width: 100%;
+  text-align: center;
+  font-size: 10.5px;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   12. SEÇÃO 5 · SESSÃO EXECUTIVA PRIME (EVENTO)
+   ============================================================ */
+#evento {
+  background: var(--ink);
+  padding: 88px 0 0;
+  position: relative;
+}
+#evento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 128px;
+  height: 1px;
+  background: rgba(244,241,235,0.42);
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 18px rgba(244,241,235,0.18);
+}
+
+/* Parágrafos de urgência/valor em #evento */
+.event-card-val--gold { color: var(--gold-light); }
+.event-value-note {
+  max-width: 760px;
+  margin: -18px auto 34px;
+  padding: 0 28px;
+  text-align: center;
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.45;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.event-card {
+  background: rgba(255,255,255,0.025);
+  padding: 30px 20px;
+  text-align: center;
+  transition: background var(--t);
+}
+.event-card:hover { background: rgba(154,123,74,0.05); }
+.event-card-lbl {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.event-card-val {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--paper);
+  line-height: 1.35;
+}
+.event-card--invest {
+  border-top: 2px solid var(--gold);
+  background: rgba(154,123,74,0.07);
+}
+#evento .facilitador-credentials {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-wrap: nowrap;
+  margin: 24px auto 0;
+}
+#evento .facilitador-credentials .cred-tag {
+  white-space: nowrap;
+}
+.event-card-sub {
+  font-size: 11px;
+  color: var(--on-dark-faint);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+
+/* CTA final da seção evento */
+.cta-final-single {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 64px 28px 72px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ============================================================
+   13. SEÇÃO 6 · PRIME COUNCIL — REINFORCEMENT LIGHT
+   ============================================================ */
+#prime-council {
+  background: var(--bone);
+  padding: 88px 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+
+.pc-bg-accent {
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(154,123,74,0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.pc-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
+/* .pc-label: mesmo sistema que .section-lbl — sem declarações duplicadas */
+.pc-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 14px;
+}
+.pc-headline {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 18px;
+}
+.pc-headline em { font-style: italic; color: var(--gold); }
+.pc-subhead {
+  font-size: 14.5px;
+  color: var(--muted);
+  line-height: 1.82;
+  max-width: 720px;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+/* .pc-pillars-label: extensão de .section-lbl com text-align */
+.pc-pillars-label {
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 28px;
+}
+.pc-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 72px;
+}
+.pc-pillar {
+  background: var(--paper);
+  padding: 32px 24px;
+  transition: background var(--t);
+}
+.pc-pillar:hover { background: #FDFBF7; }
+.pc-pillar-num {
+  font-family: var(--serif);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 12px;
+}
+.pc-pillar-title {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+.pc-pillar-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.pc-access {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
+  padding: 36px 40px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+}
+.pc-access-text h3 {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.pc-access-text p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.78;
+  max-width: 480px;
+}
+.pc-access-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   14. GRADE DE ENTREGÁVEIS (compartilhada: #problema e #prime-council — ambos contexto light)
+   ============================================================ */
+.entregaveis-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.entregavel-card {
+  background: var(--paper);
+  padding: 40px 32px;
+  transition: background var(--t);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.entregavel-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 32px; right: 32px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-light), transparent);
+  opacity: 0;
+  transition: opacity var(--t);
+}
+.entregavel-card:hover { background: #FDFCF8; }
+.entregavel-card:hover::after { opacity: 1; }
+.entregavel-num {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.entregavel-tag {
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+.entregavel-card h3 {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 10px;
+  line-height: 1.38;
+  flex: 1;
+}
+.entregavel-impact {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+
+/* ============================================================
+   15. SEÇÃO 7 · PROVA SOCIAL E FACILITADOR
+   ============================================================ */
+#prova {
+  background: var(--paper);
+  padding: 88px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.prova-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.depoimento-card {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-left: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--t);
+}
+.depoimento-card:hover { box-shadow: var(--shadow-md); }
+.depoimento-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--ink);
+  line-height: 1.78;
+  margin-bottom: 20px;
+}
+.depoimento-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 16px;
+}
+.depoimento-author strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.depoimento-author span {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+/* Facilitador — dentro de #prova */
+.facilitador-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.facilitador-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-lg);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.facilitador-foto {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.facilitador-avatar-placeholder {
+  font-size: 11px;
+  color: rgba(13,13,13,0.45);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.6;
+  padding: 12px;
+}
+.facilitador-body { padding-top: 4px; }
+.prova-method-note {
+  margin: 40px auto 44px;
+  max-width: 760px;
+  white-space: nowrap;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--gold);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.08rem;
+  text-align: center;
+}
+.facilitador-name {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.facilitador-role {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.facilitador-impact {
+  margin: 40px 0 28px;
+  max-width: 760px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule-soft);
+  color: var(--gold);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.78;
+  text-align: center;
+}
+.facilitador-bio {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.78;
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+.facilitador-bio strong { color: var(--ink); font-weight: 500; }
+.facilitador-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+.cred-tag {
+  display: inline-block;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  background: var(--paper);
+}
+.cred-tag--co {
+  border-color: rgba(154,123,74,0.35);
+  color: var(--gold);
+  background: rgba(154,123,74,0.05);
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   16. CTA FINAL
+   ============================================================ */
+#cta-final {
+  background: var(--paper);
+  padding: 88px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.cta-box-final {
+  max-width: 820px;
+  margin: 0 auto;
+}
+.cta-box-final h2 {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.18;
+  margin-bottom: 14px;
+}
+.cta-box-final p {
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+}
+.final-ctas .btn {
+  width: 100%;
+  max-width: 420px;
+  justify-content: center;
+  white-space: normal;
+  text-align: center;
+}
+.final-whatsapp-link {
+  margin-top: 4px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.final-whatsapp-link:hover { color: var(--ink); }
+
+/* ============================================================
+   17. RODAPÉ
+   ============================================================ */
+footer {
+  background: var(--bone);
+  padding: 30px 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+.footer-brand span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.07em;
+  margin-top: 2px;
+}
+.footer-copy {
+  font-size: 11.5px;
+  color: var(--muted);
+  text-align: right;
+  line-height: 1.7;
+}
+.footer-copy a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+
+/* ============================================================
+   18. RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .site-header-inner {
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  .header-brand { min-width: 0; }
+  .header-ctas {
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  .header-ctas .btn {
+    max-width: min(220px, 54vw);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+    justify-content: center;
+    line-height: 1.15;
+  }
+
+  .header-ctas .btn strong {
+    display: block;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-h1 {
+    width: min(800px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .hero-invest,
+  .hero-testdrive,
+  .hero-urgency {
+    width: min(580px, calc(100vw - 40px));
+    max-width: calc(100vw - 40px);
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+}
+@media (max-width: 860px) {
+  .event-grid       { grid-template-columns: repeat(3, 1fr); }
+  .facilitador-grid { grid-template-columns: 1fr; gap: 32px; padding: 28px 24px; }
+  .facilitador-avatar { width: 100px; height: 100px; }
+  .prova-grid       { grid-template-columns: 1fr; }
+  .entregaveis-grid { grid-template-columns: 1fr; }
+  .header-nav       { display: none; }
+  .pc-pillars       { grid-template-columns: repeat(2, 1fr); }
+  .pc-access        { grid-template-columns: 1fr; gap: 28px; }
+  .irfe-boxes-row   { grid-template-columns: 1fr; }
+  .irfe-eixos-row   { grid-template-columns: 1fr 1fr; }
+  .irfe-eixo-card   { white-space: normal; }
+}
+
+@media (max-width: 640px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    text-align: center;
+  }
+  .footer-brand,
+  .footer-copy {
+    width: 100%;
+    text-align: center;
+  }
+  #evento .facilitador-credentials {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .qp-pivot-headline,
+  .pc-subhead,
+  #prova .section-header .lead,
+  .prova-method-note {
+    white-space: normal;
+  }
+  .event-value-note { margin-bottom: 28px; padding: 0 18px; }
+  .audience-grid  { grid-template-columns: 1fr; }
+  .event-grid     { grid-template-columns: repeat(2, 1fr); }
+  .section-header { margin-bottom: 40px; }
+
+  .site-header-inner { padding: 0 16px; }
+  .header-brand-name { font-size: 13px; }
+
+  #hero .hero-body   { padding: 52px 20px 48px; }
+  .hero-h1,
+  .hero-invest {
+    width: 100%;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .cta-final-single  { padding: 48px 20px 56px; }
+
+  #para-quem,
+  #problema,
+  #diagnostico,
+  #evento,
+  #prova { padding: 64px 0; }
+  #cta-final { padding: 64px 0; }
+  #evento        { padding-bottom: 0; }
+  #prime-council { padding: 64px 0; }
+
+  .hero-invest { font-size: 11px; letter-spacing: 0.04em; }
+  .hero-invest br { display: initial; }
+
+  #diagnostico { border-top: 2px solid var(--gold); }
+  .irfe-headline p { display: none; }
+
+  .eixo-seq { font-size: 1.8rem; min-width: 28px; }
+
+  .audience-exclusion { flex-direction: column; gap: 10px; }
+  .exclusion-label    { margin-top: 0; }
+  .audience-exclusion p { max-width: 100%; }
+
+  .pc-pillars { grid-template-columns: 1fr; }
+  .pc-access  { padding: 24px 20px; }
+
+  .facilitador-bio         { max-width: 100%; }
+  .facilitador-credentials { width: 100%; }
+  .cred-tag { white-space: normal; word-break: break-word; }
+
+  .hero-ctas .btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .section-cta-wrap .btn,
+  .cta-box .btn,
+  .cta-final-single .btn,
+  .irfe-entry-cta .btn {
+    display: flex;
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    min-height: 48px;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .final-ctas { flex-direction: column; }
+  .final-ctas .btn {
+    width: 100%;
+    max-width: 420px;
+    justify-content: center;
+    white-space: normal;
+    word-break: break-word;
+  }
+}
+@media (max-width: 480px) {
+  body { padding-top: 58px; }
+
+  .site-header { height: 58px; }
+  .site-header-inner {
+    gap: 10px;
+    padding: 0 12px;
+  }
+  .logo-mark { display: none; }
+  .header-brand-name { font-size: 12px; }
+
+  .header-ctas {
+    width: 48vw;
+    max-width: 176px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+  .header-ctas .btn {
+    width: 100%;
+    max-width: 100%;
+    flex-shrink: 1;
+    min-height: 42px;
+    padding: 8px 9px;
+    font-size: 7.6px;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    white-space: normal;
+    text-align: center;
+    justify-content: center;
+    overflow-wrap: anywhere;
+  }
+
+  .header-ctas .btn strong {
+    display: block;
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .hero-body {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 18px;
+    padding-right: 18px;
+    overflow: hidden;
+  }
+  .hero-h1,
+  .hero-invest {
+    width: 100%;
+    max-width: 304px;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+  .hero-h1 {
+    font-size: clamp(1.16rem, 5vw, 1.36rem);
+  }
+  .hero-h1 strong,
+  .hero-h1 em {
+    display: block;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+  .hero-badge {
+    width: 100%;
+    max-width: 320px;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .event-grid,
+  .irfe-eixos-row {
+    grid-template-columns: 1fr;
+  }
+  .irfe-eixo-card { white-space: normal; }
+  .eixo-body h3 { white-space: normal; }
+
+  .pc-access-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  .facilitador-grid { padding: 24px 18px; }
+  .prova-method-note { margin-top: 32px; margin-bottom: 32px; }
+}

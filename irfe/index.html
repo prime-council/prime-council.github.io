@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Risco Financeiro · Prime Council</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- ══ HEADER FIXO IRFE ════════════════════════════════════════════════ -->
+<header class="site-header" id="top">
+  <div class="site-header-inner">
+
+    <div class="header-brand">
+      <div class="logo-mark">
+        <div class="logo-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="header-brand-text">
+        <span class="header-brand-name">Prime Council</span>
+      </div>
+    </div>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a href="https://neto-aflor.github.io/prime-council/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="prime-council">Prime Council</a>
+      <span class="h-sep" aria-hidden="true"></span>
+      <a href="https://neto-aflor.github.io/prime-IRFE/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnóstico IRFE</a>
+      <span class="h-sep" aria-hidden="true"></span>
+      <a href="https://neto-aflor.github.io/prime-form/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva</a>
+    </nav>
+
+  </div>
+</header>
+
+<!-- ══ DARK HERO ════════════════════════════════════════════════ -->
+<div class="irfe-hero">
+  <div class="irfe-hero-inner">
+
+    <div class="irfe-event-title">
+      <span class="irfe-eyebrow"><strong>IRFE · Índice de Risco Financeiro Empresarial</strong></span>
+      <h2 class="irfe-event-h2">Diagnóstico Executivo <em>IRFE</em></h2>
+      <div class="irfe-event-meta">
+        <span><strong>Qualificação executiva</strong></span>
+        <span class="irfe-h-sep"></span>
+        <span><strong>Porta de entrada para o Ecossistema Prime</strong></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- ══ TEXTO INTRODUTÓRIO ══════════════════════════════════════ -->
+  <div class="form-card">
+    <p><strong>O maior risco financeiro de uma empresa raramente aparece primeiro no caixa.</strong></p>
+
+    <p>Na maioria dos casos, ele começa na perda de previsibilidade, na dependência operacional e em decisões tomadas sem clareza real da estrutura do negócio.</p>
+
+    <p>O IRFE foi desenvolvido para identificar exatamente esses vetores de risco antes que eles se tornem críticos.</p>
+
+    <p>👉 <strong>Inicie o diagnóstico e visualize onde sua operação está realmente exposta.</strong></p>
+  </div>
+
+  <!-- ══ IDENTIFICAÇÃO DA EMPRESA ════════════════════════════════ -->
+  <div class="form-card" id="diagnostico-irfe">
+    <div class="section-lbl">Identificação da Empresa</div>
+    <div class="field">
+      <label>Nome da empresa<span class="req">*</span></label>
+      <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" required>
+    </div>
+    <div class="field">
+      <label>Nome completo<span class="req">*</span></label>
+      <input type="text" id="responsavel" placeholder="Seu nome completo" required>
+    </div>
+    <div class="field">
+      <label>E-mail corporativo<span class="req">*</span></label>
+      <input type="email" id="email" name="email" placeholder="seu@email.com.br" required>
+    </div>
+    <div class="field">
+      <label>Celular (WhatsApp)<span class="req">*</span></label>
+      <input type="tel" id="telefone" inputmode="numeric" maxlength="15" placeholder="(11) 99999-9999" required>
+    </div>
+    <input type="text" name="website" id="hp_website" autocomplete="off"
+           style="display:none;position:absolute;left:-9999px;opacity:0;height:0;width:0;"
+           tabindex="-1" aria-hidden="true">
+    <div class="field">
+      <label>Número de colaboradores<span class="req">*</span></label>
+      <select id="funcionarios" required>
+        <option value="">Selecione</option>
+        <option value="10–50">Até 50 colaboradores</option>
+        <option value="51–100">51 a 100 colaboradores</option>
+        <option value="101–200">101 a 200 colaboradores</option>
+        <option value="mais de 200">Acima de 200 colaboradores</option>
+      </select>
+    </div>
+    <div class="lgpd-field" id="lgpd-field">
+      <label class="lgpd-wrap">
+        <input type="checkbox" id="lgpd">
+        <span>Autorizo a <strong>Prime Council</strong> a utilizar os dados deste diagnóstico para contato e análise interna, em conformidade com a <strong>LGPD (Lei nº 13.709/2018)</strong>.*</span>
+      </label>
+    </div>
+    <div class="err-msg" id="err-msg">Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.</div>
+  </div>
+
+  <!-- ══ FORM ════════════════════════════════════════════════════ -->
+  <div class="form-card">
+    <div class="section-lbl">⚙️ Parâmetros de Análise</div>
+    <div class="grid2">
+      <div class="field">
+        <label>Prazo médio de recebimento (PMR)<span class="req">*</span></label>
+        <div class="hint">Em quantos dias seus clientes pagam?</div>
+        <input type="number" id="pmr" placeholder="Ex: 45" min="0" max="360" step="1">
+        <div class="unit">dias</div>
+      </div>
+      <div class="field">
+        <label>Prazo médio de pagamento (PMP)<span class="req">*</span></label>
+        <div class="hint">Em quantos dias você paga seus fornecedores?</div>
+        <input type="number" id="pmp" placeholder="Ex: 30" min="0" max="360" step="1">
+        <div class="unit">dias</div>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Taxa de inadimplência<span class="req">*</span></label>
+        <div class="hint">% da receita perdida por inadimplência</div>
+        <input type="number" id="inad" placeholder="Ex: 5" min="0" max="100" step="0.1">
+        <div class="unit">%</div>
+      </div>
+      <div class="field">
+        <label>Margem operacional<span class="req">*</span></label>
+        <div class="hint">% de lucro após custos e despesas</div>
+        <input type="number" id="marg" placeholder="Ex: 12" min="-100" max="100" step="0.1">
+        <div class="unit">%</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Alavancagem financeira<span class="req">*</span> <span class="help-tip" tabindex="0" aria-label="Exemplo: R$100 mil próprios + R$60 mil em dívidas = 37,5% de capital de terceiros. Cálculo: 60.000 ÷ 160.000 × 100 = 37,5%.">?</span></label>
+      <div class="hint">% do capital da empresa que vem de terceiros (bancos, financiamentos, etc.)</div>
+      <input type="number" id="alav" placeholder="Ex: 40" min="0" max="100" step="1">
+      <div class="unit">% de capital de terceiros sobre o total</div>
+    </div>
+    <div class="field">
+      <label>Considerando os custos fixos e operacionais da empresa, por quantos dias o capital de giro disponível sustenta a operação sem entrada adicional de receita?<span class="req">*</span></label>
+      <div class="hint">Informe o número aproximado de dias. Use 0 caso a empresa não possua reserva operacional disponível.</div>
+      <input type="number" id="reserva_caixa" inputmode="numeric" placeholder="Ex: 30" min="0" max="180" step="1" required>
+      <div class="unit">dias</div>
+    </div>
+    <button class="btn-calc" onclick="calcular()">Calcular diagnóstico de risco</button>
+  </div>
+
+  <!-- ══ LOADING ═════════════════════════════════════════════════ -->
+  <div class="diagnosis-loading" id="diagnosis-loading" aria-live="polite" aria-hidden="true">
+    <div class="loading-card" role="status">
+      <div class="loading-kicker">Processamento IRFE</div>
+      <div class="loading-steps">
+        <span>Analisando indicadores financeiros</span>
+        <span>Calculando índice IRFE</span>
+        <span>Gerando relatório executivo</span>
+      </div>
+      <div class="loading-bar" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS ══════════════════════════════════════════════════ -->
+  <div class="results" id="results">
+
+    <!-- Identificação — exibida no relatório/PDF -->
+    <div class="ident-block" id="ident-block">
+      <div class="section-lbl">Identificação da Empresa</div>
+      <div class="ident-grid">
+        <div class="ident-row ident-empresa">
+          <span class="ident-lbl">Empresa</span>
+          <span class="ident-val" id="r-empresa">—</span>
+        </div>
+        <div class="ident-row ident-porte">
+          <span class="ident-lbl">Porte</span>
+          <span class="ident-val" id="r-funcionarios">—</span>
+        </div>
+        <div class="ident-row ident-responsavel">
+          <span class="ident-lbl">Responsável</span>
+          <span class="ident-val" id="r-responsavel">—</span>
+        </div>
+        <div class="ident-row ident-contato">
+          <span class="ident-lbl">Contato</span>
+          <span class="ident-val" id="r-contato">—</span>
+        </div>
+        <div class="ident-row ident-email print-only">
+          <span class="ident-lbl">E-mail</span>
+          <span class="ident-val" id="r-email">—</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gauge -->
+    <div class="gauge-section">
+      <svg id="gauge-svg" viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
+        <path id="g-bg" d="" stroke="#D6D0C6" stroke-width="21" fill="none" stroke-linecap="round"/>
+        <path id="g-fill" d="" stroke="#0D0D0D" stroke-width="21" fill="none" stroke-linecap="round"/>
+        <circle id="g-dot" cx="150" cy="150" r="6" fill="#0D0D0D"/>
+        <text x="150" y="70" text-anchor="middle" font-size="10" fill="#8F887E" font-family="'DM Sans', sans-serif" letter-spacing="2">IRFE</text>
+        <text x="28" y="158" text-anchor="middle" font-size="10" fill="#9A948C" font-family="'DM Sans', sans-serif">0</text>
+        <text x="272" y="158" text-anchor="middle" font-size="10" fill="#9A948C" font-family="'DM Sans', sans-serif">100</text>
+      </svg>
+      <div class="score-num" id="score-num">—</div>
+      <div class="score-lbl">Índice de Risco Financeiro Empresarial (0–100)</div>
+      <div id="badge" class="badge"></div>
+      <div><div id="cc2" class="cc-chip2"></div></div>
+    </div>
+
+    <!-- Subscores -->
+    <div class="subcards" id="subcards"></div>
+
+    <!-- Interpretation -->
+    <div class="interp" id="interp">
+      <p id="interp-text"></p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box" id="cta-box">
+      <h3 id="cta-h"></h3>
+      <p id="cta-p"></p>
+      <div class="cta-btns">
+        <button class="btn-pdf" onclick="gerarPdfDiagnostico()">Gerar PDF do diagnóstico</button>
+        <a href="https://neto-aflor.github.io/prime-form/" target="_blank" rel="noopener noreferrer" class="btn-inscricao">Conhecer Sessão Executiva Prime</a>
+        <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="btn-agendar" id="btn-ag">Falar com Prime Council</a>
+      </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="divider"></div>
+    <div class="methodology-block">
+      <div class="section-lbl">Metodologia</div>
+            <p>Metodologia IRFE: modelo multicritério de leitura executiva, baseado em ciclo de caixa, margem operacional, inadimplência, alavancagem e capital de giro. O objetivo é identificar vetores de risco financeiro-estrutural, capacidade de sobrevivência operacional e apoiar a priorização de decisões.<br><br>
+      O Ciclo de Caixa é derivado da diferença entre PMR e PMP. A função de alavancagem mantém sensibilidade contínua até 100% de capital de terceiros, sem saturação precoce.<br><br>
+      O modelo incorpora regras de override para evitar mascaramento de risco estrutural:<br>
+      O IRFE é elevado para no mínimo 55 quando qualquer subscore atinge ≥80.<br>
+      O IRFE é elevado para no mínimo 68 quando qualquer subscore atinge ≥95, ou quando dois subscores primários (Ciclo de Caixa, Margem e Inadimplência) atingem ≥75 simultaneamente.<br><br>
+      Essa abordagem garante que combinações favoráveis em variáveis secundárias não reduzam artificialmente a percepção de risco.<br><br>
+      Versão 3 — Ferramenta de caráter diagnóstico. Não substitui análise especializada.</p>
+    </div>
+
+  </div><!-- /results -->
+
+  <!-- ══ FOOTER ═══════════════════════════════════════════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        © Prime Council 2026 · Todos os direitos reservados
+        <span>Diagnóstico IRFE · Ecossistema Prime Council</span>
+      </div>
+      <div class="footer-copy">
+        Tecnologia e Inteligência Aplicada ·
+        <a href="https://aflorsa.com.br/" target="_blank" rel="noopener noreferrer">AFLOR</a>
+        <span id="dt" hidden></span>
+        <br>
+        <a href="#top" data-flow="navigation" data-cta-position="footer-top">
+          Voltar ao topo
+        </a>
+      </div>
+
+  </div>
+</footer>
+
+</div><!-- /page -->
+
+<!-- ══════════════════════════════════════════════════════════════
+     MOTOR DE CÁLCULO IRFE V3 — NÃO MODIFICADO
+     ══════════════════════════════════════════════════════════════ -->
+<script src="scripts.js"></script>
+</body>
+</html>
