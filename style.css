@@ -283,6 +283,13 @@ a {
   text-decoration: none;
 }
 
+.header-brand,
+.header-brand:visited,
+.header-brand:hover,
+.header-brand:focus,
+.header-brand:active {
+  text-decoration: none;
+}
 .logo-mark {
   width: 30px;
   height: 30px;
