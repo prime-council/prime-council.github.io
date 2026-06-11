@@ -134,6 +134,13 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   color:inherit;
   text-decoration:none;
 }
+.header-brand,
+.header-brand:visited,
+.header-brand:hover,
+.header-brand:focus,
+.header-brand:active{
+  text-decoration:none;
+}
 .header-brand-text{
   min-width:0;
   overflow:hidden;
