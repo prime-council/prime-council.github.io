@@ -1,4 +1,4 @@
-﻿/* CONSOLIDATED CSS â€” PRODUCTION READY */
+/* CONSOLIDATED CSS â€” PRODUCTION READY */
 
 /* â”€â”€â”€ RESET â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -155,6 +155,12 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   border-radius:2px;
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
+}
+.brand-icon-img{
+  width:24px;
+  height:24px;
+  object-fit:contain;
+  display:block;
 }
 .logo-bars{
   display:flex;
