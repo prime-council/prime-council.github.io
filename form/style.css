@@ -131,6 +131,8 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   gap:10px;
   flex:0 1 auto;
   min-width:0;
+  color:inherit;
+  text-decoration:none;
 }
 .header-brand-text{
   min-width:0;
@@ -150,8 +152,8 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
 
 .logo-mark{
   width:30px;height:30px;
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(191,160,107,0.22);
+  background:transparent;
+  border:none;
   border-radius:2px;
   display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
