@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    IRFE / Landing / Formulário — style.css
    v3.0 — Consolidated + Mobile + Hardened
    ============================================================ */
@@ -169,6 +169,12 @@ svg {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.brand-icon-img{
+  width:26px;
+  height:26px;
+  object-fit:contain;
+  display:block;
 }
 .logo-bars{
   display: flex;
