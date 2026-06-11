@@ -377,7 +377,7 @@ function calcular(){
 }
 
 function agendar(){
-  window.open('https://prime-council.github.io/','_blank','noopener,noreferrer');
+  window.open('https://primecouncil.com/','_blank','noopener,noreferrer');
 }
 
 function gerarPdfDiagnostico(){
