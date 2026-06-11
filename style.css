@@ -292,6 +292,13 @@ a {
   justify-content: center;
   flex-shrink: 0;
 }
+.brand-icon-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+}
+
 .logo-bars {
   display: flex;
   align-items: flex-end;
