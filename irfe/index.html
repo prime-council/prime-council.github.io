@@ -107,7 +107,9 @@
 
     <p>O IRFE foi desenvolvido para identificar exatamente esses vetores de risco antes que eles se tornem críticos.</p>
 
-    <p>👉 <strong>Inicie o diagnóstico e visualize onde sua operação está realmente exposta.</strong></p>
+    <p>O diagnóstico é realizado sem custo e não gera compromisso comercial nesta etapa.</p>
+
+    <p>👉 <strong>Inicie o diagnóstico e veja onde sua operação está realmente exposta.</strong></p>
   </div>
 
   <!-- ══ IDENTIFICAÇÃO DA EMPRESA ════════════════════════════════ -->
@@ -145,7 +147,7 @@
     <div class="lgpd-field" id="lgpd-field">
       <label class="lgpd-wrap">
         <input type="checkbox" id="lgpd">
-        <span>Autorizo a <strong>Prime Council</strong> a utilizar os dados deste diagnóstico para contato e análise interna, em conformidade com a <strong>LGPD (Lei nº 13.709/2018)</strong>.*</span>
+        <span>Autorizo o <strong>Prime Council</strong> a utilizar os dados deste diagnóstico para análise interna e contato relacionado ao IRFE, conforme o <a href="/privacidade/" target="_blank" rel="noopener noreferrer">Aviso de Privacidade</a>.*</span>
       </label>
     </div>
     <div class="err-msg" id="err-msg">Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.</div>
@@ -242,20 +244,23 @@
 
     <!-- Gauge -->
     <div class="gauge-section">
-      <svg id="gauge-svg" viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg">
-        <path id="g-bg" d="" stroke="#D6D0C6" stroke-width="21" fill="none" stroke-linecap="round"/>
-        <path id="g-fill" d="" stroke="#0D0D0D" stroke-width="21" fill="none" stroke-linecap="round"/>
-        <circle id="g-dot" cx="150" cy="150" r="6" fill="#0D0D0D"/>
-        <text x="150" y="70" text-anchor="middle" font-size="10" fill="#8F887E" font-family="'DM Sans', sans-serif" letter-spacing="2">IRFE</text>
-        <text x="28" y="158" text-anchor="middle" font-size="10" fill="#9A948C" font-family="'DM Sans', sans-serif">0</text>
-        <text x="272" y="158" text-anchor="middle" font-size="10" fill="#9A948C" font-family="'DM Sans', sans-serif">100</text>
-      </svg>
       <div class="score-num" id="score-num">—</div>
       <div class="score-lbl">Índice de Risco Financeiro Empresarial (0–100)</div>
       <div id="badge" class="badge"></div>
       <div><div id="cc2" class="cc-chip2"></div></div>
     </div>
 
+    <!-- Mapa dos Vetores de Risco -->
+    <div class="risk-map-section" id="risk-map-section" aria-label="Mapa dos Vetores de Risco">
+      <div class="risk-map-head">
+        <h3>Mapa dos Vetores de Risco</h3>
+        <p>Quanto mais distante do centro, maior a exposição ao risco naquele vetor.</p>
+      </div>
+      <svg id="risk-map-svg" class="risk-map-svg" viewBox="0 0 300 300" role="img" aria-labelledby="risk-map-title risk-map-desc" xmlns="http://www.w3.org/2000/svg">
+        <title id="risk-map-title">Mapa dos Vetores de Risco</title>
+        <desc id="risk-map-desc">Quanto mais distante do centro, maior a exposição ao risco naquele vetor.</desc>
+      </svg>
+    </div>
     <!-- Subscores -->
     <div class="subcards" id="subcards"></div>
 
@@ -270,8 +275,8 @@
       <p id="cta-p"></p>
       <div class="cta-btns">
         <button class="btn-pdf" onclick="gerarPdfDiagnostico()">Gerar PDF do diagnóstico</button>
-        <a href="https://primecouncil.com/form/" target="_blank" rel="noopener noreferrer" class="btn-inscricao">Conhecer Sessão Executiva Prime</a>
-        <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="btn-agendar" id="btn-ag">Falar com Prime Council</a>
+        <a href="../#evento" target="_blank" rel="noopener noreferrer" class="btn-inscricao">Conhecer Sessão Executiva Prime</a>
+        <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="btn-agendar" id="btn-ag">Conversar com o Prime</a>
       </div>
     </div>
 

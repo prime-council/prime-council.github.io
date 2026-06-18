@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    IRFE / Landing / Formulário — style.css
    v3.0 — Consolidated + Mobile + Hardened
    ============================================================ */
@@ -582,38 +582,43 @@ svg {
 /* ===== RESULTS ===== */
 .results{display:none;margin-top:1.75rem}
 
-/* ===== GAUGE ===== */
+/* ===== IRFE SUMMARY CARD ===== */
 .gauge-section{
-  background: var(--paper);
+  background: var(--ink);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--rule);
-  border-top: 3px solid var(--ink);
-  padding: 2.5rem 2.25rem 2rem;
+  border: 1px solid rgba(191,160,107,0.24);
+  border-top: 3px solid var(--gold);
+  padding: 1.75rem 1.5rem 1.55rem;
   text-align: center;
   margin-bottom: 1.125rem;
-  box-shadow: 0 8px 22px rgba(13,13,13,0.06);
+  box-shadow: 0 14px 30px rgba(13,13,13,0.18);
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
 }
 .gauge-section svg{
-  max-width: 320px;
-  display: block;
-  margin: 0 auto -6px;
+  display: none;
 }
 .score-num{
   font-family: var(--serif);
-  font-size: 72px;
+  font-size: clamp(54px, 7vw, 72px);
   font-weight: 700;
-  line-height: 1;
-  margin-top: -8px;
+  line-height: 0.95;
   letter-spacing: 0;
+}
+.gauge-section .score-num{
+  color: var(--gold) !important;
 }
 .score-lbl{
   font-size: 11.5px;
   color: var(--muted);
-  margin-top: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   max-width: 100%;
   overflow-wrap: break-word;
+}
+.gauge-section .score-lbl{
+  color: rgba(255,255,255,0.68);
 }
 .badge{
   display: inline-flex;
@@ -625,7 +630,6 @@ svg {
   font-family: var(--sans);
   font-size: 11.5px;
   font-weight: 500;
-  margin-top: 14px;
   letter-spacing: 0.10em;
   text-transform: uppercase;
 }
@@ -637,10 +641,81 @@ svg {
   border-radius: 2px;
   font-size: 12px;
   font-weight: 400;
-  margin-top: 12px;
   letter-spacing: 0.02em;
 }
 
+/* ===== RISK MAP ===== */
+.risk-map-section{
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 1.625rem 1.5rem 1.375rem;
+  margin: 1.125rem 0;
+  box-shadow: 0 8px 22px rgba(13,13,13,0.045);
+}
+.risk-map-head{
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 0.875rem;
+}
+.risk-map-head h3{
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.risk-map-head p{
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.risk-map-svg{
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  margin: 0 auto;
+  overflow: visible;
+}
+.risk-map-grid{
+  fill: none;
+  stroke: var(--rule-soft);
+  stroke-width: 1;
+}
+.risk-map-grid[data-level="100"]{
+  stroke: var(--rule);
+  stroke-width: 1.2;
+}
+.risk-map-axis{
+  stroke: var(--rule-soft);
+  stroke-width: 1;
+}
+.risk-map-area{
+  fill: rgba(154,123,74,0.16);
+  stroke: var(--gold);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.risk-map-dot{
+  fill: var(--gold);
+  stroke: var(--paper);
+  stroke-width: 1.5;
+}
+.risk-map-center{
+  fill: var(--muted);
+  opacity: 0.6;
+}
+.risk-map-label{
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 500;
+  fill: var(--muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 /* ===== SUBCARDS ===== */
 .subcards{
   display: grid;
@@ -651,6 +726,7 @@ svg {
 .sc{
   background: var(--paper);
   border: 1px solid var(--rule);
+  border-top: 3px solid var(--gold);
   border-radius: var(--radius);
   padding: 14px 15px;
 }
@@ -850,7 +926,7 @@ footer{
 
 /* ===== PRINT ===== */
 @media print{
-  body{background:#fff;font-size:12px;padding-top:0;color:#111}
+  body{background:#fff;font-size:11.5px;padding-top:0;color:#111}
   .site-header,
   .irfe-hero,
   .form-card,
@@ -869,8 +945,8 @@ footer{
     font-weight:600;
     letter-spacing:0.04em;
     color:#111;
-    margin-bottom:10px;
-    padding-bottom:8px;
+    margin-bottom:8px;
+    padding-bottom:7px;
     border-bottom:1px solid #ddd;
     break-after:avoid;
     page-break-after:avoid;
@@ -880,10 +956,10 @@ footer{
     display:block;
     border:1px solid #ddd;
     border-left:2px solid #9A7B4A;
-    padding:12px 14px;
-    margin:14px 0 0;
-    font-size:11.5px;
-    line-height:1.55;
+    padding:9px 11px;
+    margin:10px 0 0;
+    font-size:10.5px;
+    line-height:1.42;
     color:#555;
     break-inside:avoid;
     page-break-inside:avoid;
@@ -897,7 +973,7 @@ footer{
     border:1px solid #e4e1da;
     border-bottom:0;
     border-left:2px solid #9A7B4A;
-    padding:11px 13px 4px;
+    padding:9px 11px 3px;
     margin-bottom:0;
     font-family:var(--sans);
     font-size:11.5px;
@@ -910,7 +986,7 @@ footer{
     page-break-inside:avoid;
   }
   .ident-block::after{
-    content:'26 DE JUNHO DE 2026 · 09H ÀS 17H\A CAMPINAS · VAGAS LIMITADAS';
+    content:'PRIME COUNCIL · IRFE\A ANÁLISE EXECUTIVA PARA A PRÓXIMA ETAPA';
     white-space:pre-line;
     display:block;
     order:1;
@@ -918,12 +994,12 @@ footer{
     border:1px solid #e4e1da;
     border-top:0;
     border-left:2px solid #9A7B4A;
-    padding:2px 13px 11px;
-    margin-bottom:12px;
+    padding:1px 11px 9px;
+    margin-bottom:9px;
     font-family:var(--sans);
     font-size:9.5px;
     font-weight:400;
-    line-height:1.65;
+    line-height:1.55;
     color:#666;
     letter-spacing:0.10em;
     text-transform:uppercase;
@@ -936,7 +1012,7 @@ footer{
     border:1px solid #ddd;
     border-left:2px solid #9A7B4A;
     box-shadow:none;
-    margin-bottom:12px;
+    margin-bottom:9px;
     break-inside:avoid;
     page-break-inside:avoid;
   }
@@ -947,7 +1023,7 @@ footer{
     grid-template-columns:repeat(2,minmax(0,1fr));
     grid-template-rows:none;
     grid-auto-flow:row;
-    gap:7px 18px;
+    gap:5px 16px;
   }
   .ident-row{
     break-inside:avoid;
@@ -971,27 +1047,45 @@ footer{
   .ident-email{order:4}
   .ident-porte{order:5}
   .gauge-section,
+  .risk-map-section,
   .interp{
     border:1px solid #ddd;
     box-shadow:none;
-    margin-bottom:12px;
+    margin-bottom:9px;
     break-inside:avoid;
     page-break-inside:avoid;
   }
   .gauge-section{
     border-top:3px solid #111;
-    padding:18px 16px 16px;
+    padding:10px 14px 11px;
     break-before:avoid;
     page-break-before:avoid;
     break-after:avoid;
     page-break-after:avoid;
   }
   .gauge-section svg{max-width:240px;margin-bottom:-8px}
-  .score-num{font-size:50px}
-  .score-lbl{font-size:10px}
+  .risk-map-section{
+    padding:9px 10px 8px;
+    margin:7px 0 9px;
+    box-shadow:none;
+    break-inside:avoid;
+    page-break-inside:avoid;
+    break-before:avoid;
+    page-break-before:avoid;
+    break-after:avoid;
+    page-break-after:avoid;
+  }
+  .risk-map-head{margin-bottom:4px}
+  .risk-map-head h3{font-size:15.5px}
+  .risk-map-head p{font-size:10px;line-height:1.3}
+  .risk-map-svg{width:272px;max-width:100%}
+  .risk-map-label{font-size:8px}
+  .score-num{font-size:42px}
+  .score-lbl{font-size:9.5px}
+    .gauge-section .score-lbl{color:#D8D1C7!important}
   .subcards{
     grid-template-columns:repeat(5,1fr);
-    gap:8px;
+    gap:6px;
     break-inside:avoid;
     page-break-inside:avoid;
     break-before:avoid;
@@ -1000,26 +1094,32 @@ footer{
     page-break-after:avoid;
   }
   .sc{
+    padding:8px 9px;
     box-shadow:none;
     break-inside:avoid;
     page-break-inside:avoid;
   }
+  .sc .sc-lbl{font-size:9.2px;margin-bottom:3px}
+  .sc .sc-num{font-size:22px}
+  .sc .sc-note{font-size:9.5px;margin-top:1px}
+  .sc-bar-bg{height:3px;margin-top:7px}
+  .sc-bar{height:3px}
   .interp{
-    padding:14px 16px;
+    padding:10px 12px;
     break-inside:avoid;
     page-break-inside:avoid;
     break-before:avoid;
     page-break-before:avoid;
   }
   .interp p{
-    font-size:13px;
-    line-height:1.55;
+    font-size:12px;
+    line-height:1.42;
   }
   .badge{border:1px solid #ccc}
   footer{
     display:block;
-    margin-top:14px;
-    padding-top:12px;
+    margin-top:9px;
+    padding-top:8px;
     border-top:1px solid #ddd;
     text-align:center;
     break-inside:avoid;
@@ -1027,7 +1127,7 @@ footer{
   }
   .footer-brand{
     font-family:var(--serif);
-    font-size:13px;
+    font-size:12px;
     font-weight:600;
     color:#111;
     letter-spacing:0.04em;
@@ -1036,7 +1136,7 @@ footer{
   .footer-brand span{
     display:block;
     font-family:var(--sans);
-    font-size:10.5px;
+    font-size:9.8px;
     font-weight:400;
     color:#777;
     letter-spacing:0.06em;
@@ -1044,10 +1144,10 @@ footer{
   }
   .footer-copy{
     display:block;
-    font-size:11px;
+    font-size:10px;
     text-align:center;
     color:#777;
-    line-height:1.5;
+    line-height:1.45;
     margin-top:2px;
   }
   .footer-copy #dt{
@@ -1061,8 +1161,11 @@ footer{
   }
   .footer-copy a[href*="aflorsa.com.br"]{
     display:inline;
-    font-size:11px;
+    font-size:10px;
   }
+}
+.gauge-section .score-lbl{
+  color: rgba(255,255,255,0.68);
 }
 
 /* ===== MOBILE (≤768px) ===== */
@@ -1150,7 +1253,15 @@ footer{
     margin-right: auto;
   }
 
-  /* subcards: cobre toda faixa 0–768px                      */
+  .risk-map-section{
+    padding: 1.25rem 0.875rem 1rem;
+  }
+  .risk-map-head h3{font-size:20px}
+  .risk-map-svg{
+    width:min(100%, 340px);
+  }
+  .risk-map-label{font-size:8.5px}
+    /* subcards: cobre toda faixa 0–768px                      */
   .subcards {
     grid-template-columns: repeat(2, 1fr);
   }
