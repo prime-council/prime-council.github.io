@@ -90,7 +90,7 @@ function renderMapaVetoresRisco(subs){
   const cy = 150;
   const radius = 88;
   const isMobileRadar = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-  const labelRadius = isMobileRadar ? 112 : 124;
+  const labelRadius = 124;
   const valueRadiusOffset = 14;
   const total = subs.length;
 
@@ -159,12 +159,18 @@ function renderMapaVetoresRisco(subs){
 
   dataPoints.forEach((p, index) => {
     const labelPoint = pointFor(index, 100, labelRadius);
-    const anchor = isMobileRadar
-      ? (labelPoint.x < cx - 8 ? 'start' : labelPoint.x > cx + 8 ? 'end' : 'middle')
-      : (labelPoint.x < cx - 8 ? 'end' : labelPoint.x > cx + 8 ? 'start' : 'middle');
-    const labelX = isMobileRadar
-      ? Math.max(16, Math.min(284, labelPoint.x))
-      : labelPoint.x;
+    let anchor = labelPoint.x < cx - 8 ? 'end' : labelPoint.x > cx + 8 ? 'start' : 'middle';
+    let labelX = labelPoint.x;
+    let labelLines = null;
+
+    if(isMobileRadar && p.item.key === 'rcg'){
+      anchor = 'middle';
+      labelX = 38;
+      labelLines = ['Capital', 'de giro'];
+    } else if(isMobileRadar && p.item.key === 'rm'){
+      anchor = 'middle';
+      labelX = 262;
+    }
 
     addEl('circle', {
       cx: p.x.toFixed(1),
@@ -175,12 +181,22 @@ function renderMapaVetoresRisco(subs){
       'data-value': String(p.value)
     });
 
-    addEl('text', {
+    const labelEl = addEl('text', {
       x: labelX.toFixed(1),
-      y: labelPoint.y.toFixed(1),
+      y: (labelLines ? labelPoint.y - 5 : labelPoint.y).toFixed(1),
       class: 'risk-map-label',
       'text-anchor': anchor
-    }, p.item.l);
+    }, labelLines ? undefined : p.item.l);
+
+    if(labelLines){
+      labelLines.forEach((line, lineIndex) => {
+        const tspan = document.createElementNS(ns, 'tspan');
+        tspan.setAttribute('x', labelX.toFixed(1));
+        tspan.setAttribute('dy', lineIndex === 0 ? '0' : '1.15em');
+        tspan.textContent = line;
+        labelEl.appendChild(tspan);
+      });
+    }
 
   });
 
