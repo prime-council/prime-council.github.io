@@ -1,9 +1,7 @@
-const WHATSAPP_URL = 'https://wa.me/5519992402233?text=Ol%C3%A1%2C%20equipe%20Prime%20Council.%20Acabei%20de%20preencher%20minha%20inscri%C3%A7%C3%A3o%20para%20a%20Sess%C3%A3o%20Executiva%20Prime%20e%20gostaria%20de%20receber%20os%20dados%20oficiais%20de%20pagamento%20e%20confirmar%20os%20pr%C3%B3ximos%20passos.';
+const WHATSAPP_MESSAGE = 'Olá, Orozimbo. Preenchi o formulário do Prime Council e gostaria de seguir para a conversa inicial sobre o melhor caminho para minha empresa.';
+const WHATSAPP_URL = 'https://wa.me/5519992402233?text=' + encodeURIComponent(WHATSAPP_MESSAGE);
 const FRONTEND_TOKEN = 'prime2026-f7c9a3d41e8b4c2fa6d9b0e73a2c8f51';
 
-// SUBSTITUIR PELOS DADOS OFICIAIS DE PAGAMENTO PRIME.
-const PIX_CHAVE_OFICIAL = '00020126580014BR.GOV.BCB.PIX013603c7a785-3230-4710-a2ba-b3da0a6734e35204000053039865406960.005802BR5925PRIME OSHI SERVICOS E TRE6009SAO PAULO61080540900062250521mH0GrEHihcJzu4Ocdiimm6304A398';
-const PIX_FALLBACK_MSG = 'Dados de pagamento serão enviados pela equipe Prime Council.';
 
 // [SEGURANÇA 4] Flag de controle de duplo submit
 let isSubmitting = false;
@@ -31,7 +29,7 @@ function showStep(n){
   $('btnBack').style.visibility=n===1?'hidden':'visible';
   const btn=$('btnNext');
   if(n===4){
-    btn.innerHTML='Confirmar minha inscrição <div class="spinner" id="spinner"></div>';
+    btn.innerHTML='Confirmar contato <div class="spinner" id="spinner"></div>';
     btn.className='btn-next gold';
   } else {
     btn.innerHTML='Próximo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg><div class="spinner" id="spinner"></div>';
@@ -155,49 +153,6 @@ $('whatsapp').addEventListener('input',function(){
   }
 });
 
-function copyPix(){
-  const pixKey = document.getElementById('pix-chave');
-  const text = (
-    PIX_CHAVE_OFICIAL ||
-    (pixKey && pixKey.dataset ? pixKey.dataset.pixCode : '') ||
-    (pixKey ? pixKey.textContent : '')
-  ).trim();
-  if(!text)return;
-  const btn=document.querySelector('.pix-copy-btn');
-  const showFeedback = copied => {
-    if(!btn)return;
-    const original=btn.textContent;
-    btn.textContent=copied?'Copiado':'Copiar';
-    setTimeout(()=>{btn.textContent=original;},2000);
-  };
-  const fallbackCopy = () => {
-    const field=document.createElement('textarea');
-    field.value=text;
-    field.setAttribute('readonly','');
-    field.style.position='fixed';
-    field.style.left='-9999px';
-    field.style.top='0';
-    document.body.appendChild(field);
-    field.select();
-    let copied=false;
-    try{
-      copied=document.execCommand('copy');
-    }catch(_err){
-      copied=false;
-    }
-    document.body.removeChild(field);
-    showFeedback(copied);
-  };
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(()=>{
-      showFeedback(true);
-    }).catch(()=>{
-      fallbackCopy();
-    });
-    return;
-  }
-  fallbackCopy();
-}
 
 // [SEGURANÇA 6] Sanitização básica: remove caracteres perigosos de strings antes do envio
 function sanitize(str){
@@ -269,7 +224,7 @@ function showSuccessScreen(){
 function showSubmitError(message){
   const formErr = $('form-err');
   if(formErr){
-    formErr.textContent = message || 'Não foi possível confirmar sua inscrição automaticamente. Revise os dados e tente novamente em instantes.';
+    formErr.textContent = message || 'Não foi possível enviar sua solicitação de contato automaticamente. Revise os dados e tente novamente em instantes.';
     formErr.style.display = 'block';
   }
 }
@@ -314,18 +269,9 @@ async function submitForm(){
     aceite_lgpd:      $('confirmacao').checked === true
   };
 
-  const whatsappMsg = encodeURIComponent(
-    `Olá, equipe Prime Council. Acabei de preencher minha inscrição para a Sessão Executiva Prime.
+  const whatsappMsg = encodeURIComponent(WHATSAPP_MESSAGE);
 
-Nome: ${payload.nome}
-Empresa: ${payload.empresa}
-E-mail: ${payload.email}
-WhatsApp: ${payload.whatsapp}
-
-Gostaria de conversar e receber informações adicionais sobre o Ecossistema Prime Council.`
-  );
-
-  const whatsappBtn = document.querySelector('.success-actions .btn-gold');
+  const whatsappBtn = $('success-whatsapp-btn');
 
   if (whatsappBtn) {
     whatsappBtn.href = `https://wa.me/5519992402233?text=${whatsappMsg}`;
@@ -335,17 +281,17 @@ Gostaria de conversar e receber informações adicionais sobre o Ecossistema Pri
     .then(r => r.json())
     .then(res => {
       if(res && res.success === true){
-        console.log('Inscrição registrada no backend.');
+        console.log('Solicitação registrada no backend.');
         showSuccessScreen();
       } else {
-        console.warn('Falha ao registrar inscrição no backend.', res && res.message ? res.message : res);
-        showSubmitError('Não foi possível confirmar sua inscrição automaticamente. Revise os dados e tente novamente em instantes.');
+        console.warn('Falha ao registrar solicitação no backend.', res && res.message ? res.message : res);
+        showSubmitError('Não foi possível enviar sua solicitação de contato automaticamente. Revise os dados e tente novamente em instantes.');
         isSubmitting = false;
       }
     })
     .catch(err => {
-      console.warn('Falha ao registrar inscrição no backend.', err);
-      showSubmitError('Não foi possível confirmar sua inscrição automaticamente. Revise os dados e tente novamente em instantes.');
+      console.warn('Falha ao registrar solicitação no backend.', err);
+      showSubmitError('Não foi possível enviar sua solicitação de contato automaticamente. Revise os dados e tente novamente em instantes.');
       isSubmitting = false;
     });
 }
