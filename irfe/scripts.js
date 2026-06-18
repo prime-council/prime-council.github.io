@@ -81,106 +81,6 @@ function arc(cx,cy,r,a1,a2){
 
 function barColor(v){return v<=25?'#22c55e':v<=50?'#eab308':v<=75?'#f97316':'#ef4444'}
 
-function renderMapaVetoresRisco(subs){
-  const svg = document.getElementById('risk-map-svg');
-  if(!svg || !Array.isArray(subs) || subs.length === 0) return;
-
-  const ns = 'http://www.w3.org/2000/svg';
-  const cx = 150;
-  const cy = 150;
-  const radius = 88;
-  const labelRadius = 124;
-  const valueRadiusOffset = 14;
-  const total = subs.length;
-
-  function clearSvg(){
-    while(svg.firstChild) svg.removeChild(svg.firstChild);
-  }
-
-  function pointFor(index, value, baseRadius){
-    const angle = -90 + (360 / total) * index;
-    const rad = angle * Math.PI / 180;
-    const scaledRadius = baseRadius * Math.max(0, Math.min(100, value)) / 100;
-    return {
-      x: cx + scaledRadius * Math.cos(rad),
-      y: cy + scaledRadius * Math.sin(rad)
-    };
-  }
-
-  function polygonPoints(level){
-    return subs.map((_, index) => {
-      const p = pointFor(index, level, radius);
-      return p.x.toFixed(1) + ',' + p.y.toFixed(1);
-    }).join(' ');
-  }
-
-  function addEl(type, attrs, text){
-    const el = document.createElementNS(ns, type);
-    Object.keys(attrs || {}).forEach(key => el.setAttribute(key, attrs[key]));
-    if(text !== undefined) el.textContent = text;
-    svg.appendChild(el);
-    return el;
-  }
-
-  clearSvg();
-  addEl('title', {id:'risk-map-title'}, 'Mapa dos Vetores de Risco');
-  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais distante do centro, maior a exposição ao risco naquele vetor.');
-
-  [20,40,60,80,100].forEach(level => {
-    addEl('polygon', {
-      points: polygonPoints(level),
-      class: 'risk-map-grid',
-      'data-level': String(level)
-    });
-  });
-
-  subs.forEach((item, index) => {
-    const axisEnd = pointFor(index, 100, radius);
-    addEl('line', {
-      x1: cx,
-      y1: cy,
-      x2: axisEnd.x.toFixed(1),
-      y2: axisEnd.y.toFixed(1),
-      class: 'risk-map-axis'
-    });
-  });
-
-  const dataPoints = subs.map((item, index) => {
-    const value = Math.max(0, Math.min(100, Number(item.v) || 0));
-    const p = pointFor(index, value, radius);
-    return Object.assign({}, p, {value, item});
-  });
-
-  addEl('polygon', {
-    points: dataPoints.map(p => p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' '),
-    class: 'risk-map-area'
-  });
-
-  dataPoints.forEach((p, index) => {
-    const labelPoint = pointFor(index, 100, labelRadius);
-    const anchor = labelPoint.x < cx - 8 ? 'end' : labelPoint.x > cx + 8 ? 'start' : 'middle';
-
-    addEl('circle', {
-      cx: p.x.toFixed(1),
-      cy: p.y.toFixed(1),
-      r: 4,
-      class: 'risk-map-dot',
-      'data-key': p.item.key,
-      'data-value': String(p.value)
-    });
-
-    addEl('text', {
-      x: labelPoint.x.toFixed(1),
-      y: labelPoint.y.toFixed(1),
-      class: 'risk-map-label',
-      'text-anchor': anchor
-    }, p.item.l);
-
-  });
-
-  addEl('circle', {cx: cx, cy: cy, r: 2.5, class: 'risk-map-center'});
-}
-
 function sanitize(str){ return str.replace(/[<>]/g,''); }
 
 function phoneDigits(value){
@@ -366,18 +266,14 @@ function calcular(){
 
   // UI Update
   let cx=150,cy=150,r=110;
-  let gaugeBg=document.getElementById('g-bg');
-  let gaugeFill=document.getElementById('g-fill');
+  document.getElementById('g-bg').setAttribute('d',arc(cx,cy,r,0,180));
+  let ea=irfe/100*180;
+  document.getElementById('g-fill').setAttribute('d',ea>0?arc(cx,cy,r,0,ea):'');
+  document.getElementById('g-fill').setAttribute('stroke',cl.gc);
+  function pt(a){let rad=(a-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)]}
+  let dp=pt(ea);
   let dot=document.getElementById('g-dot');
-  if(gaugeBg && gaugeFill && dot){
-    gaugeBg.setAttribute('d',arc(cx,cy,r,0,180));
-    let ea=irfe/100*180;
-    gaugeFill.setAttribute('d',ea>0?arc(cx,cy,r,0,ea):'');
-    gaugeFill.setAttribute('stroke',cl.gc);
-    function pt(a){let rad=(a-90)*Math.PI/180;return[cx+r*Math.cos(rad),cy+r*Math.sin(rad)]}
-    let dp=pt(ea);
-    dot.setAttribute('cx',dp[0].toFixed(1));dot.setAttribute('cy',dp[1].toFixed(1));dot.setAttribute('fill',cl.gc);
-  }
+  dot.setAttribute('cx',dp[0].toFixed(1));dot.setAttribute('cy',dp[1].toFixed(1));dot.setAttribute('fill',cl.gc);
 
   document.getElementById('score-num').textContent=irfe.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
   document.getElementById('score-num').style.color=cl.gc;
@@ -395,7 +291,6 @@ function calcular(){
     {key:'ra',l:'Alavancagem',v:Math.round(ra),n:alav+'%'},
     {key:'rcg',l:'Capital de giro',v:Math.round(rcg),n:reservaCaixa+' dias de cobertura'}
   ];
-  renderMapaVetoresRisco(subs);
   document.getElementById('subcards').innerHTML=subs.map(s=>`<div class="sc"><div class="sc-lbl">${s.l}</div><div class="sc-num" style="color:${barColor(s.v)}">${s.v}<span style="font-size:11px;color:#B0AA9F;font-family:'DM Sans',sans-serif">/100</span></div><div class="sc-note">${s.n}</div><div class="sc-bar-bg"><div class="sc-bar" style="width:${s.v}%;background:${barColor(s.v)}"></div></div></div>`).join('');
 
   document.getElementById('interp-text').textContent=interp(irfe,cc,marg,inad,alav);
