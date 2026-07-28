@@ -13,6 +13,7 @@ let ultimoIrfeSalvo = {
 };
 let pdfGeradoPendente = false;
 let pdfRegistroEmAndamento = false;
+let ultimoResultadoIrfe = null;
 
 function calcRcc(cc){
   if(cc<=-30)return 0;
@@ -248,22 +249,182 @@ function validateMetric(id,min,max){
   return valid;
 }
 
+let wizardStep = 1;
+const wizardTotalSteps = 4;
+const wizardFields = {
+  1: ['setor','funcionarios','faturamento','desafio','gestao'],
+  2: ['pmr','pmp','inad'],
+  3: ['marg','alav','reserva_caixa'],
+  4: ['empresa','responsavel','cargo','email','telefone','lgpd']
+};
+
+function scrollToWizard(){
+  const panel=document.getElementById('diagnostico-irfe');
+  if(panel) panel.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function clearWizardError(){
+  const errMsg=document.getElementById('err-msg');
+  if(errMsg){
+    errMsg.textContent='Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.';
+    errMsg.classList.remove('visible');
+  }
+  document.querySelectorAll('.wizard-step .field .err-msg.visible').forEach(msg=>msg.classList.remove('visible'));
+}
+
+function validateWizardStep(step){
+  const ids=wizardFields[step] || [];
+  let firstInvalid=null;
+  let valid=true;
+  ids.forEach(id=>{
+    if(id==='lgpd'){
+      const lgpd=document.getElementById('lgpd');
+      const lgpdField=document.getElementById('lgpd-field');
+      const ok=!!(lgpd && lgpd.checked);
+      if(lgpdField) lgpdField.classList.toggle('field-err', !ok);
+      if(!ok && !firstInvalid) firstInvalid=lgpdField || lgpd;
+      valid = valid && ok;
+      return;
+    }
+
+    if(id==='desafio' || id==='gestao'){
+      const field=document.getElementById('f-' + id);
+      const checked=document.querySelector('input[name="' + id + '"]:checked');
+      const msg=field ? field.querySelector('.err-msg') : null;
+      const ok=!!checked;
+      if(field) field.classList.toggle('field-err', !ok);
+      if(msg) msg.classList.toggle('visible', !ok);
+      if(!ok && !firstInvalid) firstInvalid=field;
+      valid = valid && ok;
+      return;
+    }
+
+    let ok=true;
+    const el=document.getElementById(id);
+    if(!el) return;
+    const field=el.closest('.field');
+    const fieldMsg=field ? field.querySelector('.err-msg') : null;
+    if(['pmr','pmp','inad','marg','alav','reserva_caixa'].includes(id)){
+      const ranges={
+        pmr:[0,360],
+        pmp:[0,360],
+        inad:[0,100],
+        marg:[-100,100],
+        alav:[0,100],
+        reserva_caixa:[0,180]
+      };
+      ok=validateMetric(id,ranges[id][0],ranges[id][1]);
+    } else {
+      ok=!!String(el.value || '').trim();
+      field.classList.toggle('field-err', !ok);
+      if(ok && id==='email'){
+        ok=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+        field.classList.toggle('field-err', !ok);
+      }
+      if(ok && id==='telefone'){
+        ok=isValidMobile(el.value);
+        field.classList.toggle('field-err', !ok);
+      }
+      if(fieldMsg) fieldMsg.classList.toggle('visible', !ok);
+    }
+    if(!ok && !firstInvalid) firstInvalid=el.closest('.field') || el;
+    valid = valid && ok;
+  });
+
+  const errMsg=document.getElementById('err-msg');
+  if(!valid){
+    if(errMsg){
+      errMsg.textContent=step===4 ? 'Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.' : 'Preencha os campos obrigatórios desta etapa para continuar.';
+      errMsg.classList.add('visible');
+    }
+    if(firstInvalid) firstInvalid.scrollIntoView({behavior:'smooth',block:'center'});
+  } else {
+    clearWizardError();
+  }
+  return valid;
+}
+
+function updateWizard(){
+  document.querySelectorAll('.wizard-step').forEach(step=>{
+    step.classList.toggle('active', Number(step.getAttribute('data-step'))===wizardStep);
+  });
+  const percent=Math.round((wizardStep / wizardTotalSteps) * 100);
+  const stepLabel=document.getElementById('wizard-step-label');
+  const stepPercent=document.getElementById('wizard-step-percent');
+  const fill=document.getElementById('wizard-progress-fill');
+  const track=document.querySelector('.wizard-progress-track');
+  const back=document.getElementById('wizard-back');
+  const next=document.getElementById('wizard-next');
+  const submit=document.getElementById('wizard-submit');
+  if(stepLabel) stepLabel.textContent='ETAPA ' + wizardStep + ' DE ' + wizardTotalSteps;
+  if(stepPercent) stepPercent.textContent=percent + '% DO PERCURSO';
+  if(fill) fill.style.width=percent + '%';
+  if(track) track.setAttribute('aria-valuenow', String(percent));
+  if(back) back.disabled=wizardStep===1;
+  if(next) next.hidden=wizardStep===wizardTotalSteps;
+  if(submit) submit.hidden=wizardStep!==wizardTotalSteps;
+}
+
+function initWizard(){
+  const back=document.getElementById('wizard-back');
+  const next=document.getElementById('wizard-next');
+  const submit=document.getElementById('wizard-submit');
+  if(back) back.addEventListener('click',()=>{
+    if(wizardStep>1){
+      wizardStep--;
+      updateWizard();
+      scrollToWizard();
+    }
+  });
+  if(next) next.addEventListener('click',()=>{
+    if(!validateWizardStep(wizardStep)) return;
+    if(wizardStep<wizardTotalSteps){
+      wizardStep++;
+      updateWizard();
+      scrollToWizard();
+    }
+  });
+  if(submit) submit.hidden=true;
+  const review=document.getElementById('btn-review-answers');
+  if(review) review.addEventListener('click',voltarRevisarRespostas);
+  updateWizard();
+}
+
 let sending = false;
 
 function setDiagnosisLoading(active){
   let loading=document.getElementById('diagnosis-loading');
   let results=document.getElementById('results');
+  let questionnaire=document.getElementById('questionnaire');
   if(!loading) return;
   loading.classList.toggle('visible', active);
   loading.setAttribute('aria-hidden', active ? 'false' : 'true');
   if(active && results) results.style.display='none';
+  if(questionnaire) questionnaire.style.display=active ? 'none' : '';
+}
+
+function voltarRevisarRespostas(){
+  const app=document.getElementById('diagnostic-app');
+  const questionnaire=document.getElementById('questionnaire');
+  const results=document.getElementById('results');
+  wizardStep=1;
+  updateWizard();
+  setDiagnosisLoading(false);
+  if(app) app.setAttribute('data-view','questionnaire');
+  if(questionnaire) questionnaire.style.display='';
+  if(results) results.style.display='none';
+  sending=false;
+  scrollToWizard();
 }
 
 function calcular(){
   // ── Captura — Identificação da Empresa ────────────────────────
   let empresa     = (document.getElementById('empresa')     ? document.getElementById('empresa').value.trim()     : '');
   let funcionarios= (document.getElementById('funcionarios')? document.getElementById('funcionarios').value        : '');
+  let setor       = (document.getElementById('setor')       ? document.getElementById('setor').value              : '');
+  let faturamento = (document.getElementById('faturamento') ? document.getElementById('faturamento').value        : '');
   let responsavel = (document.getElementById('responsavel') ? document.getElementById('responsavel').value.trim() : '');
+  let cargo       = (document.getElementById('cargo')       ? document.getElementById('cargo').value              : '');
   let email       = (document.getElementById('email')       ? document.getElementById('email').value.trim()       : '');
   let telefone    = (document.getElementById('telefone')    ? document.getElementById('telefone').value.trim()    : '');
   let lgpd        = (document.getElementById('lgpd')        ? document.getElementById('lgpd').checked              : false);
@@ -272,7 +433,7 @@ function calcular(){
   if(honeypot) return;
 
   // ── Validação — campos obrigatórios + consentimento ───────────
-  const idsObrig = ['empresa','responsavel','email','telefone','funcionarios'];
+  const idsObrig = ['setor','funcionarios','faturamento','empresa','responsavel','cargo','email','telefone'];
   let erros = false;
   idsObrig.forEach(id => {
     let el = document.getElementById(id);
@@ -280,6 +441,12 @@ function calcular(){
     let vazio = !el.value.trim();
     el.closest('.field').classList.toggle('field-err', vazio);
     if(vazio) erros = true;
+  });
+  ['desafio','gestao'].forEach(name=>{
+    const field=document.getElementById('f-' + name);
+    const ok=!!document.querySelector('input[name="' + name + '"]:checked');
+    if(field) field.classList.toggle('field-err', !ok);
+    if(!ok) erros = true;
   });
   let lgpdField = document.getElementById('lgpd-field');
   if(!lgpd){ lgpdField.classList.add('field-err'); erros = true; }
@@ -347,9 +514,6 @@ function calcular(){
 
   // 6. Bloqueio de envio duplicado
   if(sending) return; sending = true;
-  setDiagnosisLoading(true);
-
-  setTimeout(function(){
   // 2. Calcular subscores
   let rcc=calcRcc(cc);
   let rm=calcRm(marg);
@@ -424,15 +588,42 @@ function calcular(){
 
   let cta=document.getElementById('cta-box');
   cta.style.background=cl.ctaBg;
+  let btnAg=document.getElementById('btn-ag');
+  if(btnAg) btnAg.style.setProperty('--risk-cta-bg', cl.ctaBg);
   let ctaTitles={0:'Governança e Crescimento',25:'Prevenção e Estrutura',50:'Ação Estratégica',75:'Emergência Financeira'};
   let ctaPs={0:'Sua empresa tem fundamentos sólidos. É o momento de blindar o negócio com governança consultiva para escalar com segurança.',25:'Existem pontos de atenção que podem comprometer o futuro. Uma análise externa pode identificar gargalos antes que se tornem críticos.',50:'O risco é elevado e a margem de erro é mínima. É necessária uma revisão imediata dos processos financeiros e operacionais.',75:'Situação de alta vulnerabilidade. A intervenção deve ser imediata para estancar perdas e reestruturar a viabilidade do negócio.'};
   
   let level=irfe<=25?0:irfe<=50?25:irfe<=75?50:75;
   document.getElementById('cta-h').textContent=ctaTitles[level];
   document.getElementById('cta-p').textContent=ctaPs[level];
+
+  ultimoResultadoIrfe = {
+    empresa,
+    responsavel,
+    funcionariosLabel,
+    telefone,
+    email,
+    irfe,
+    classificacao: cl.label,
+    classificacaoStyle: cl,
+    cicloCaixa: cc,
+    subs,
+    analise: interp(irfe,cc,marg,inad,alav),
+    recomendacaoTitulo: ctaTitles[level],
+    recomendacaoTexto: ctaPs[level],
+    recomendacaoCor: cl.ctaBg
+  };
   
   setDiagnosisLoading(false);
-  document.getElementById('results').style.display='block';
+  const app=document.getElementById('diagnostic-app');
+  const resultDate=document.getElementById('result-date');
+  const resultTitle=document.getElementById('result-title');
+  const resultCompany=document.getElementById('result-company');
+  if(app) app.setAttribute('data-view','result');
+  if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  if(resultTitle) resultTitle.textContent=empresa ? 'Análise financeira · ' + empresa : 'Análise financeira';
+  if(resultCompany) resultCompany.textContent=empresa || '—';
+  document.getElementById('results').style.display='flex';
   document.getElementById('results').scrollIntoView({behavior:'smooth'});
 
   // ── Popular bloco de identificação no relatório ────────────────
@@ -500,22 +691,161 @@ function calcular(){
   } else {
     sending = false;
   }
-  },5000);
 }
 
 function agendar(){
   window.open('https://primecouncil.com/','_blank','noopener,noreferrer');
 }
 
+function textFrom(id){
+  const el = document.getElementById(id);
+  return el ? String(el.textContent || '').trim() : '';
+}
+
+function setPrintText(id, value){
+  const el = document.getElementById(id);
+  if(el) el.textContent = value || '—';
+}
+
+function checkedRadioText(name){
+  const input = document.querySelector('input[name="' + name + '"]:checked');
+  if(!input) return 'Não informado';
+  const label = input.closest('label');
+  const textSource = label ? label.querySelector('.radio-label') || label : null;
+  const text = textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
+  return text || 'Não informado';
+}
+
+function formatPublicDiagnosticId(id){
+  const raw = String(id || '').trim();
+  if(!raw) return 'IF';
+  const withoutRepeatedIrfe = raw.replace(/^(IRFE-)+/i, '');
+  const withoutIf = withoutRepeatedIrfe.replace(/^IF-/i, '');
+  return 'IF-' + withoutIf;
+}
+
+function limparRadarPrint(){
+  const wrap = document.getElementById('pr-irfe-radar-wrap');
+  if(wrap) wrap.innerHTML = '';
+}
+
+function criarCardPrint(item){
+  const card = document.createElement('div');
+  card.className = 'irfe-print-card' + (item.scoreCard ? ' irfe-print-score-card' : '');
+
+  const label = document.createElement('div');
+  label.className = 'irfe-print-card-label';
+  label.textContent = item.label;
+  card.appendChild(label);
+
+  const value = document.createElement('div');
+  value.className = 'irfe-print-card-value';
+  value.textContent = item.value;
+  if(item.color) value.style.color = item.color;
+  card.appendChild(value);
+
+  if(item.note){
+    const note = document.createElement('div');
+    note.className = 'irfe-print-card-note';
+    note.textContent = item.note;
+    card.appendChild(note);
+  }
+
+  if(item.badge){
+    const pill = document.createElement('div');
+    pill.className = 'irfe-print-risk-pill';
+    pill.textContent = item.badge;
+    if(item.badgeStyle){
+      pill.style.background = item.badgeStyle.bg;
+      pill.style.color = item.badgeStyle.tc;
+      pill.style.border = '1px solid ' + item.badgeStyle.bc;
+    }
+    card.appendChild(pill);
+  }
+
+  return card;
+}
+
+function prepararRelatorioIrfeParaImpressao(){
+  const report = document.getElementById('irfePrintReport');
+  const indicators = document.getElementById('pr-irfe-indicators');
+  const sourceSvg = document.getElementById('risk-map-svg');
+  const whatsapp = document.getElementById('btn-ag');
+  if(!report || !indicators || !sourceSvg) return false;
+
+  const dataAtual = textFrom('result-date') || new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  const empresa = (ultimoResultadoIrfe && ultimoResultadoIrfe.empresa) || textFrom('r-empresa') || 'Empresa';
+  const idAtual = formatPublicDiagnosticId(ultimoIrfeSalvo && ultimoIrfeSalvo.id_irfe ? ultimoIrfeSalvo.id_irfe : '');
+  const meta = empresa + ' · ' + idAtual + ' · ' + dataAtual;
+
+  setPrintText('pr-irfe-meta-main', meta);
+  setPrintText('pr-irfe-meta-secondary', 'Diagnóstico Financeiro Prime');
+  setPrintText('pr-irfe-company', textFrom('r-empresa'));
+  setPrintText('pr-irfe-owner', textFrom('r-responsavel'));
+  setPrintText('pr-irfe-phone', textFrom('r-contato'));
+  setPrintText('pr-irfe-email', textFrom('r-email'));
+  setPrintText('pr-irfe-desafio', checkedRadioText('desafio'));
+  setPrintText('pr-irfe-gestao', checkedRadioText('gestao'));
+  setPrintText('pr-irfe-analysis', textFrom('interp-text'));
+  setPrintText('pr-irfe-recommendation-title', textFrom('cta-h'));
+  setPrintText('pr-irfe-recommendation-text', textFrom('cta-p'));
+
+  const recommendation = document.getElementById('pr-irfe-recommendation');
+  if(recommendation && ultimoResultadoIrfe && ultimoResultadoIrfe.recomendacaoCor){
+    recommendation.style.background = ultimoResultadoIrfe.recomendacaoCor;
+  }
+
+  const printWhatsapp = document.getElementById('pr-irfe-whatsapp');
+  if(printWhatsapp && whatsapp){
+    printWhatsapp.href = whatsapp.href;
+  }
+
+  indicators.innerHTML = '';
+  indicators.appendChild(criarCardPrint({
+    label: 'ÍNDICE FINANCEIRO',
+    value: textFrom('score-num'),
+    badge: textFrom('badge'),
+    badgeStyle: ultimoResultadoIrfe ? ultimoResultadoIrfe.classificacaoStyle : null,
+    scoreCard: true
+  }));
+
+  const subs = ultimoResultadoIrfe && Array.isArray(ultimoResultadoIrfe.subs) ? ultimoResultadoIrfe.subs : [];
+  subs.forEach(item => {
+    indicators.appendChild(criarCardPrint({
+      label: item.l,
+      value: String(item.v) + '/100',
+      note: item.n,
+      color: barColor(item.v)
+    }));
+  });
+
+  limparRadarPrint();
+  const radarWrap = document.getElementById('pr-irfe-radar-wrap');
+  const clonedSvg = sourceSvg.cloneNode(true);
+  clonedSvg.removeAttribute('id');
+  clonedSvg.querySelectorAll('[id]').forEach((node, index) => {
+    node.setAttribute('id', 'pr-irfe-radar-' + index);
+  });
+  clonedSvg.setAttribute('aria-hidden', 'true');
+  radarWrap.appendChild(clonedSvg);
+  report.setAttribute('aria-hidden', 'false');
+  return true;
+}
 function gerarPdfDiagnostico(){
   const dataAtual = new Date().toISOString().split('T')[0];
   const nomeArquivo = `irfe_prime_${dataAtual}.pdf`;
   const tituloOriginal = document.title;
   document.title = nomeArquivo;
+  prepararRelatorioIrfeParaImpressao();
   if(ultimoIrfeSalvo.id_irfe) registrarPdfGerado();
   else pdfGeradoPendente = true;
   window.print();
-  setTimeout(()=>{ document.title = tituloOriginal; },500);
+  setTimeout(()=>{
+    document.title = tituloOriginal;
+    limparRadarPrint();
+    const report = document.getElementById('irfePrintReport');
+    if(report) report.setAttribute('aria-hidden','true');
+  },500);
 }
 
 function registrarPdfGerado(){
@@ -554,15 +884,32 @@ function registrarPdfGerado(){
   if(el) el.addEventListener('input',function(){
     if(id==='telefone') this.value=formatPhone(this.value);
     this.closest('.field').classList.remove('field-err');
+    const fieldMsg=this.closest('.field').querySelector('.err-msg');
+    if(fieldMsg) fieldMsg.classList.remove('visible');
     let errMsg=document.getElementById('err-msg');
     errMsg.textContent='Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.';
     errMsg.classList.remove('visible');
   });
 });
-['funcionarios'].forEach(id=>{
+['setor','funcionarios','faturamento','cargo'].forEach(id=>{
   let el=document.getElementById(id);
   if(el) el.addEventListener('change',function(){
     this.closest('.field').classList.remove('field-err');
+    const fieldMsg=this.closest('.field').querySelector('.err-msg');
+    if(fieldMsg) fieldMsg.classList.remove('visible');
+    let errMsg=document.getElementById('err-msg');
+    errMsg.textContent='Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.';
+    errMsg.classList.remove('visible');
+  });
+});
+document.querySelectorAll('input[name="desafio"], input[name="gestao"]').forEach(el=>{
+  el.addEventListener('change',function(){
+    const field=this.closest('.field');
+    if(field){
+      field.classList.remove('field-err');
+      const fieldMsg=field.querySelector('.err-msg');
+      if(fieldMsg) fieldMsg.classList.remove('visible');
+    }
     let errMsg=document.getElementById('err-msg');
     errMsg.textContent='Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.';
     errMsg.classList.remove('visible');
@@ -588,3 +935,5 @@ if(helpTip){
   helpTip.addEventListener('focus',()=>helpTip.classList.add('is-active'));
   helpTip.addEventListener('blur',()=>helpTip.classList.remove('is-active'));
 }
+
+initWizard();
