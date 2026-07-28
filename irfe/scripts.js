@@ -423,6 +423,8 @@ function calcular(){
   let funcionarios= (document.getElementById('funcionarios')? document.getElementById('funcionarios').value        : '');
   let setor       = (document.getElementById('setor')       ? document.getElementById('setor').value              : '');
   let faturamento = (document.getElementById('faturamento') ? document.getElementById('faturamento').value        : '');
+  let desafioEstrategico = getSelectedRadioLabel('desafio');
+  let estruturaGestao = getSelectedRadioLabel('gestao');
   let responsavel = (document.getElementById('responsavel') ? document.getElementById('responsavel').value.trim() : '');
   let cargo       = (document.getElementById('cargo')       ? document.getElementById('cargo').value              : '');
   let email       = (document.getElementById('email')       ? document.getElementById('email').value.trim()       : '');
@@ -630,10 +632,15 @@ function calcular(){
       asset: 'prime',
       nome: responsavel,
       empresa: empresa,
+      cargo: cargo,
       email: email,
       whatsapp: phoneDigits(telefone),
+      setor: setor,
       faixa_funcionarios: funcionariosLabel,
       numero_colaboradores: funcionariosLabel,
+      faturamento_anual: faturamento,
+      desafio_estrategico: desafioEstrategico,
+      estrutura_gestao: estruturaGestao,
       pmr: pmr,
       pmp: pmp,
       ciclo_caixa: cc,
@@ -690,6 +697,14 @@ function textFrom(id){
 function setPrintText(id, value){
   const el = document.getElementById(id);
   if(el) el.textContent = value || '—';
+}
+
+function getSelectedRadioLabel(name){
+  const input = document.querySelector('input[name="' + name + '"]:checked');
+  if(!input) return '';
+  const label = input.closest('label');
+  const textSource = label ? label.querySelector('.radio-label') || label : null;
+  return textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
 }
 
 function checkedRadioText(name){
