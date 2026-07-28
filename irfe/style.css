@@ -2114,6 +2114,16 @@ footer{
     font-size:10px;
     letter-spacing:0.08em;
   }
+  .config-kicker{
+    display:none;
+  }
+  .config-header h2{
+    font-size:clamp(1.42rem, 5.8vw, 1.72rem);
+    line-height:1.08;
+  }
+  #f-desafio{
+    margin-top:22px;
+  }
   .wizard-nav{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -2128,6 +2138,16 @@ footer{
   }
   .wizard-nav .btn-calc{
     grid-column:1 / -1;
+  }
+  .wizard-shell:has(.wizard-step[data-step="4"].active) .wizard-nav{
+    grid-template-columns:1fr;
+  }
+  .wizard-shell:has(.wizard-step[data-step="4"].active) .wizard-nav .btn-calc{
+    order:1;
+    grid-column:auto;
+  }
+  .wizard-shell:has(.wizard-step[data-step="4"].active) .wizard-nav .btn-back{
+    order:2;
   }
   .help-tip::after{
     left:auto;
@@ -2262,6 +2282,127 @@ footer{
 
 
 
+/* ===== RESULT MOBILE PORTRAIT — WEB ONLY ===== */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .diagnostic-app[data-view="result"] .results{
+    display:flex!important;
+    flex-direction:column;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    margin-left:0;
+    margin-right:0;
+    transform:none;
+  }
+
+  .diagnostic-app[data-view="result"] .results > *,
+  .diagnostic-app[data-view="result"] .result-heading-main,
+  .diagnostic-app[data-view="result"] .result-indicators-grid,
+  .diagnostic-app[data-view="result"] .gauge-section,
+  .diagnostic-app[data-view="result"] .subcards,
+  .diagnostic-app[data-view="result"] .sc,
+  .diagnostic-app[data-view="result"] .risk-map-section,
+  .diagnostic-app[data-view="result"] .interp,
+  .diagnostic-app[data-view="result"] .cta-box,
+  .diagnostic-app[data-view="result"] .result-actions,
+  .diagnostic-app[data-view="result"] .analysis-notice--result,
+  .diagnostic-app[data-view="result"] .methodology-block{
+    box-sizing:border-box;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+
+  .diagnostic-app[data-view="result"] .result-head,
+  .diagnostic-app[data-view="result"] .result-heading{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr);
+    align-items:start;
+    justify-items:start;
+    gap:0.85rem;
+    text-align:left;
+  }
+
+  .diagnostic-app[data-view="result"] .result-heading h2{
+    max-width:100%;
+    overflow-wrap:anywhere;
+  }
+
+  .diagnostic-app[data-view="result"] .result-date{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    flex-shrink:1;
+    text-align:left;
+  }
+
+  .diagnostic-app[data-view="result"] #ident-block{
+    display:none;
+  }
+
+  .diagnostic-app[data-view="result"] .result-indicators-grid{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr);
+    gap:12px;
+  }
+
+  .diagnostic-app[data-view="result"] .gauge-section,
+  .diagnostic-app[data-view="result"] .result-indicators-grid .gauge-section,
+  .diagnostic-app[data-view="result"] .result-indicators-grid .sc{
+    min-height:0;
+    height:auto;
+  }
+
+  .diagnostic-app[data-view="result"] .subcards,
+  .diagnostic-app[data-view="result"] .result-indicators-grid .subcards{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr);
+    gap:12px;
+    margin:0;
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-section{
+    margin:0;
+    padding:1.25rem 0.875rem 1rem;
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-svg{
+    width:100%;
+    max-width:100%;
+    height:auto;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .diagnostic-app[data-view="result"] .interp,
+  .diagnostic-app[data-view="result"] .cta-box,
+  .diagnostic-app[data-view="result"] .methodology-block{
+    padding-left:1rem;
+    padding-right:1rem;
+    overflow-wrap:break-word;
+  }
+
+  .diagnostic-app[data-view="result"] .result-actions{
+    display:grid;
+    grid-template-columns:minmax(0, 1fr);
+    gap:10px;
+    padding-top:16px;
+  }
+
+  .diagnostic-app[data-view="result"] .result-actions > *{
+    box-sizing:border-box;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .diagnostic-app[data-view="result"] .analysis-notice--result{
+    margin-top:0;
+    overflow-wrap:break-word;
+  }
+}
 /* ===== PRINT-ONLY PDF REPORT — DIAGNÓSTICO FINANCEIRO PRIME ===== */
 .irfe-print-report{
   display:none;
@@ -2688,3 +2829,4 @@ footer{
     page-break-inside:avoid;
   }
 }
+
