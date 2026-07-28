@@ -2353,6 +2353,11 @@ footer{
     height:auto;
   }
 
+  .diagnostic-app[data-view="result"] .gauge-section > div:has(#cc2),
+  .diagnostic-app[data-view="result"] .gauge-section #cc2{
+    display:none;
+  }
+
   .diagnostic-app[data-view="result"] .subcards,
   .diagnostic-app[data-view="result"] .result-indicators-grid .subcards{
     display:grid;
@@ -2456,6 +2461,27 @@ footer{
     background:var(--risk-cta-bg);
     border-color:var(--risk-cta-bg);
     color:#fff;
+  }
+
+  .diagnostic-app[data-view="result"] .result-actions #btn-review-answers{
+    appearance:none;
+    -webkit-appearance:none;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:46px;
+    padding:12px 24px;
+    background:var(--paper);
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    line-height:1.2;
+    text-transform:uppercase;
+    cursor:pointer;
   }
 
   .diagnostic-app[data-view="result"] .analysis-notice--result{
@@ -2889,5 +2915,7 @@ footer{
     page-break-inside:avoid;
   }
 }
+
+
 
 
