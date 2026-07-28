@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Diagnóstico IRFE · Índice de Risco Financeiro Empresarial | Prime Council</title>
+<title>Diagnóstico Financeiro Prime | Prime Council</title>
 
-<meta name="description" content="Execute o Diagnóstico IRFE da Prime Council e identifique vetores de risco financeiro, ciclo de caixa, margem, inadimplência, alavancagem e capital de giro em poucos minutos." />
+<meta name="description" content="Execute o Diagnóstico Financeiro Prime e identifique vetores de risco financeiro, ciclo de caixa, margem, inadimplência, alavancagem e capital de giro em poucos minutos." />
 <link rel="canonical" href="https://primecouncil.com/irfe/" />
 <link rel="alternate" hreflang="pt-BR" href="https://primecouncil.com/irfe/" />
 <meta name="robots" content="index, follow" />
@@ -18,7 +18,7 @@
 
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="pt_BR" />
-<meta property="og:title" content="Diagnóstico IRFE · Índice de Risco Financeiro Empresarial | Prime Council" />
+<meta property="og:title" content="Diagnóstico Financeiro Prime | Prime Council" />
 <meta property="og:description" content="Diagnóstico executivo para identificar exposição financeira, gargalos operacionais e vetores de risco antes que se tornem críticos." />
 <meta property="og:url" content="https://primecouncil.com/irfe/" />
 <meta property="og:image" content="https://primecouncil.com/assets/og-prime.png">
@@ -26,14 +26,14 @@
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Diagnóstico IRFE · Índice de Risco Financeiro Empresarial | Prime Council" />
+<meta name="twitter:title" content="Diagnóstico Financeiro Prime | Prime Council" />
 <meta name="twitter:description" content="Identifique vetores de risco financeiro, ciclo de caixa, margem, inadimplência, alavancagem e capital de giro em poucos minutos." />
 <meta name="twitter:image" content="https://primecouncil.com/assets/og-prime.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260728-irfe-final-clean-v1">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -48,7 +48,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "IRFE",
+      "name": "Diagnóstico Financeiro Prime",
       "item": "https://primecouncil.com/irfe/"
     }
   ]
@@ -72,7 +72,7 @@
     <nav class="header-nav" aria-label="Navegação principal">
       <a href="https://primecouncil.com/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="prime-council">Prime Council</a>
       <span class="h-sep" aria-hidden="true"></span>
-      <a href="https://primecouncil.com/irfe/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnóstico IRFE</a>
+      <a href="https://primecouncil.com/irfe/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnóstico Financeiro</a>
       <span class="h-sep" aria-hidden="true"></span>
       <a href="https://primecouncil.com/form/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva</a>
     </nav>
@@ -85,128 +85,210 @@
   <div class="irfe-hero-inner">
 
     <div class="irfe-event-title">
-      <span class="irfe-eyebrow"><strong>IRFE · Índice de Risco Financeiro Empresarial</strong></span>
-      <h2 class="irfe-event-h2">Diagnóstico Executivo <em>IRFE</em></h2>
-      <div class="irfe-event-meta">
-        <span><strong>Qualificação executiva</strong></span>
-        <span class="irfe-h-sep"></span>
-        <span><strong>Porta de entrada para o Ecossistema Prime</strong></span>
-      </div>
+      <h2 class="irfe-event-h2">Diagnóstico Financeiro Prime</h2>
+      <p class="irfe-event-sub">Analisa ciclo de caixa, margem, inadimplência, alavancagem e capital de giro<br class="desktop-hero-break"> para indicar o nível de exposição financeira da empresa.</p>
     </div>
 
   </div>
 </div>
 
 <div class="page">
+<main class="content diagnostic-app" id="diagnostic-app" data-view="questionnaire">
 
-  <!-- ══ TEXTO INTRODUTÓRIO ══════════════════════════════════════ -->
-  <div class="form-card">
-    <p><strong>O maior risco financeiro de uma empresa raramente aparece primeiro no caixa.</strong></p>
-
-    <p>Na maioria dos casos, ele começa na perda de previsibilidade, na dependência operacional e em decisões tomadas sem clareza real da estrutura do negócio.</p>
-
-    <p>O IRFE foi desenvolvido para identificar exatamente esses vetores de risco antes que eles se tornem críticos.</p>
-
-    <p>O diagnóstico é realizado sem custo e não gera compromisso comercial nesta etapa.</p>
-
-    <p>👉 <strong>Inicie o diagnóstico e veja onde sua operação está realmente exposta.</strong></p>
-  </div>
-
-  <!-- ══ IDENTIFICAÇÃO DA EMPRESA ════════════════════════════════ -->
-  <div class="form-card" id="diagnostico-irfe">
-    <div class="section-lbl">Identificação da Empresa</div>
-    <div class="field">
-      <label>Nome da empresa<span class="req">*</span></label>
-      <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" required>
-    </div>
-    <div class="field">
-      <label>Nome completo<span class="req">*</span></label>
-      <input type="text" id="responsavel" placeholder="Seu nome completo" required>
-    </div>
-    <div class="field">
-      <label>E-mail corporativo<span class="req">*</span></label>
-      <input type="email" id="email" name="email" placeholder="seu@email.com.br" required>
-    </div>
-    <div class="field">
-      <label>Celular (WhatsApp)<span class="req">*</span></label>
-      <input type="tel" id="telefone" inputmode="numeric" maxlength="15" placeholder="(11) 99999-9999" required>
-    </div>
-    <input type="text" name="website" id="hp_website" autocomplete="off"
-           style="display:none;position:absolute;left:-9999px;opacity:0;height:0;width:0;"
-           tabindex="-1" aria-hidden="true">
-    <div class="field">
-      <label>Número de colaboradores<span class="req">*</span></label>
-      <select id="funcionarios" required>
-        <option value="">Selecione</option>
-        <option value="10–50">Até 50 colaboradores</option>
-        <option value="51–100">51 a 100 colaboradores</option>
-        <option value="101–200">101 a 200 colaboradores</option>
-        <option value="mais de 200">Acima de 200 colaboradores</option>
-      </select>
-    </div>
-    <div class="lgpd-field" id="lgpd-field">
-      <label class="lgpd-wrap">
-        <input type="checkbox" id="lgpd">
-        <span>Autorizo o <strong>Prime Council</strong> a utilizar os dados deste diagnóstico para análise interna e contato relacionado ao IRFE, conforme o <a href="/privacidade/" target="_blank" rel="noopener noreferrer">Aviso de Privacidade</a>.*</span>
-      </label>
-    </div>
-    <div class="err-msg" id="err-msg">Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.</div>
-  </div>
-
-  <!-- ══ FORM ════════════════════════════════════════════════════ -->
-  <div class="form-card">
-    <div class="section-lbl">⚙️ Parâmetros de Análise</div>
-    <div class="grid2">
-      <div class="field">
-        <label>Prazo médio de recebimento (PMR)<span class="req">*</span></label>
-        <div class="hint">Em quantos dias seus clientes pagam?</div>
-        <input type="number" id="pmr" placeholder="Ex: 45" min="0" max="360" step="1">
-        <div class="unit">dias</div>
-      </div>
-      <div class="field">
-        <label>Prazo médio de pagamento (PMP)<span class="req">*</span></label>
-        <div class="hint">Em quantos dias você paga seus fornecedores?</div>
-        <input type="number" id="pmp" placeholder="Ex: 30" min="0" max="360" step="1">
-        <div class="unit">dias</div>
+  <!-- ══ WIZARD DIAGNÓSTICO FINANCEIRO PRIME ═════════════════════ -->
+  <section class="config-panel questionnaire" id="questionnaire">
+    <div class="config-header">
+      <div class="config-mark" aria-hidden="true"><img src="../assets/favicon-32.png" alt="" aria-hidden="true"></div>
+      <div>
+        <span class="config-kicker">Diagnóstico</span>
+        <h2>Diagnóstico Financeiro Prime</h2>
       </div>
     </div>
-    <div class="grid2">
-      <div class="field">
-        <label>Taxa de inadimplência<span class="req">*</span></label>
-        <div class="hint">% da receita perdida por inadimplência</div>
-        <input type="number" id="inad" placeholder="Ex: 5" min="0" max="100" step="0.1">
-        <div class="unit">%</div>
+    <div class="config-body">
+      <div class="wizard-shell" id="diagnostico-irfe">
+    <div class="wizard-progress" aria-label="Progresso do diagnóstico">
+      <div class="wizard-progress-meta">
+        <span id="wizard-step-label" aria-live="polite">ETAPA 1 DE 4</span>
+        <span id="wizard-step-percent">25% DO PERCURSO</span>
       </div>
-      <div class="field">
-        <label>Margem operacional<span class="req">*</span></label>
-        <div class="hint">% de lucro após custos e despesas</div>
-        <input type="number" id="marg" placeholder="Ex: 12" min="-100" max="100" step="0.1">
-        <div class="unit">%</div>
+      <div class="wizard-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="25">
+        <span id="wizard-progress-fill" style="width:25%"></span>
       </div>
     </div>
-    <div class="field">
-      <label>Alavancagem financeira<span class="req">*</span> <span class="help-tip" tabindex="0" aria-label="Exemplo: R$100 mil próprios + R$60 mil em dívidas = 37,5% de capital de terceiros. Cálculo: 60.000 ÷ 160.000 × 100 = 37,5%.">?</span></label>
-      <div class="hint">% do capital da empresa que vem de terceiros (bancos, financiamentos, etc.)</div>
-      <input type="number" id="alav" placeholder="Ex: 40" min="0" max="100" step="1">
-      <div class="unit">% de capital de terceiros sobre o total</div>
+
+    <div class="wizard-step active" data-step="1" aria-live="polite">
+      <div class="wizard-block-kicker">ETAPA 1 · PERFIL ESTRATÉGICO</div>
+      <div class="question-grid question-grid-3">
+        <div class="field" id="f-setor">
+          <label>Setor<span class="req">*</span></label>
+          <select id="setor">
+            <option value="">Selecione</option>
+            <option>Agronegócio</option>
+            <option>Indústria</option>
+            <option>Construção Civil</option>
+            <option>Logística</option>
+            <option>Tecnologia</option>
+            <option>Saúde</option>
+            <option>Educação</option>
+            <option>Serviços</option>
+            <option>Comércio e Varejo</option>
+            <option>Outro</option>
+          </select>
+          <div class="err-msg">Selecione o setor.</div>
+        </div>
+        <div class="field" id="f-funcionarios">
+          <label>Número de colaboradores<span class="req">*</span></label>
+          <select id="funcionarios" required>
+            <option value="">Selecione</option>
+            <option value="10–50">Até 50 colaboradores</option>
+            <option value="51–100">51 a 100 colaboradores</option>
+            <option value="101–200">101 a 200 colaboradores</option>
+            <option value="mais de 200">Acima de 200 colaboradores</option>
+          </select>
+          <div class="err-msg">Selecione o porte da equipe.</div>
+        </div>
+        <div class="field" id="f-faturamento">
+          <label>Faturamento anual aproximado<span class="req">*</span></label>
+          <select id="faturamento">
+            <option value="">Selecione</option>
+            <option>Até R$ 1 milhão</option>
+            <option>De R$ 1 milhão a R$ 5 milhões</option>
+            <option>De R$ 5 milhões a R$ 20 milhões</option>
+            <option>De R$ 20 milhões a R$ 60 milhões</option>
+            <option>Acima de R$ 60 milhões</option>
+            <option>Prefiro não informar</option>
+          </select>
+          <div class="err-msg">Selecione a faixa de faturamento.</div>
+        </div>
+      </div>
+      <div class="field" id="f-desafio">
+        <label>Principal desafio estratégico<span class="req">*</span></label>
+        <div class="radio-group" id="rg-desafio">
+          <label class="radio-opt"><input type="radio" name="desafio" value="pessoas"><div class="radio-dot"></div><span class="radio-label">Gestão de pessoas e cultura</span></label>
+          <label class="radio-opt"><input type="radio" name="desafio" value="crescimento"><div class="radio-dot"></div><span class="radio-label">Crescimento e novos mercados</span></label>
+          <label class="radio-opt"><input type="radio" name="desafio" value="processos"><div class="radio-dot"></div><span class="radio-label">Processos, eficiência e custos</span></label>
+          <label class="radio-opt"><input type="radio" name="desafio" value="sucessao"><div class="radio-dot"></div><span class="radio-label">Sucessão ou transição societária</span></label>
+          <label class="radio-opt"><input type="radio" name="desafio" value="gestao_financeira"><div class="radio-dot"></div><span class="radio-label">Estrutura financeira e caixa</span></label>
+        </div>
+        <div class="err-msg">Selecione o principal desafio.</div>
+      </div>
+      <div class="field" id="f-gestao">
+        <label>Estrutura de gestão atual<span class="req">*</span></label>
+        <div class="radio-group" id="rg-gestao">
+          <label class="radio-opt"><input type="radio" name="gestao" value="centralizada"><div class="radio-dot"></div><span class="radio-label">Centralizada no proprietário ou fundador</span></label>
+          <label class="radio-opt"><input type="radio" name="gestao" value="diretores"><div class="radio-dot"></div><span class="radio-label">Com diretores, sem conselho formal</span></label>
+          <label class="radio-opt"><input type="radio" name="gestao" value="governanca"><div class="radio-dot"></div><span class="radio-label">Já possui estrutura de governança</span></label>
+          <label class="radio-opt"><input type="radio" name="gestao" value="estruturando"><div class="radio-dot"></div><span class="radio-label">Em processo de estruturação</span></label>
+        </div>
+        <div class="err-msg">Selecione a estrutura de gestão.</div>
+      </div>
     </div>
-    <div class="field">
-      <label>Considerando os custos fixos e operacionais da empresa, por quantos dias o capital de giro disponível sustenta a operação sem entrada adicional de receita?<span class="req">*</span></label>
-      <div class="hint">Informe o número aproximado de dias. Use 0 caso a empresa não possua reserva operacional disponível.</div>
-      <input type="number" id="reserva_caixa" inputmode="numeric" placeholder="Ex: 30" min="0" max="180" step="1" required>
-      <div class="unit">dias</div>
+
+    <div class="wizard-step" data-step="2" aria-live="polite">
+      <div class="wizard-block-kicker">ETAPA 2 · CICLO FINANCEIRO</div>
+      <div class="question-grid question-grid-3">
+        <div class="field">
+          <label>Prazo médio de recebimento (PMR)<span class="req">*</span></label>
+          <div class="hint">Em quantos dias seus clientes pagam?</div>
+          <input type="number" id="pmr" placeholder="Ex: 45" min="0" max="360" step="1">
+        </div>
+        <div class="field">
+          <label>Prazo médio de pagamento (PMP)<span class="req">*</span></label>
+          <div class="hint">Em quantos dias você paga seus fornecedores?</div>
+          <input type="number" id="pmp" placeholder="Ex: 30" min="0" max="360" step="1">
+        </div>
+        <div class="field">
+          <label>Taxa de inadimplência<span class="req">*</span></label>
+          <div class="hint">% da receita perdida por inadimplência</div>
+          <input type="number" id="inad" placeholder="Ex: 5" min="0" max="100" step="0.1">
+        </div>
+      </div>
     </div>
-    <button class="btn-calc" onclick="calcular()">Calcular diagnóstico de risco</button>
-  </div>
+
+    <div class="wizard-step" data-step="3" aria-live="polite">
+      <div class="wizard-block-kicker">ETAPA 3 · ESTRUTURA FINANCEIRA</div>
+      <div class="question-grid question-grid-2">
+        <div class="field">
+          <label>Margem operacional<span class="req">*</span></label>
+          <div class="hint">% de lucro após custos e despesas</div>
+          <input type="number" id="marg" placeholder="Ex: 12" min="-100" max="100" step="0.1">
+        </div>
+        <div class="field">
+          <label>Alavancagem financeira<span class="req">*</span> <span class="help-tip" tabindex="0" aria-label="Exemplo: R$100 mil próprios + R$60 mil em dívidas = 37,5% de capital de terceiros. Cálculo: 60.000 ÷ 160.000 × 100 = 37,5%.">?</span></label>
+          <div class="hint">% do capital da empresa que vem de terceiros (bancos, financiamentos, etc.)</div>
+          <input type="number" id="alav" placeholder="Ex: 40" min="0" max="100" step="1">
+        </div>
+        <div class="field field-full">
+          <label>Por quantos dias o capital de giro disponível sustenta a operação sem novas receitas?<span class="req">*</span></label>
+          <div class="hint">Informe uma estimativa em dias. Use 0 se não houver reserva operacional.</div>
+          <input type="number" id="reserva_caixa" inputmode="numeric" placeholder="Ex: 30" min="0" max="180" step="1" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="wizard-step" data-step="4" aria-live="polite">
+      <div class="wizard-block-kicker">ETAPA 4 · IDENTIFICAÇÃO</div>
+      <div class="question-grid question-grid-3 ident-question-grid">
+        <div class="field">
+          <label>Nome da empresa<span class="req">*</span></label>
+          <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" required>
+        </div>
+        <div class="field">
+          <label>Nome completo<span class="req">*</span></label>
+          <input type="text" id="responsavel" placeholder="Seu nome completo" required>
+        </div>
+        <div class="field" id="f-cargo">
+          <label>Posição na empresa<span class="req">*</span></label>
+          <select id="cargo">
+            <option value="">Selecione</option>
+            <option>Proprietário / Fundador</option>
+            <option>Sócio</option>
+            <option>CEO / Diretor Executivo</option>
+            <option>Diretor (área)</option>
+            <option>Gerente / Coordenador</option>
+            <option>Outro</option>
+          </select>
+          <div class="err-msg">Selecione sua posição.</div>
+        </div>
+        <div class="field field-span-2">
+          <label>E-mail corporativo<span class="req">*</span></label>
+          <input type="email" id="email" name="email" placeholder="seu@email.com.br" required>
+        </div>
+        <div class="field">
+          <label>Celular (WhatsApp)<span class="req">*</span></label>
+          <input type="tel" id="telefone" inputmode="numeric" maxlength="15" placeholder="(11) 99999-9999" required>
+        </div>
+      </div>
+      <input type="text" name="website" id="hp_website" autocomplete="off"
+             style="display:none;position:absolute;left:-9999px;opacity:0;height:0;width:0;"
+             tabindex="-1" aria-hidden="true">
+      <div class="lgpd-field" id="lgpd-field">
+        <label class="lgpd-wrap">
+          <input type="checkbox" id="lgpd">
+          <span>Autorizo o <strong>Prime Council</strong> a utilizar os dados deste diagnóstico para análise interna e contato relacionado ao Diagnóstico Financeiro Prime, conforme o <a href="/privacidade/" target="_blank" rel="noopener noreferrer">Aviso de Privacidade</a>.*</span>
+        </label>
+      </div>
+      <div class="err-msg" id="err-msg">Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.</div>
+    </div>
+
+    <div class="wizard-nav">
+      <button type="button" class="btn-back" id="wizard-back" disabled>Voltar</button>
+      <button type="button" class="btn-next-step" id="wizard-next">Continuar</button>
+      <button type="button" class="btn-calc" id="wizard-submit" onclick="calcular()">Gerar diagnóstico</button>
+    </div>
+    <div class="analysis-notice">Resultado orientativo · O diagnóstico apresenta uma leitura inicial da exposição financeira da empresa e não substitui uma avaliação especializada e aprofundada.</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ══ LOADING ═════════════════════════════════════════════════ -->
   <div class="diagnosis-loading" id="diagnosis-loading" aria-live="polite" aria-hidden="true">
     <div class="loading-card" role="status">
-      <div class="loading-kicker">Processamento IRFE</div>
+      <div class="loading-kicker">Processamento do Diagnóstico Financeiro Prime</div>
       <div class="loading-steps">
         <span>Analisando indicadores financeiros</span>
-        <span>Calculando índice IRFE</span>
-        <span>Gerando relatório executivo</span>
+        <span>Calculando o índice financeiro</span>
+        <span>Preparando o resultado executivo</span>
       </div>
       <div class="loading-bar" aria-hidden="true"><span></span></div>
     </div>
@@ -214,6 +296,15 @@
 
   <!-- ══ RESULTS ══════════════════════════════════════════════════ -->
   <div class="results" id="results">
+
+    <div class="result-head result-heading" id="result-head">
+      <div class="result-heading-main">
+        <div class="result-kicker">RESULTADO DO DIAGNÓSTICO FINANCEIRO</div>
+        <h2 id="result-title">Análise financeira da empresa</h2>
+        <p class="result-status">Índice Financeiro · Motor V3</p>
+      </div>
+      <div class="result-date" id="result-date">—</div>
+    </div>
 
     <!-- Identificação — exibida no relatório/PDF -->
     <div class="ident-block" id="ident-block">
@@ -242,12 +333,16 @@
       </div>
     </div>
 
+    <div class="result-indicators-grid">
     <!-- Gauge -->
     <div class="gauge-section">
+      <div class="score-lbl">Índice financeiro</div>
       <div class="score-num" id="score-num">—</div>
-      <div class="score-lbl">Índice de Risco Financeiro Empresarial (0–100)</div>
       <div id="badge" class="badge"></div>
       <div><div id="cc2" class="cc-chip2"></div></div>
+    </div>
+    <!-- Subscores -->
+    <div class="subcards" id="subcards"></div>
     </div>
 
     <!-- Mapa dos Vetores de Risco -->
@@ -261,8 +356,6 @@
         <desc id="risk-map-desc">Quanto mais distante do centro, maior a exposição ao risco naquele vetor.</desc>
       </svg>
     </div>
-    <!-- Subscores -->
-    <div class="subcards" id="subcards"></div>
 
     <!-- Interpretation -->
     <div class="interp" id="interp">
@@ -273,34 +366,111 @@
     <div class="cta-box" id="cta-box">
       <h3 id="cta-h"></h3>
       <p id="cta-p"></p>
-      <div class="cta-btns">
-        <button class="btn-pdf" onclick="gerarPdfDiagnostico()">Gerar PDF do diagnóstico</button>
-        <a href="../#evento" target="_blank" rel="noopener noreferrer" class="btn-inscricao">Conhecer Sessão Executiva Prime</a>
-        <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="btn-agendar" id="btn-ag">Conversar com o Prime</a>
-      </div>
+
     </div>
 
-    <!-- Methodology -->
-    <div class="divider"></div>
-    <div class="methodology-block">
-      <div class="section-lbl">Metodologia</div>
-            <p>Metodologia IRFE: modelo multicritério de leitura executiva, baseado em ciclo de caixa, margem operacional, inadimplência, alavancagem e capital de giro. O objetivo é identificar vetores de risco financeiro-estrutural, capacidade de sobrevivência operacional e apoiar a priorização de decisões.<br><br>
-      O Ciclo de Caixa é derivado da diferença entre PMR e PMP. A função de alavancagem mantém sensibilidade contínua até 100% de capital de terceiros, sem saturação precoce.<br><br>
-      O modelo incorpora regras de override para evitar mascaramento de risco estrutural:<br>
-      O IRFE é elevado para no mínimo 55 quando qualquer subscore atinge ≥80.<br>
-      O IRFE é elevado para no mínimo 68 quando qualquer subscore atinge ≥95, ou quando dois subscores primários (Ciclo de Caixa, Margem e Inadimplência) atingem ≥75 simultaneamente.<br><br>
-      Essa abordagem garante que combinações favoráveis em variáveis secundárias não reduzam artificialmente a percepção de risco.<br><br>
-      Versão 3 — Ferramenta de caráter diagnóstico. Não substitui análise especializada.</p>
+    <div class="result-actions">
+      <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="btn-agendar" id="btn-ag">Conversa Prime</a>
+      <button type="button" class="btn-pdf" onclick="gerarPdfDiagnostico()">Gerar PDF do diagnóstico</button>
+      <button type="button" class="btn-result-secondary" id="btn-review-answers">Voltar e revisar respostas</button>
     </div>
+    <div class="analysis-notice analysis-notice--result">Resultado orientativo · O diagnóstico apresenta uma leitura inicial da exposição financeira da empresa e não substitui uma avaliação especializada e aprofundada.</div>
+
 
   </div><!-- /results -->
+</main><!-- /diagnostic-app -->
+  <!-- ══ RELATÓRIO PDF PRINT-ONLY — DIAGNÓSTICO FINANCEIRO PRIME ══ -->
+  <div id="irfePrintReport" class="irfe-print-report" aria-hidden="true">
+    <section class="irfe-print-page irfe-print-page-1">
+      <header class="irfe-print-header irfe-print-header-main">
+        <div class="irfe-print-brand">
+          <img src="../assets/logo-prime-crown.png" alt="Prime Council" class="irfe-print-logo">
+          <span>Prime Council</span>
+        </div>
+        <div class="irfe-print-title-block">
+          <h1>DIAGNÓSTICO FINANCEIRO PRIME</h1>
+          <p id="pr-irfe-meta-main">—</p>
+        </div>
+      </header>
+
+      <div class="irfe-print-grid-6" id="pr-irfe-indicators"></div>
+
+      <section class="irfe-print-radar-card">
+        <div class="irfe-print-section-head">
+          <h2>MAPA DOS VETORES DE RISCO</h2>
+          <p>Quanto mais distante do centro, maior a exposição ao risco naquele vetor.</p>
+        </div>
+        <div class="irfe-print-radar-wrap" id="pr-irfe-radar-wrap"></div>
+      </section>
+
+      <footer class="irfe-print-footer">
+        <span>Prime Council · Diagnóstico Financeiro Prime · Página 1 de 2</span>
+        <span>Tecnologia e Inteligência Aplicada · AFLOR</span>
+      </footer>
+    </section>
+
+    <section class="irfe-print-page irfe-print-page-2">
+      <header class="irfe-print-header irfe-print-header-compact">
+        <div>
+          <h2>ANÁLISE E PRÓXIMO PASSO</h2>
+          <p id="pr-irfe-meta-secondary">Diagnóstico Financeiro Prime</p>
+        </div>
+      </header>
+
+      <section class="irfe-print-section irfe-print-analysis">
+        <h2>ANÁLISE EXECUTIVA</h2>
+        <p id="pr-irfe-analysis">—</p>
+      </section>
+
+      <section class="irfe-print-section irfe-print-recommendation" id="pr-irfe-recommendation">
+        <h2 id="pr-irfe-recommendation-title">—</h2>
+        <p id="pr-irfe-recommendation-text">—</p>
+      </section>
+
+      <section class="irfe-print-section irfe-print-diagnostic-data">
+        <h2>DADOS DO DIAGNÓSTICO</h2>
+        <div class="irfe-print-data-grid">
+          <div class="irfe-print-data-column">
+            <div class="irfe-print-data-item"><span>Empresa</span><strong id="pr-irfe-company">—</strong></div>
+            <div class="irfe-print-data-item"><span>Contato</span><strong id="pr-irfe-phone">—</strong></div>
+          </div>
+          <div class="irfe-print-data-column">
+            <div class="irfe-print-data-item"><span>Responsável</span><strong id="pr-irfe-owner">—</strong></div>
+            <div class="irfe-print-data-item"><span>E-mail</span><strong id="pr-irfe-email">—</strong></div>
+          </div>
+          <div class="irfe-print-data-column">
+            <div class="irfe-print-data-item"><span>Principal desafio estratégico</span><strong id="pr-irfe-desafio">—</strong></div>
+            <div class="irfe-print-data-item"><span>Estrutura de gestão atual</span><strong id="pr-irfe-gestao">—</strong></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="irfe-print-section irfe-print-note">
+        <h2>SOBRE A ANÁLISE</h2>
+        <p>Resultado orientativo. O diagnóstico apresenta uma leitura inicial da exposição financeira da empresa e não substitui uma avaliação especializada e aprofundada.</p>
+      </section>
+
+      <section class="irfe-print-cta">
+        <div>
+          <h2>CONVERSA PRIME</h2>
+          <p>Conversa individual para aprofundar o diagnóstico e avaliar os próximos passos.</p>
+        </div>
+        <a id="pr-irfe-whatsapp" href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer">CONVERSA PRIME</a>
+      </section>
+
+      <footer class="irfe-print-footer">
+        <span>Prime Council · Diagnóstico Financeiro Prime · Página 2 de 2</span>
+        <span>Tecnologia e Inteligência Aplicada · AFLOR</span>
+      </footer>
+    </section>
+  </div>
 
   <!-- ══ FOOTER ═══════════════════════════════════════════════════ -->
   <footer>
     <div class="footer-inner">
       <div class="footer-brand">
         © Prime Council 2026 · Todos os direitos reservados
-        <span>Diagnóstico IRFE · Ecossistema Prime Council</span>
+        <span>Diagnóstico Financeiro Prime · Ecossistema Prime Council</span>
       </div>
       <div class="footer-copy">
         Tecnologia e Inteligência Aplicada ·
@@ -320,6 +490,6 @@
 <!-- ══════════════════════════════════════════════════════════════
      MOTOR DE CÁLCULO IRFE V3 — NÃO MODIFICADO
      ══════════════════════════════════════════════════════════════ -->
-<script src="scripts.js"></script>
+<script src="scripts.js?v=20260728-irfe-final-clean-v1"></script>
 </body>
 </html>
