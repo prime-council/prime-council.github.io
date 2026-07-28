@@ -2051,7 +2051,7 @@ footer{
     border-top:4px solid var(--gold);
     border-radius:var(--radius-lg);
     box-shadow:0 14px 30px rgba(13,13,13,0.16);
-    margin:0;
+    margin:18px 0 0;
     padding:1.25rem 0.875rem 1rem;
   }
 
@@ -2114,6 +2114,10 @@ footer{
     overflow-wrap:break-word;
   }
 
+  .diagnostic-app[data-view="result"] .interp{
+    margin-top:18px;
+  }
+
   .diagnostic-app[data-view="result"] .result-actions{
     display:grid;
     grid-template-columns:minmax(0, 1fr);
@@ -2158,7 +2162,7 @@ footer{
   }
 
   .diagnostic-app[data-view="result"] .analysis-notice--result{
-    margin-top:0;
+    margin-top:18px;
     overflow-wrap:break-word;
   }
 }
