@@ -2362,8 +2362,27 @@ footer{
   }
 
   .diagnostic-app[data-view="result"] .risk-map-section{
+    background:var(--ink);
+    border:1px solid rgba(255,255,255,0.10);
+    border-top:4px solid var(--gold);
+    border-radius:var(--radius-lg);
+    box-shadow:0 14px 30px rgba(13,13,13,0.16);
     margin:0;
     padding:1.25rem 0.875rem 1rem;
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-head{
+    max-width:none;
+    margin:0 0 10px;
+    text-align:left;
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-head h3{
+    color:var(--gold);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-head p{
+    color:rgba(255,255,255,0.64);
   }
 
   .diagnostic-app[data-view="result"] .risk-map-svg{
@@ -2372,6 +2391,36 @@ footer{
     height:auto;
     margin-left:auto;
     margin-right:auto;
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-grid{
+    stroke:rgba(255,255,255,0.13);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-grid[data-level="100"]{
+    stroke:rgba(255,255,255,0.25);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-axis{
+    stroke:rgba(255,255,255,0.14);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-area{
+    fill:rgba(191,160,107,0.22);
+    stroke:var(--gold);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-dot{
+    fill:var(--gold);
+    stroke:var(--ink);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-center{
+    fill:rgba(255,255,255,0.56);
+  }
+
+  .diagnostic-app[data-view="result"] .risk-map-label{
+    fill:rgba(255,255,255,0.72);
   }
 
   .diagnostic-app[data-view="result"] .interp,
@@ -2389,6 +2438,11 @@ footer{
     padding-top:16px;
   }
 
+  .diagnostic-app[data-view="result"] .cta-btns,
+  .diagnostic-app[data-view="result"] .methodology-block{
+    display:none;
+  }
+
   .diagnostic-app[data-view="result"] .result-actions > *{
     box-sizing:border-box;
     width:100%;
@@ -2396,6 +2450,12 @@ footer{
     min-width:0;
     justify-content:center;
     text-align:center;
+  }
+
+  .diagnostic-app[data-view="result"] .result-actions #btn-ag{
+    background:var(--risk-cta-bg);
+    border-color:var(--risk-cta-bg);
+    color:#fff;
   }
 
   .diagnostic-app[data-view="result"] .analysis-notice--result{
@@ -2829,4 +2889,5 @@ footer{
     page-break-inside:avoid;
   }
 }
+
 
