@@ -540,6 +540,7 @@ async function coletarPayloadComercialR1(){
         email: payload.email,
         pdfRegistrado: false
       };
+      setDiagnosisLoading(false);
       renderizarResultadoComercialV1(payload, resultadoComercial);
       if(pdfComercialGeradoPendente){
         registrarPdfComercialGerado();
