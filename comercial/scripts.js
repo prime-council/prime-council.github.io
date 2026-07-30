@@ -6,20 +6,14 @@ if (dtEl) {
 const GAS_URL='https://script.google.com/macros/s/AKfycbxNYq9rDo_iI-7iTJZcsHMYnpga1pVCRhkCBcBb5ZZfWP8XCwbRPREtX1t_u49Mmew/exec';
 const FRONTEND_TOKEN='prime2026-f7c9a3d41e8b4c2fa6d9b0e73a2c8f51';
 
-let ultimoIrfeSalvo = {
-  id_irfe: null,
-  email: null,
-  pdfRegistrado: false
-};
-let pdfGeradoPendente = false;
-let pdfRegistroEmAndamento = false;
-let ultimoResultadoIrfe = null;
+
 let ultimoPayloadComercial = null;
 let ultimoResultadoComercial = null;
 let ultimoComercialSalvo = null;
 let envioComercialEmAndamento = false;
 let pdfComercialGeradoPendente = false;
 let pdfComercialRegistroEmAndamento = false;
+const DIAGNOSIS_LOADING_DURATION_MS = 4000;
 
 function calcRcc(cc){
   if(cc<=-30)return 0;
@@ -525,14 +519,24 @@ async function coletarPayloadComercialR1(){
     desativarPdfComercial();
     setDiagnosisLoading(true);
 
-    const response = await fetch(GAS_URL, {
+    const salvamentoPromise = fetch(GAS_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'text/plain;charset=utf-8'
       },
       body: JSON.stringify(payload)
-    });
-    const resposta = await response.json();
+    })
+    .then(response => response.json())
+    .catch(error => ({ success: false, error }));
+
+    const loadingPromise = new Promise(resolve =>
+      setTimeout(resolve, DIAGNOSIS_LOADING_DURATION_MS)
+    );
+
+    const [resposta] = await Promise.all([
+      salvamentoPromise,
+      loadingPromise
+    ]);
 
     if(resposta && resposta.success){
       ultimoComercialSalvo = {
@@ -540,24 +544,25 @@ async function coletarPayloadComercialR1(){
         email: payload.email,
         pdfRegistrado: false
       };
-      setDiagnosisLoading(false);
-      renderizarResultadoComercialV1(payload, resultadoComercial);
       if(pdfComercialGeradoPendente){
         registrarPdfComercialGerado();
       }
+      setDiagnosisLoading(false);
+      renderizarResultadoComercialV1(payload, resultadoComercial);
     } else {
       setDiagnosisLoading(false);
       ultimoComercialSalvo = null;
       console.warn('Falha ao registrar Diagnóstico Comercial no backend.', resposta);
     }
+    envioComercialEmAndamento = false;
+    setComercialSubmitBusy(false);
   } catch(error){
     window.__comercialResultadoPreview = null;
     setDiagnosisLoading(false);
     ultimoComercialSalvo = null;
-    console.warn('Falha ao registrar Diagnóstico Comercial no backend.', error);
-  } finally {
     envioComercialEmAndamento = false;
     setComercialSubmitBusy(false);
+    console.warn('Falha ao preparar Diagnóstico Comercial.', error);
   }
 }
 
@@ -1084,277 +1089,6 @@ function renderizarResultadoComercialV1(payload, resultado){
     results.scrollIntoView({behavior:'smooth'});
   }
 }
-// LEGADO IRFE TEMPORARIAMENTE PRESERVADO.
-// NÃO EXECUTADO NA RODADA 1 DO DIAGNÓSTICO COMERCIAL PRIME.
-// SERÁ SUBSTITUÍDO NA RODADA DO MOTOR COMERCIAL.
-function calcular(){
-  // ── Captura — Identificação da Empresa ────────────────────────
-  let empresa     = (document.getElementById('empresa')     ? document.getElementById('empresa').value.trim()     : '');
-  let funcionarios= (document.getElementById('funcionarios')? document.getElementById('funcionarios').value        : '');
-  let setor       = (document.getElementById('setor')       ? document.getElementById('setor').value              : '');
-  let faturamento = (document.getElementById('faturamento') ? document.getElementById('faturamento').value        : '');
-  let desafioEstrategico = getSelectedRadioLabel('desafio');
-  let estruturaGestao = getSelectedRadioLabel('gestao');
-  let responsavel = (document.getElementById('responsavel') ? document.getElementById('responsavel').value.trim() : '');
-  let cargo       = (document.getElementById('cargo')       ? document.getElementById('cargo').value              : '');
-  let email       = (document.getElementById('email')       ? document.getElementById('email').value.trim()       : '');
-  let telefone    = (document.getElementById('telefone')    ? document.getElementById('telefone').value.trim()    : '');
-  let lgpd        = (document.getElementById('lgpd')        ? document.getElementById('lgpd').checked              : false);
-  let honeypot    = (document.getElementById('hp_website')  ? document.getElementById('hp_website').value.trim()   : '');
-
-  if(honeypot) return;
-
-  // ── Validação — campos obrigatórios + consentimento ───────────
-  const idsObrig = ['setor','funcionarios','faturamento','empresa','responsavel','cargo','email','telefone'];
-  let erros = false;
-  idsObrig.forEach(id => {
-    let el = document.getElementById(id);
-    if(!el) return;
-    let vazio = !el.value.trim();
-    el.closest('.field').classList.toggle('field-err', vazio);
-    if(vazio) erros = true;
-  });
-  ['desafio','gestao'].forEach(name=>{
-    const field=document.getElementById('f-' + name);
-    const ok=!!document.querySelector('input[name="' + name + '"]:checked');
-    if(field) field.classList.toggle('field-err', !ok);
-    if(!ok) erros = true;
-  });
-  let lgpdField = document.getElementById('lgpd-field');
-  if(!lgpd){ lgpdField.classList.add('field-err'); erros = true; }
-  else { lgpdField.classList.remove('field-err'); }
-  let errMsg = document.getElementById('err-msg');
-  if(erros){ errMsg.classList.add('visible'); errMsg.scrollIntoView({behavior:'smooth',block:'center'}); return; }
-  errMsg.classList.remove('visible');
-
-  // ── Hardening ─────────────────────────────────────────────────
-  // 1. Sanitização + trim
-  empresa     = sanitize(empresa).trim();
-  responsavel = sanitize(responsavel).trim();
-  email       = sanitize(email).trim();
-
-  // 1a. Bloquear vazios após sanitização
-  if(!empresa || !responsavel || !email){ alert('Preencha corretamente os campos obrigatórios'); return; }
-
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    document.getElementById('email').closest('.field').classList.add('field-err');
-    errMsg.textContent='Informe um e-mail válido.';
-    errMsg.classList.add('visible');
-    errMsg.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-
-  // 2. Normalização + validação telefone
-  if(!isValidMobile(telefone)){
-    document.getElementById('telefone').closest('.field').classList.add('field-err');
-    errMsg.textContent='Informe um celular válido com DDD e 9 dígitos.';
-    errMsg.classList.add('visible');
-    errMsg.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-  telefone = formatPhone(telefone);
-  document.getElementById('telefone').value = telefone;
-
-  // 4. Validação funcionários (whitelist)
-  let validFuncs=['10–50','51–100','101–200','mais de 200'];if(!validFuncs.includes(funcionarios)){alert('Selecione uma faixa de funcionários válida');return;}
-  let funcionariosLabel = getFuncionariosLabel(funcionarios);
-
-  // 5. Validação dos indicadores usados no cálculo
-  const metricasValidas = [
-    validateMetric('pmr',0,360),
-    validateMetric('pmp',0,360),
-    validateMetric('inad',0,100),
-    validateMetric('marg',-100,100),
-    validateMetric('alav',0,100),
-    validateMetric('reserva_caixa',0,180)
-  ].every(Boolean);
-  if(!metricasValidas){
-    errMsg.textContent='Preencha os indicadores financeiros dentro das faixas esperadas para calcular o diagnóstico.';
-    errMsg.classList.add('visible');
-    errMsg.scrollIntoView({behavior:'smooth',block:'center'});
-    return;
-  }
-  errMsg.textContent='Preencha todos os campos obrigatórios e aceite o termo de consentimento para prosseguir.';
-
-  let pmr=parseMetric('pmr');
-  let pmp=parseMetric('pmp');
-  let inad=parseMetric('inad');
-  let marg=parseMetric('marg');
-  let alav=parseMetric('alav');
-  let reservaCaixa=parseMetric('reserva_caixa');
-  let cc=pmr-pmp;
-
-  // 6. Bloqueio de envio duplicado
-  if(sending) return; sending = true;
-  // 2. Calcular subscores
-  let rcc=calcRcc(cc);
-  let rm=calcRm(marg);
-  let ri=calcRi(inad);
-  let ra=calcRa(alav);
-  let rcg=calcRcg(reservaCaixa);
-  
-  // 3. Calcular IRFE base
-  let irfe = 0.28 * rcc + 0.25 * rm + 0.20 * ri + 0.12 * ra + 0.15 * rcg;
-  
-  // 4. Aplicar Override Nível 1 — Alerta
-  if (rcc >= 80 || rm >= 80 || ri >= 80 || ra >= 80 || rcg >= 80) {
-    irfe = Math.max(irfe, 55);
-  }
-
-  // 5. Aplicar Override Nível 2 — Falha Sistêmica (Contagem explícita)
-  let count75 = 0;
-  if (rcc >= 75) count75++;
-  if (rm >= 75) count75++;
-  if (ri >= 75) count75++;
-  if (rcg >= 75) count75++;
-
-  if ((rcc >= 95 || rm >= 95 || ri >= 95 || ra >= 95 || rcg >= 95) || count75 >= 2) {
-    irfe = Math.max(irfe, 68);
-  }
-
-  if (rcg >= 90 && (rcc >= 70 || rm >= 70 || ri >= 70)) {
-    irfe = Math.max(irfe, 68);
-  }
-
-  // 6. Clamp final e arredondamento
-  irfe = Math.min(100, Math.max(0, irfe));
-  irfe = parseFloat(irfe.toFixed(1));
-  
-  let cl=classify(irfe);
-
-  // UI Update
-
-  document.getElementById('score-num').textContent=irfe.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
-  document.getElementById('score-num').style.color=cl.gc;
-  let bdg=document.getElementById('badge');
-  bdg.textContent=cl.label;bdg.style.background=cl.bg;bdg.style.color=cl.tc;bdg.style.border='1px solid '+cl.bc;
-
-  let chip=document.getElementById('cc2');
-  if(cc<0){chip.style.background='#dcfce7';chip.style.color='#166534';chip.textContent='↓ Ciclo de caixa: '+Math.abs(cc)+'d negativo (vantagem competitiva)';}
-  else{chip.style.background=cc>60?'#fee2e2':cc>30?'#ffedd5':'#fef9c3';chip.style.color=cc>60?'#7f1d1d':cc>30?'#7c2d12':'#713f12';chip.textContent='Ciclo de caixa: +'+cc+'d';}
-
-  let subs=[
-    {key:'rcc',l:'Ciclo de caixa',v:Math.round(rcc),n:'CC = '+cc+'d'},
-    {key:'rm',l:'Margem',v:Math.round(rm),n:marg+'%'},
-    {key:'ri',l:'Inadimplência',v:Math.round(ri),n:inad+'%'},
-    {key:'ra',l:'Alavancagem',v:Math.round(ra),n:alav+'%'},
-    {key:'rcg',l:'Capital de giro',v:Math.round(rcg),n:reservaCaixa+' dias de cobertura'}
-  ];
-  renderMapaVetoresRisco(subs);
-  document.getElementById('subcards').innerHTML=subs.map(s=>`<div class="sc"><div class="sc-lbl">${s.l}</div><div class="sc-num" style="color:${barColor(s.v)}">${s.v}<span style="font-size:11px;color:#B0AA9F;font-family:'DM Sans',sans-serif">/100</span></div><div class="sc-note">${s.n}</div><div class="sc-bar-bg"><div class="sc-bar" style="width:${s.v}%;background:${barColor(s.v)}"></div></div></div>`).join('');
-
-  document.getElementById('interp-text').textContent=interp(irfe,cc,marg,inad,alav);
-
-  let cta=document.getElementById('cta-box');
-  cta.style.background=cl.ctaBg;
-  let btnAg=document.getElementById('btn-ag');
-  if(btnAg) btnAg.style.setProperty('--risk-cta-bg', cl.ctaBg);
-  let ctaTitles={0:'Governança e Crescimento',25:'Prevenção e Estrutura',50:'Ação Estratégica',75:'Emergência Financeira'};
-  let ctaPs={0:'Sua empresa tem fundamentos sólidos. É o momento de blindar o negócio com governança consultiva para escalar com segurança.',25:'Existem pontos de atenção que podem comprometer o futuro. Uma análise externa pode identificar gargalos antes que se tornem críticos.',50:'O risco é elevado e a margem de erro é mínima. É necessária uma revisão imediata dos processos financeiros e operacionais.',75:'Situação de alta vulnerabilidade. A intervenção deve ser imediata para estancar perdas e reestruturar a viabilidade do negócio.'};
-  
-  let level=irfe<=25?0:irfe<=50?25:irfe<=75?50:75;
-  document.getElementById('cta-h').textContent=ctaTitles[level];
-  document.getElementById('cta-p').textContent=ctaPs[level];
-
-  ultimoResultadoIrfe = {
-    empresa,
-    responsavel,
-    funcionariosLabel,
-    telefone,
-    email,
-    irfe,
-    classificacao: cl.label,
-    classificacaoStyle: cl,
-    cicloCaixa: cc,
-    subs,
-    analise: interp(irfe,cc,marg,inad,alav),
-    recomendacaoTitulo: ctaTitles[level],
-    recomendacaoTexto: ctaPs[level],
-    recomendacaoCor: cl.ctaBg
-  };
-  
-  setDiagnosisLoading(false);
-  const app=document.getElementById('diagnostic-app');
-  const resultDate=document.getElementById('result-date');
-  const resultTitle=document.getElementById('result-title');
-  if(app) app.setAttribute('data-view','result');
-  if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-  if(resultTitle) resultTitle.textContent=empresa ? 'Análise financeira · ' + empresa : 'Análise financeira';
-  document.getElementById('results').style.display='flex';
-  document.getElementById('results').scrollIntoView({behavior:'smooth'});
-
-  // ── Popular bloco de identificação no relatório ────────────────
-  document.getElementById('r-empresa').textContent     = empresa      || '—';
-  document.getElementById('r-responsavel').textContent = responsavel  || '—';
-  document.getElementById('r-funcionarios').textContent= funcionariosLabel || '—';
-  document.getElementById('r-contato').textContent     = telefone || '—';
-  document.getElementById('r-email').textContent       = email || '—';
-
-  // ── Envio ao backend GAS ───────────────────────────────────────
-  if(GAS_URL){
-    const payload = {
-      _token: FRONTEND_TOKEN,
-      website: honeypot,
-      source: "irfe",
-      tipo: 'irfe',
-      origem: 'prime-irfe',
-      versao: 'v2',
-      asset: 'prime',
-      nome: responsavel,
-      empresa: empresa,
-      cargo: cargo,
-      email: email,
-      whatsapp: phoneDigits(telefone),
-      setor: setor,
-      faixa_funcionarios: funcionariosLabel,
-      numero_colaboradores: funcionariosLabel,
-      faturamento_anual: faturamento,
-      desafio_estrategico: desafioEstrategico,
-      estrutura_gestao: estruturaGestao,
-      pmr: pmr,
-      pmp: pmp,
-      ciclo_caixa: cc,
-      margem_operacional: marg,
-      inadimplencia: inad,
-      endividamento: alav,
-      reserva_caixa: reservaCaixa,
-      score_irfe: irfe,
-      classificacao_risco: cl.label,
-      score_ciclo_caixa: Math.round(rcc),
-      score_margem_operacional: Math.round(rm),
-      score_exposicao_crises: Math.round(ri),
-      score_alavancagem: Math.round(ra),
-      score_reserva_caixa: Math.round(rcg),
-      pdf_gerado: false,
-      aceite_lgpd: true
-    };
-
-    fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    })
-    .then(r => r.json())
-    .then(res => {
-      if(res.success){
-        ultimoIrfeSalvo.id_irfe = res.id || null;
-        ultimoIrfeSalvo.email = email || null;
-        ultimoIrfeSalvo.pdfRegistrado = false;
-        console.log('IRFE registrado no backend.');
-        if(pdfGeradoPendente){
-          registrarPdfGerado();
-        }
-      }
-      else console.warn('Falha ao registrar IRFE no backend.', res);
-    })
-    .catch(err => console.warn('Falha ao registrar IRFE no backend.', err))
-    .finally(() => {
-      sending = false;
-    });
-  } else {
-    sending = false;
-  }
-}
-
 function agendar(){
   window.open('https://primecouncil.com/','_blank','noopener,noreferrer');
 }
@@ -1551,118 +1285,6 @@ function registrarPdfComercialGerado(){
   .catch(err => console.warn('Falha ao registrar PDF comercial no backend.', err))
   .finally(() => {
     pdfComercialRegistroEmAndamento = false;
-  });
-}
-
-function prepararRelatorioIrfeParaImpressao(){
-  const report = document.getElementById('irfePrintReport');
-  const indicators = document.getElementById('pr-irfe-indicators');
-  const sourceSvg = document.getElementById('risk-map-svg');
-  const whatsapp = document.getElementById('btn-ag');
-  if(!report || !indicators || !sourceSvg) return false;
-
-  const dataAtual = textFrom('result-date') || new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-  const empresa = (ultimoResultadoIrfe && ultimoResultadoIrfe.empresa) || textFrom('r-empresa') || 'Empresa';
-  const idAtual = formatPublicDiagnosticId(ultimoIrfeSalvo && ultimoIrfeSalvo.id_irfe ? ultimoIrfeSalvo.id_irfe : '');
-  const meta = empresa + ' · ' + idAtual + ' · ' + dataAtual;
-
-  setPrintText('pr-irfe-meta-main', meta);
-  setPrintText('pr-irfe-meta-secondary', 'Diagnóstico Financeiro Prime');
-  setPrintText('pr-irfe-company', textFrom('r-empresa'));
-  setPrintText('pr-irfe-owner', textFrom('r-responsavel'));
-  setPrintText('pr-irfe-phone', textFrom('r-contato'));
-  setPrintText('pr-irfe-email', textFrom('r-email'));
-  setPrintText('pr-irfe-desafio', checkedRadioText('desafio'));
-  setPrintText('pr-irfe-gestao', checkedRadioText('gestao'));
-  setPrintText('pr-irfe-analysis', textFrom('interp-text'));
-  setPrintText('pr-irfe-recommendation-title', textFrom('cta-h'));
-  setPrintText('pr-irfe-recommendation-text', textFrom('cta-p'));
-
-  const recommendation = document.getElementById('pr-irfe-recommendation');
-  if(recommendation && ultimoResultadoIrfe && ultimoResultadoIrfe.recomendacaoCor){
-    recommendation.style.background = ultimoResultadoIrfe.recomendacaoCor;
-  }
-
-  const printWhatsapp = document.getElementById('pr-irfe-whatsapp');
-  if(printWhatsapp && whatsapp){
-    printWhatsapp.href = whatsapp.href;
-  }
-
-  indicators.innerHTML = '';
-  indicators.appendChild(criarCardPrint({
-    label: 'ÍNDICE FINANCEIRO',
-    value: textFrom('score-num'),
-    badge: textFrom('badge'),
-    badgeStyle: ultimoResultadoIrfe ? ultimoResultadoIrfe.classificacaoStyle : null,
-    scoreCard: true
-  }));
-
-  const subs = ultimoResultadoIrfe && Array.isArray(ultimoResultadoIrfe.subs) ? ultimoResultadoIrfe.subs : [];
-  subs.forEach(item => {
-    indicators.appendChild(criarCardPrint({
-      label: item.l,
-      value: String(item.v) + '/100',
-      note: item.n,
-      color: barColor(item.v)
-    }));
-  });
-
-  limparRadarPrint();
-  const radarWrap = document.getElementById('pr-irfe-radar-wrap');
-  const clonedSvg = sourceSvg.cloneNode(true);
-  clonedSvg.removeAttribute('id');
-  clonedSvg.querySelectorAll('[id]').forEach((node, index) => {
-    node.setAttribute('id', 'pr-irfe-radar-' + index);
-  });
-  clonedSvg.setAttribute('aria-hidden', 'true');
-  radarWrap.appendChild(clonedSvg);
-  report.setAttribute('aria-hidden', 'false');
-  return true;
-}
-function gerarPdfDiagnostico(){
-  const dataAtual = new Date().toISOString().split('T')[0];
-  const nomeArquivo = `irfe_prime_${dataAtual}.pdf`;
-  const tituloOriginal = document.title;
-  document.title = nomeArquivo;
-  prepararRelatorioIrfeParaImpressao();
-  if(ultimoIrfeSalvo.id_irfe) registrarPdfGerado();
-  else pdfGeradoPendente = true;
-  window.print();
-  setTimeout(()=>{
-    document.title = tituloOriginal;
-    limparRadarPrint();
-    const report = document.getElementById('irfePrintReport');
-    if(report) report.setAttribute('aria-hidden','true');
-  },500);
-}
-
-function registrarPdfGerado(){
-  if(!GAS_URL || !ultimoIrfeSalvo.id_irfe || ultimoIrfeSalvo.pdfRegistrado || pdfRegistroEmAndamento) return;
-  pdfRegistroEmAndamento = true;
-
-  fetch(GAS_URL, {
-    method: 'POST',
-    body: JSON.stringify({
-      _token: FRONTEND_TOKEN,
-      source: "irfe_pdf",
-      id_irfe: ultimoIrfeSalvo.id_irfe,
-      email: ultimoIrfeSalvo.email,
-      pdf_gerado: true
-    })
-  })
-  .then(r => r.json())
-  .then(res => {
-    if(res.success){
-      ultimoIrfeSalvo.pdfRegistrado = true;
-      pdfGeradoPendente = false;
-      console.log('PDF registrado no backend.');
-    } else {
-      console.warn('Falha ao registrar PDF no backend.', res);
-    }
-  })
-  .catch(err => console.warn('Falha ao registrar PDF no backend.', err))
-  .finally(() => {
-    pdfRegistroEmAndamento = false;
   });
 }
 
