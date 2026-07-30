@@ -13,6 +13,7 @@ let ultimoIrfeSalvo = {
 };
 let pdfGeradoPendente = false;
 let pdfRegistroEmAndamento = false;
+const DIAGNOSIS_LOADING_DURATION_MS = 4000;
 let ultimoResultadoIrfe = null;
 
 function calcRcc(cc){
@@ -417,7 +418,7 @@ function voltarRevisarRespostas(){
   scrollToWizard();
 }
 
-function calcular(){
+async function calcular(){
   // ── Captura — Identificação da Empresa ────────────────────────
   let empresa     = (document.getElementById('empresa')     ? document.getElementById('empresa').value.trim()     : '');
   let funcionarios= (document.getElementById('funcionarios')? document.getElementById('funcionarios').value        : '');
@@ -516,6 +517,7 @@ function calcular(){
 
   // 6. Bloqueio de envio duplicado
   if(sending) return; sending = true;
+  setDiagnosisLoading(true);
   // 2. Calcular subscores
   let rcc=calcRcc(cc);
   let rm=calcRm(marg);
@@ -603,15 +605,9 @@ function calcular(){
     recomendacaoCor: cl.ctaBg
   };
   
-  setDiagnosisLoading(false);
   const app=document.getElementById('diagnostic-app');
   const resultDate=document.getElementById('result-date');
   const resultTitle=document.getElementById('result-title');
-  if(app) app.setAttribute('data-view','result');
-  if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-  if(resultTitle) resultTitle.textContent=empresa ? 'Análise financeira · ' + empresa : 'Análise financeira';
-  document.getElementById('results').style.display='flex';
-  document.getElementById('results').scrollIntoView({behavior:'smooth'});
 
   // ── Popular bloco de identificação no relatório ────────────────
   document.getElementById('r-empresa').textContent     = empresa      || '—';
@@ -621,68 +617,80 @@ function calcular(){
   document.getElementById('r-email').textContent       = email || '—';
 
   // ── Envio ao backend GAS ───────────────────────────────────────
-  if(GAS_URL){
-    const payload = {
-      _token: FRONTEND_TOKEN,
-      website: honeypot,
-      source: "irfe",
-      tipo: 'irfe',
-      origem: 'prime-irfe',
-      versao: 'v2',
-      asset: 'prime',
-      nome: responsavel,
-      empresa: empresa,
-      cargo: cargo,
-      email: email,
-      whatsapp: phoneDigits(telefone),
-      setor: setor,
-      faixa_funcionarios: funcionariosLabel,
-      numero_colaboradores: funcionariosLabel,
-      faturamento_anual: faturamento,
-      desafio_estrategico: desafioEstrategico,
-      estrutura_gestao: estruturaGestao,
-      pmr: pmr,
-      pmp: pmp,
-      ciclo_caixa: cc,
-      margem_operacional: marg,
-      inadimplencia: inad,
-      endividamento: alav,
-      reserva_caixa: reservaCaixa,
-      score_irfe: irfe,
-      classificacao_risco: cl.label,
-      score_ciclo_caixa: Math.round(rcc),
-      score_margem_operacional: Math.round(rm),
-      score_exposicao_crises: Math.round(ri),
-      score_alavancagem: Math.round(ra),
-      score_reserva_caixa: Math.round(rcg),
-      pdf_gerado: false,
-      aceite_lgpd: true
-    };
+  const payload = {
+    _token: FRONTEND_TOKEN,
+    website: honeypot,
+    source: "irfe",
+    tipo: 'irfe',
+    origem: 'prime-irfe',
+    versao: 'v2',
+    asset: 'prime',
+    nome: responsavel,
+    empresa: empresa,
+    cargo: cargo,
+    email: email,
+    whatsapp: phoneDigits(telefone),
+    setor: setor,
+    faixa_funcionarios: funcionariosLabel,
+    numero_colaboradores: funcionariosLabel,
+    faturamento_anual: faturamento,
+    desafio_estrategico: desafioEstrategico,
+    estrutura_gestao: estruturaGestao,
+    pmr: pmr,
+    pmp: pmp,
+    ciclo_caixa: cc,
+    margem_operacional: marg,
+    inadimplencia: inad,
+    endividamento: alav,
+    reserva_caixa: reservaCaixa,
+    score_irfe: irfe,
+    classificacao_risco: cl.label,
+    score_ciclo_caixa: Math.round(rcc),
+    score_margem_operacional: Math.round(rm),
+    score_exposicao_crises: Math.round(ri),
+    score_alavancagem: Math.round(ra),
+    score_reserva_caixa: Math.round(rcg),
+    pdf_gerado: false,
+    aceite_lgpd: true
+  };
 
-    fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify(payload)
-    })
-    .then(r => r.json())
-    .then(res => {
-      if(res.success){
-        ultimoIrfeSalvo.id_irfe = res.id || null;
-        ultimoIrfeSalvo.email = email || null;
-        ultimoIrfeSalvo.pdfRegistrado = false;
-        console.log('IRFE registrado no backend.');
-        if(pdfGeradoPendente){
-          registrarPdfGerado();
-        }
-      }
-      else console.warn('Falha ao registrar IRFE no backend.', res);
-    })
-    .catch(err => console.warn('Falha ao registrar IRFE no backend.', err))
-    .finally(() => {
-      sending = false;
-    });
+  const salvamentoPromise = GAS_URL
+    ? fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+      })
+      .then(r => r.json())
+      .catch(err => ({ success: false, error: err }))
+    : Promise.resolve({ success: false });
+
+  const loadingPromise = new Promise(resolve =>
+    setTimeout(resolve, DIAGNOSIS_LOADING_DURATION_MS)
+  );
+
+  const [res] = await Promise.all([
+    salvamentoPromise,
+    loadingPromise
+  ]);
+
+  if(res && res.success){
+    ultimoIrfeSalvo.id_irfe = res.id || null;
+    ultimoIrfeSalvo.email = email || null;
+    ultimoIrfeSalvo.pdfRegistrado = false;
+    console.log('IRFE registrado no backend.');
+    if(pdfGeradoPendente){
+      registrarPdfGerado();
+    }
+    setDiagnosisLoading(false);
+    if(app) app.setAttribute('data-view','result');
+    if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+    if(resultTitle) resultTitle.textContent=empresa ? 'Análise financeira · ' + empresa : 'Análise financeira';
+    document.getElementById('results').style.display='flex';
+    document.getElementById('results').scrollIntoView({behavior:'smooth'});
   } else {
-    sending = false;
+    console.warn('Falha ao registrar IRFE no backend.', res);
+    setDiagnosisLoading(false);
   }
+  sending = false;
 }
 
 function agendar(){
