@@ -24,7 +24,7 @@
 
 /* â”€â”€â”€ ROOT TOKENS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 :root{
-  --header-h:  62px;
+  --header-h:  60px;
   --navy:      #0D0D0D;
   --navy-mid:  #2C2A27;
   --gold:      #9A7B4A;
@@ -113,14 +113,14 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   max-width:100%; /* [FIX] 100vw removido: inclui scrollbar em desktop (atÃ© 17px de overflow) */
 }
 .site-header-inner{
-  max-width:1200px;
+  max-width:1340px;
   margin:0 auto;
   padding:0 28px;
   height:var(--header-h);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:16px;
   min-width:0;
 }
 
@@ -146,19 +146,18 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   overflow:hidden;
 }
 /* nowrap vÃ¡lido: contenÃ§Ã£o explÃ­cita via overflow:hidden no pai */
-.header-brand-text h2{
+.header-brand-name{
   font-family:var(--serif);
   font-size:15px;
   font-weight:600;
   color:#fff;
-  letter-spacing:0.06em;
+  letter-spacing:0.04em;
   white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  display:none;
 }
 
 .logo-mark{
-  width:30px;height:30px;
+  width:52px;height:52px;
   background:transparent;
   border:none;
   border-radius:2px;
@@ -166,8 +165,8 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   flex-shrink:0;
 }
 .brand-icon-img{
-  width:24px;
-  height:24px;
+  width:52px;
+  height:52px;
   object-fit:contain;
   display:block;
 }
@@ -205,7 +204,7 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:8px;
+  gap:6px;
   flex:1 1 auto;
   min-width:0;
 }
@@ -214,16 +213,17 @@ img,video,iframe,svg{max-width:100%;height:auto;display:block}
   font-weight:500;
   letter-spacing:0.08em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.66);
+  color:rgba(255,255,255,0.65);
   text-decoration:none;
+  padding:4px 8px;
   transition:color 0.2s;
   white-space:nowrap;
 }
 .header-nav-link:hover{color:rgba(255,255,255,0.92)}
 .h-sep{
   display:inline-block;
-  width:1px;height:12px;
-  background:rgba(255,255,255,0.14);
+  width:1px;height:16px;
+  background:rgba(255,255,255,0.10);
   vertical-align:middle;
 }
 
@@ -981,7 +981,7 @@ footer{
 
 /* â”€â”€â”€ MOBILE <=768px â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 @media(max-width:768px){
-  :root{--header-h:56px}
+  :root{--header-h:58px}
 
   .site-header-inner{
     padding:0 16px;
