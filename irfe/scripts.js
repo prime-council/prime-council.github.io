@@ -13,6 +13,7 @@ let ultimoIrfeSalvo = {
 };
 let pdfGeradoPendente = false;
 let pdfRegistroEmAndamento = false;
+const DIAGNOSIS_FLOW_STANDARD_VERSION = '1.0';
 const DIAGNOSIS_LOADING_DURATION_MS = 4000;
 let ultimoResultadoIrfe = null;
 
@@ -393,6 +394,31 @@ function initWizard(){
 
 let sending = false;
 
+function setIrfeSubmitBusy(active){
+  const submit=document.getElementById('wizard-submit');
+  if(!submit) return;
+  submit.disabled=!!active;
+  submit.setAttribute('aria-busy', active ? 'true' : 'false');
+}
+
+function setIrfePdfEnabled(enabled){
+  const btnPdf=document.querySelector('.btn-pdf');
+  if(!btnPdf) return;
+  btnPdf.disabled=!enabled;
+  btnPdf.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+}
+
+function limparEstadoConfirmadoIrfe(){
+  ultimoResultadoIrfe = null;
+  ultimoIrfeSalvo = {
+    id_irfe: null,
+    email: null,
+    pdfRegistrado: false
+  };
+  pdfGeradoPendente = false;
+  setIrfePdfEnabled(false);
+}
+
 function setDiagnosisLoading(active){
   let loading=document.getElementById('diagnosis-loading');
   let results=document.getElementById('results');
@@ -415,7 +441,51 @@ function voltarRevisarRespostas(){
   if(questionnaire) questionnaire.style.display='';
   if(results) results.style.display='none';
   sending=false;
+  setIrfeSubmitBusy(false);
   scrollToWizard();
+}
+
+function renderizarResultadoIrfeConfirmado(resultado){
+  const app=document.getElementById('diagnostic-app');
+  const resultDate=document.getElementById('result-date');
+  const resultTitle=document.getElementById('result-title');
+
+  document.getElementById('score-num').textContent=resultado.irfe.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+  document.getElementById('score-num').style.color=resultado.classificacaoStyle.gc;
+  let bdg=document.getElementById('badge');
+  bdg.textContent=resultado.classificacaoStyle.label;
+  bdg.style.background=resultado.classificacaoStyle.bg;
+  bdg.style.color=resultado.classificacaoStyle.tc;
+  bdg.style.border='1px solid '+resultado.classificacaoStyle.bc;
+
+  let chip=document.getElementById('cc2');
+  if(resultado.cicloCaixa<0){chip.style.background='#dcfce7';chip.style.color='#166534';chip.textContent='↓ Ciclo de caixa: '+Math.abs(resultado.cicloCaixa)+'d negativo (vantagem competitiva)';}
+  else{chip.style.background=resultado.cicloCaixa>60?'#fee2e2':resultado.cicloCaixa>30?'#ffedd5':'#fef9c3';chip.style.color=resultado.cicloCaixa>60?'#7f1d1d':resultado.cicloCaixa>30?'#7c2d12':'#713f12';chip.textContent='Ciclo de caixa: +'+resultado.cicloCaixa+'d';}
+
+  renderMapaVetoresRisco(resultado.subs);
+  document.getElementById('subcards').innerHTML=resultado.subs.map(s=>`<div class="sc"><div class="sc-lbl">${s.l}</div><div class="sc-num" style="color:${barColor(s.v)}">${s.v}<span style="font-size:11px;color:#B0AA9F;font-family:'DM Sans',sans-serif">/100</span></div><div class="sc-note">${s.n}</div><div class="sc-bar-bg"><div class="sc-bar" style="width:${s.v}%;background:${barColor(s.v)}"></div></div></div>`).join('');
+
+  document.getElementById('interp-text').textContent=resultado.analise;
+
+  let cta=document.getElementById('cta-box');
+  cta.style.background=resultado.recomendacaoCor;
+  let btnAg=document.getElementById('btn-ag');
+  if(btnAg) btnAg.style.setProperty('--risk-cta-bg', resultado.recomendacaoCor);
+  document.getElementById('cta-h').textContent=resultado.recomendacaoTitulo;
+  document.getElementById('cta-p').textContent=resultado.recomendacaoTexto;
+
+  document.getElementById('r-empresa').textContent     = resultado.empresa      || '—';
+  document.getElementById('r-responsavel').textContent = resultado.responsavel  || '—';
+  document.getElementById('r-funcionarios').textContent= resultado.funcionariosLabel || '—';
+  document.getElementById('r-contato').textContent     = resultado.telefone || '—';
+  document.getElementById('r-email').textContent       = resultado.email || '—';
+
+  if(app) app.setAttribute('data-view','result');
+  if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  if(resultTitle) resultTitle.textContent=resultado.empresa ? 'Análise financeira · ' + resultado.empresa : 'Análise financeira';
+  setIrfePdfEnabled(true);
+  document.getElementById('results').style.display='flex';
+  document.getElementById('results').scrollIntoView({behavior:'smooth'});
 }
 
 async function calcular(){
@@ -517,6 +587,8 @@ async function calcular(){
 
   // 6. Bloqueio de envio duplicado
   if(sending) return; sending = true;
+  setIrfeSubmitBusy(true);
+  limparEstadoConfirmadoIrfe();
   setDiagnosisLoading(true);
   // 2. Calcular subscores
   let rcc=calcRcc(cc);
@@ -554,17 +626,6 @@ async function calcular(){
   
   let cl=classify(irfe);
 
-  // UI Update
-
-  document.getElementById('score-num').textContent=irfe.toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
-  document.getElementById('score-num').style.color=cl.gc;
-  let bdg=document.getElementById('badge');
-  bdg.textContent=cl.label;bdg.style.background=cl.bg;bdg.style.color=cl.tc;bdg.style.border='1px solid '+cl.bc;
-
-  let chip=document.getElementById('cc2');
-  if(cc<0){chip.style.background='#dcfce7';chip.style.color='#166534';chip.textContent='↓ Ciclo de caixa: '+Math.abs(cc)+'d negativo (vantagem competitiva)';}
-  else{chip.style.background=cc>60?'#fee2e2':cc>30?'#ffedd5':'#fef9c3';chip.style.color=cc>60?'#7f1d1d':cc>30?'#7c2d12':'#713f12';chip.textContent='Ciclo de caixa: +'+cc+'d';}
-
   let subs=[
     {key:'rcc',l:'Ciclo de caixa',v:Math.round(rcc),n:'CC = '+cc+'d'},
     {key:'rm',l:'Margem',v:Math.round(rm),n:marg+'%'},
@@ -572,23 +633,12 @@ async function calcular(){
     {key:'ra',l:'Alavancagem',v:Math.round(ra),n:alav+'%'},
     {key:'rcg',l:'Capital de giro',v:Math.round(rcg),n:reservaCaixa+' dias de cobertura'}
   ];
-  renderMapaVetoresRisco(subs);
-  document.getElementById('subcards').innerHTML=subs.map(s=>`<div class="sc"><div class="sc-lbl">${s.l}</div><div class="sc-num" style="color:${barColor(s.v)}">${s.v}<span style="font-size:11px;color:#B0AA9F;font-family:'DM Sans',sans-serif">/100</span></div><div class="sc-note">${s.n}</div><div class="sc-bar-bg"><div class="sc-bar" style="width:${s.v}%;background:${barColor(s.v)}"></div></div></div>`).join('');
-
-  document.getElementById('interp-text').textContent=interp(irfe,cc,marg,inad,alav);
-
-  let cta=document.getElementById('cta-box');
-  cta.style.background=cl.ctaBg;
-  let btnAg=document.getElementById('btn-ag');
-  if(btnAg) btnAg.style.setProperty('--risk-cta-bg', cl.ctaBg);
   let ctaTitles={0:'Governança e Crescimento',25:'Prevenção e Estrutura',50:'Ação Estratégica',75:'Emergência Financeira'};
   let ctaPs={0:'Sua empresa tem fundamentos sólidos. É o momento de blindar o negócio com governança consultiva para escalar com segurança.',25:'Existem pontos de atenção que podem comprometer o futuro. Uma análise externa pode identificar gargalos antes que se tornem críticos.',50:'O risco é elevado e a margem de erro é mínima. É necessária uma revisão imediata dos processos financeiros e operacionais.',75:'Situação de alta vulnerabilidade. A intervenção deve ser imediata para estancar perdas e reestruturar a viabilidade do negócio.'};
   
   let level=irfe<=25?0:irfe<=50?25:irfe<=75?50:75;
-  document.getElementById('cta-h').textContent=ctaTitles[level];
-  document.getElementById('cta-p').textContent=ctaPs[level];
 
-  ultimoResultadoIrfe = {
+  const resultadoIrfe = {
     empresa,
     responsavel,
     funcionariosLabel,
@@ -604,17 +654,6 @@ async function calcular(){
     recomendacaoTexto: ctaPs[level],
     recomendacaoCor: cl.ctaBg
   };
-  
-  const app=document.getElementById('diagnostic-app');
-  const resultDate=document.getElementById('result-date');
-  const resultTitle=document.getElementById('result-title');
-
-  // ── Popular bloco de identificação no relatório ────────────────
-  document.getElementById('r-empresa').textContent     = empresa      || '—';
-  document.getElementById('r-responsavel').textContent = responsavel  || '—';
-  document.getElementById('r-funcionarios').textContent= funcionariosLabel || '—';
-  document.getElementById('r-contato').textContent     = telefone || '—';
-  document.getElementById('r-email').textContent       = email || '—';
 
   // ── Envio ao backend GAS ───────────────────────────────────────
   const payload = {
@@ -672,7 +711,8 @@ async function calcular(){
     loadingPromise
   ]);
 
-  if(res && res.success){
+  if(res?.success === true){
+    ultimoResultadoIrfe = resultadoIrfe;
     ultimoIrfeSalvo.id_irfe = res.id || null;
     ultimoIrfeSalvo.email = email || null;
     ultimoIrfeSalvo.pdfRegistrado = false;
@@ -681,16 +721,14 @@ async function calcular(){
       registrarPdfGerado();
     }
     setDiagnosisLoading(false);
-    if(app) app.setAttribute('data-view','result');
-    if(resultDate) resultDate.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
-    if(resultTitle) resultTitle.textContent=empresa ? 'Análise financeira · ' + empresa : 'Análise financeira';
-    document.getElementById('results').style.display='flex';
-    document.getElementById('results').scrollIntoView({behavior:'smooth'});
+    renderizarResultadoIrfeConfirmado(resultadoIrfe);
   } else {
+    limparEstadoConfirmadoIrfe();
     console.warn('Falha ao registrar IRFE no backend.', res);
     setDiagnosisLoading(false);
   }
   sending = false;
+  setIrfeSubmitBusy(false);
 }
 
 function agendar(){
