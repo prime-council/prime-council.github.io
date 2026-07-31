@@ -257,12 +257,15 @@ const wizardFields = {
   2: ['comercial_q01','comercial_q02'],
   3: ['comercial_q03','comercial_q04','comercial_q05','comercial_q06'],
   4: ['comercial_q07','comercial_q08','comercial_q09','comercial_q10'],
-  5: ['empresa','responsavel','cargo','email','telefone','lgpd']
+  5: ['responsavel','email','telefone','lgpd']
 };
 
-const wizardRadioFields = [
+const wizardMultiFields = [
   'desafio_comercial',
-  'estrutura_comercial',
+  'estrutura_comercial'
+];
+
+const wizardRadioFields = [
   'comercial_q01',
   'comercial_q02',
   'comercial_q03',
@@ -304,7 +307,7 @@ function validateWizardStep(step){
       return;
     }
 
-    if(wizardRadioFields.includes(id)){
+    if(wizardRadioFields.includes(id) || wizardMultiFields.includes(id)){
       const field=document.getElementById('f-' + id);
       const checked=document.querySelector('input[name="' + id + '"]:checked');
       const msg=field ? field.querySelector('.err-msg') : null;
@@ -443,6 +446,17 @@ function getSelectedRadioValue(name){
   return checked ? checked.value : '';
 }
 
+function getSelectedOptionLabels(name){
+  return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'))
+    .map(input => {
+      const label = input.closest('label');
+      const textSource = label ? label.querySelector('.radio-label') || label : null;
+      return textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
+    })
+    .filter(Boolean)
+    .join('; ');
+}
+
 function getSelectedRadioNumber(name){
   const value=getSelectedRadioValue(name);
   return value ? Number(value) : null;
@@ -497,7 +511,7 @@ async function coletarPayloadComercialR1(){
     setor: document.getElementById('setor') ? document.getElementById('setor').value : '',
     faixa_funcionarios: getFuncionariosLabel(funcionarios), numero_colaboradores: getFuncionariosLabel(funcionarios),
     faturamento_anual: document.getElementById('faturamento') ? document.getElementById('faturamento').value : '',
-    desafio_comercial: getSelectedRadioValue('desafio_comercial'), estrutura_comercial: getSelectedRadioValue('estrutura_comercial'),
+    desafio_comercial: getSelectedOptionLabels('desafio_comercial'), estrutura_comercial: getSelectedOptionLabels('estrutura_comercial'),
     comercial_q01: getSelectedRadioNumber('comercial_q01'), comercial_q02: getSelectedRadioNumber('comercial_q02'),
     comercial_q03: getSelectedRadioNumber('comercial_q03'), comercial_q04: getSelectedRadioNumber('comercial_q04'),
     comercial_q05: getSelectedRadioNumber('comercial_q05'), comercial_q06: getSelectedRadioNumber('comercial_q06'),
@@ -1122,11 +1136,7 @@ function getSelectedRadioLabel(name){
 }
 
 function checkedRadioText(name){
-  const input = document.querySelector('input[name="' + name + '"]:checked');
-  if(!input) return 'Não informado';
-  const label = input.closest('label');
-  const textSource = label ? label.querySelector('.radio-label') || label : null;
-  const text = textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
+  const text = getSelectedOptionLabels(name);
   return text || 'Não informado';
 }
 
@@ -1322,7 +1332,7 @@ function registrarPdfComercialGerado(){
     errMsg.classList.remove('visible');
   });
 });
-document.querySelectorAll(wizardRadioFields.map(name => 'input[name="' + name + '"]').join(', ')).forEach(el=>{
+document.querySelectorAll(wizardRadioFields.concat(wizardMultiFields).map(name => 'input[name="' + name + '"]').join(', ')).forEach(el=>{
   el.addEventListener('change',function(){
     const field=this.closest('.field');
     if(field){

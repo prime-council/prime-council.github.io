@@ -64,15 +64,31 @@
       <div class="logo-mark">
         <img class="brand-icon-img" src="../assets/prime-council-logo-texto-claro-web.webp" alt="Prime Council">
       </div>
+      <div>
+        <span class="header-brand-name">Prime Council</span>
+      </div>
     </a>
 
     <nav class="header-nav" aria-label="Navegação principal">
-      <a href="https://primecouncil.com/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="prime-council">Prime Council</a>
+      <a href="https://primecouncil.com/#evento" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva Prime</a>
       <span class="h-sep" aria-hidden="true"></span>
-      <a href="https://primecouncil.com/comercial/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="comercial">Diagnóstico Comercial</a>
+      <a href="https://primecouncil.com/#diagnostico" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnósticos Prime</a>
       <span class="h-sep" aria-hidden="true"></span>
-      <a href="https://primecouncil.com/form/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva</a>
+      <a href="https://primecouncil.com/#prime-council" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="council">Conselho Executivo</a>
     </nav>
+
+    <div class="header-ctas">
+      <a href="https://primecouncil.com/form/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-gold btn-sm"
+         aria-label="Solicitar conversa"
+         data-flow="event-entry"
+         data-entry="cold"
+         data-cta-position="header">
+        <strong>Solicitar conversa →</strong>
+      </a>
+    </div>
 
   </div>
 </header>
@@ -120,8 +136,8 @@
         <div class="field" id="f-funcionarios"><label>Número de colaboradores<span class="req">*</span></label><select id="funcionarios" name="funcionarios" required><option value="">Selecione</option><option value="10–50">Até 50 colaboradores</option><option value="51–100">51 a 100 colaboradores</option><option value="101–200">101 a 200 colaboradores</option><option value="mais de 200">Acima de 200 colaboradores</option></select><div class="err-msg">Selecione o porte da equipe.</div></div>
         <div class="field" id="f-faturamento"><label>Faturamento anual aproximado<span class="req">*</span></label><select id="faturamento" name="faturamento"><option value="">Selecione</option><option>Até R$ 1 milhão</option><option>De R$ 1 milhão a R$ 5 milhões</option><option>De R$ 5 milhões a R$ 20 milhões</option><option>De R$ 20 milhões a R$ 60 milhões</option><option>Acima de R$ 60 milhões</option><option>Prefiro não informar</option></select><div class="err-msg">Selecione a faixa de faturamento.</div></div>
       </div>
-      <div class="field" id="f-desafio_comercial"><label>Principal desafio comercial<span class="req">*</span></label><div class="radio-group" id="rg-desafio_comercial"><label class="radio-opt"><input type="radio" name="desafio_comercial" value="direcao_metas"><div class="radio-dot"></div><span class="radio-label">Direção e acompanhamento de metas</span></label><label class="radio-opt"><input type="radio" name="desafio_comercial" value="prospeccao_oportunidades"><div class="radio-dot"></div><span class="radio-label">Prospecção e geração de oportunidades</span></label><label class="radio-opt"><input type="radio" name="desafio_comercial" value="recorrencia_carteira"><div class="radio-dot"></div><span class="radio-label">Recorrência e desenvolvimento da carteira</span></label><label class="radio-opt"><input type="radio" name="desafio_comercial" value="conversao_valor"><div class="radio-dot"></div><span class="radio-label">Conversão, valor e rentabilidade</span></label><label class="radio-opt"><input type="radio" name="desafio_comercial" value="organizacao_comercial"><div class="radio-dot"></div><span class="radio-label">Organização da operação comercial</span></label></div><div class="err-msg">Selecione o principal desafio comercial.</div></div>
-      <div class="field" id="f-estrutura_comercial"><label>Estrutura comercial atual<span class="req">*</span></label><div class="radio-group" id="rg-estrutura_comercial"><label class="radio-opt"><input type="radio" name="estrutura_comercial" value="centralizada_socios"><div class="radio-dot"></div><span class="radio-label">Centralizada no proprietário ou sócios</span></label><label class="radio-opt"><input type="radio" name="estrutura_comercial" value="equipe_propria"><div class="radio-dot"></div><span class="radio-label">Equipe comercial própria</span></label><label class="radio-opt"><input type="radio" name="estrutura_comercial" value="representantes"><div class="radio-dot"></div><span class="radio-label">Representantes comerciais</span></label><label class="radio-opt"><input type="radio" name="estrutura_comercial" value="estrutura_mista"><div class="radio-dot"></div><span class="radio-label">Estrutura mista</span></label></div><div class="err-msg">Selecione a estrutura comercial atual.</div></div>
+      <div class="field" id="f-desafio_comercial"><label>Principal desafio comercial<span class="req">*</span></label><div class="hint">Selecione uma ou mais opções aplicáveis.</div><div class="radio-group" id="rg-desafio_comercial"><label class="radio-opt"><input type="checkbox" name="desafio_comercial" value="direcao_metas"><div class="radio-dot"></div><span class="radio-label">Direção e acompanhamento de metas</span></label><label class="radio-opt"><input type="checkbox" name="desafio_comercial" value="prospeccao_oportunidades"><div class="radio-dot"></div><span class="radio-label">Prospecção e geração de oportunidades</span></label><label class="radio-opt"><input type="checkbox" name="desafio_comercial" value="recorrencia_carteira"><div class="radio-dot"></div><span class="radio-label">Recorrência e desenvolvimento da carteira</span></label><label class="radio-opt"><input type="checkbox" name="desafio_comercial" value="conversao_valor"><div class="radio-dot"></div><span class="radio-label">Conversão, valor e rentabilidade</span></label><label class="radio-opt"><input type="checkbox" name="desafio_comercial" value="organizacao_comercial"><div class="radio-dot"></div><span class="radio-label">Organização da operação comercial</span></label></div><div class="err-msg">Selecione o principal desafio comercial.</div></div>
+      <div class="field" id="f-estrutura_comercial"><label>Estrutura comercial atual<span class="req">*</span></label><div class="hint">Selecione uma ou mais opções aplicáveis.</div><div class="radio-group" id="rg-estrutura_comercial"><label class="radio-opt"><input type="checkbox" name="estrutura_comercial" value="centralizada_socios"><div class="radio-dot"></div><span class="radio-label">Centralizada no proprietário ou sócios</span></label><label class="radio-opt"><input type="checkbox" name="estrutura_comercial" value="equipe_propria"><div class="radio-dot"></div><span class="radio-label">Equipe comercial própria</span></label><label class="radio-opt"><input type="checkbox" name="estrutura_comercial" value="representantes_autonomos"><div class="radio-dot"></div><span class="radio-label">Representantes comerciais ou autônomos</span></label><label class="radio-opt"><input type="checkbox" name="estrutura_comercial" value="estrutura_terceirizada"><div class="radio-dot"></div><span class="radio-label">Estrutura terceirizada</span></label><label class="radio-opt"><input type="checkbox" name="estrutura_comercial" value="estrutura_mista"><div class="radio-dot"></div><span class="radio-label">Estrutura mista</span></label></div><div class="err-msg">Selecione a estrutura comercial atual.</div></div>
     </div>
 
     <div class="wizard-step" data-step="2" aria-live="polite"><div class="wizard-block-kicker">ETAPA 2 · DIREÇÃO COMERCIAL</div><div class="question-grid question-grid-2 commercial-question-list">
@@ -146,15 +162,15 @@
       <div class="wizard-block-kicker">ETAPA 5 · IDENTIFICAÇÃO</div>
       <div class="question-grid question-grid-3 ident-question-grid">
         <div class="field">
-          <label>Nome da empresa<span class="req">*</span></label>
-          <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" required>
+          <label>Nome da empresa</label>
+          <input type="text" id="empresa" placeholder="Razão social ou nome fantasia">
         </div>
         <div class="field">
           <label>Nome completo<span class="req">*</span></label>
           <input type="text" id="responsavel" placeholder="Seu nome completo" required>
         </div>
         <div class="field" id="f-cargo">
-          <label>Posição na empresa<span class="req">*</span></label>
+          <label>Posição na empresa</label>
           <select id="cargo">
             <option value="">Selecione</option>
             <option>Proprietário / Fundador</option>
@@ -167,7 +183,7 @@
           <div class="err-msg">Selecione sua posição.</div>
         </div>
         <div class="field field-span-2">
-          <label>E-mail corporativo<span class="req">*</span></label>
+          <label>E-mail<span class="req">*</span></label>
           <input type="email" id="email" name="email" placeholder="seu@email.com.br" required>
         </div>
         <div class="field">
