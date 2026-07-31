@@ -291,8 +291,8 @@ a {
   text-decoration: none;
 }
 .logo-mark {
-  width: 30px;
-  height: 30px;
+  width: 52px;
+  height: 52px;
   background: transparent;
   border: none;
   border-radius: 2px;
@@ -302,8 +302,8 @@ a {
   flex-shrink: 0;
 }
 .brand-icon-img {
-  width: 24px;
-  height: 24px;
+  width: 52px;
+  height: 52px;
   object-fit: contain;
   display: block;
 }
@@ -331,7 +331,7 @@ a {
   color: var(--paper);
   letter-spacing: 0.04em;
   white-space: nowrap;
-  display: block;
+  display: none;
 }
 
 .header-nav {
