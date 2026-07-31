@@ -22,13 +22,41 @@
   <script src="scripts.js" defer></script>
 </head>
 <body>
-  <header class="site-header" id="topo">
-    <a class="brand" href="https://primecouncil.com/" aria-label="Prime Council - Home">
-      <img src="../assets/logo-prime-crown.png" alt="" width="28" height="28">
-      <span>Prime Council</span>
+  <header class="site-header" id="top">
+  <div class="site-header-inner">
+
+    <a class="header-brand" href="https://primecouncil.com/" target="_blank" rel="noopener noreferrer">
+      <div class="logo-mark">
+        <img class="brand-icon-img" src="../assets/prime-council-logo-texto-claro-web.webp" alt="Prime Council">
+      </div>
+      <div>
+        <span class="header-brand-name">Prime Council</span>
+      </div>
     </a>
-    <a class="home-link" href="https://primecouncil.com/">Voltar para Home</a>
-  </header>
+
+    <nav class="header-nav" aria-label="Navegação principal">
+      <a href="https://primecouncil.com/#evento" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva Prime</a>
+      <span class="h-sep" aria-hidden="true"></span>
+      <a href="https://primecouncil.com/#diagnostico" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnósticos Prime</a>
+      <span class="h-sep" aria-hidden="true"></span>
+      <a href="https://primecouncil.com/#prime-council" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="council">Conselho Executivo</a>
+    </nav>
+
+    <div class="header-ctas">
+      <a href="https://primecouncil.com/form/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-gold btn-sm"
+         aria-label="Solicitar conversa"
+         data-flow="event-entry"
+         data-entry="cold"
+         data-cta-position="header">
+        <strong>Solicitar conversa →</strong>
+      </a>
+    </div>
+
+  </div>
+</header>
 
   <main>
     <section class="hero" aria-labelledby="privacy-title">

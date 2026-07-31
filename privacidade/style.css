@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --ink: #101010;
   --ink-soft: #292622;
   --paper: #fffdf8;
@@ -23,42 +23,122 @@ body {
   color: var(--ink);
   background: var(--bone);
   line-height: 1.7;
+  padding-top: 60px;
 }
 a { color: inherit; text-decoration-color: rgba(154, 123, 74, 0.55); text-underline-offset: 0.2em; }
 a:hover { color: var(--gold); }
 
 .site-header {
-  min-height: 76px;
-  padding: 0 max(20px, calc((100% - var(--max)) / 2));
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--ink);
+  border-bottom: 1px solid rgba(191,160,107,0.14);
+  height: 60px;
+  color: var(--paper);
+}
+.site-header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  color: var(--paper);
-  background: #111;
+  gap: 16px;
+  height: 100%;
+  padding: 0 28px;
+  max-width: 1340px;
+  margin: 0 auto;
 }
-.brand {
-  display: inline-flex;
+.header-brand {
+  display: flex;
   align-items: center;
   gap: 10px;
+  flex-shrink: 0;
+  color: inherit;
   text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0;
 }
-.brand img { width: 28px; height: 28px; }
-.home-link {
-  display: inline-flex;
-  min-height: 42px;
+.header-brand,
+.header-brand:visited,
+.header-brand:hover,
+.header-brand:focus,
+.header-brand:active { text-decoration: none; }
+.logo-mark {
+  width: 52px;
+  height: 52px;
+  background: transparent;
+  border: none;
+  border-radius: 2px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 18px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 4px;
-  color: var(--paper);
-  text-decoration: none;
-  font-size: 0.9rem;
+  flex-shrink: 0;
 }
-.home-link:hover { background: rgba(255, 255, 255, 0.08); color: var(--paper); }
+.brand-icon-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+}
+.header-brand-name {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  display: none;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  justify-content: center;
+}
+.header-nav-link {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  padding: 4px 8px;
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.header-nav-link:hover { color: rgba(255,255,255,0.92); }
+.h-sep {
+  width: 1px;
+  height: 16px;
+  background: rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+.header-ctas {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: center;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  min-height: 36px;
+}
+.btn-gold {
+  background: var(--gold);
+  color: #fff;
+  border: 1px solid var(--gold);
+}
+.btn-gold:hover { background: var(--gold-light); color: #111; }
 
 .hero {
   color: var(--paper);
@@ -173,17 +253,17 @@ h1 {
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
 
 @media (max-width: 620px) {
-  .site-header {
-    min-height: 70px;
-    padding: 0 14px;
-  }
+  .site-header { height: 58px; }
+  .site-header-inner { padding: 0 12px; gap: 10px; }
+  .header-nav { display: none; }
+  .header-ctas { width: 48vw; max-width: 176px; min-width: 0; }
+  .header-ctas .btn { width: 100%; white-space: normal; line-height: 1.15; text-align: center; }
   .hero-inner,
   .content-shell,
   .site-footer {
     width: min(100% - 28px, var(--max));
   }
-  .brand span { font-size: 0.95rem; }
-  .home-link { padding: 0 12px; font-size: 0.82rem; }
+
   .hero-inner { padding: 34px 0 42px; }
   .subtitle { font-size: 1rem; }
   .content-shell { margin-top: 28px; }
