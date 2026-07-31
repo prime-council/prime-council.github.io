@@ -22,7 +22,7 @@
   --radius-lg: 5px;
   --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --sans:  'DM Sans', system-ui, sans-serif;
-  --header-h:  62px;
+  --header-h:  60px;
 }
 
 /* ===== BASE ===== */
@@ -151,17 +151,18 @@ svg {
 .site-header{
   position: fixed;
   top: 0; left: 0; right: 0;
-  z-index: 100;
+  z-index: 1000;
   background: var(--ink);
-  border-bottom: 1px solid rgba(221,217,208,0.10);
+  border-bottom: 1px solid rgba(191,160,107,0.14);
 }
 .site-header-inner{
-  max-width: 1100px;
+  max-width: 1340px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 28px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 16px;
   height: var(--header-h);
 }
 .header-brand{
@@ -212,43 +213,45 @@ svg {
 .logo-bars span:nth-child(3){ height: 15px; }
 .header-brand-name{
   font-family: var(--serif);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--paper);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   white-space: nowrap;
+  display: none;
 }
 .header-nav{
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 6px;
 }
 .header-nav-link{
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(244,241,235,0.66);
+  color: rgba(255,255,255,0.65);
   text-decoration: none;
+  padding: 4px 8px;
   transition: color .15s;
   white-space: nowrap;
 }
-.header-nav-link:hover{ color: rgba(244,241,235,0.92); }
+.header-nav-link:hover{ color: rgba(255,255,255,0.92); }
 .h-sep{
   display: inline-block;
   width: 1px;
-  height: 12px;
-  background: rgba(255,255,255,0.12);
+  height: 16px;
+  background: rgba(255,255,255,0.10);
   vertical-align: middle;
   flex-shrink: 0;
 }
 .header-ctas{
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-shrink: 0;
+  display:flex;
+  gap:8px;
+  flex-shrink:0;
+  align-items:center;
 }
 .btn{
   display: inline-block;
@@ -1810,8 +1813,8 @@ footer{
 
   /* A navegação completa permanece no desktop; no mobile, o logo fica priorizado. */
   .site-header-inner {
-    padding: 0 1rem;
-    gap: 8px;
+    padding: 0 16px;
+    gap: 10px;
   }
   .header-nav {
     display: none;
@@ -1824,7 +1827,7 @@ footer{
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    max-width: min(220px, 54vw);
+    max-width: min(176px, 48vw);
     line-height: 1.15;
     text-align: center;
   }

@@ -257,7 +257,7 @@ const wizardFields = {
   1: ['setor','funcionarios','faturamento','desafio','gestao'],
   2: ['pmr','pmp','inad'],
   3: ['marg','alav','reserva_caixa'],
-  4: ['empresa','responsavel','cargo','email','telefone','lgpd']
+  4: ['responsavel','email','telefone','lgpd']
 };
 
 function scrollToWizard(){
@@ -494,8 +494,8 @@ async function calcular(){
   let funcionarios= (document.getElementById('funcionarios')? document.getElementById('funcionarios').value        : '');
   let setor       = (document.getElementById('setor')       ? document.getElementById('setor').value              : '');
   let faturamento = (document.getElementById('faturamento') ? document.getElementById('faturamento').value        : '');
-  let desafioEstrategico = getSelectedRadioLabel('desafio');
-  let estruturaGestao = getSelectedRadioLabel('gestao');
+  let desafioEstrategico = getSelectedOptionLabels('desafio');
+  let estruturaGestao = getSelectedOptionLabels('gestao');
   let responsavel = (document.getElementById('responsavel') ? document.getElementById('responsavel').value.trim() : '');
   let cargo       = (document.getElementById('cargo')       ? document.getElementById('cargo').value              : '');
   let email       = (document.getElementById('email')       ? document.getElementById('email').value.trim()       : '');
@@ -506,7 +506,7 @@ async function calcular(){
   if(honeypot) return;
 
   // ── Validação — campos obrigatórios + consentimento ───────────
-  const idsObrig = ['setor','funcionarios','faturamento','empresa','responsavel','cargo','email','telefone'];
+  const idsObrig = ['setor','funcionarios','faturamento','responsavel','email','telefone'];
   let erros = false;
   idsObrig.forEach(id => {
     let el = document.getElementById(id);
@@ -535,7 +535,7 @@ async function calcular(){
   email       = sanitize(email).trim();
 
   // 1a. Bloquear vazios após sanitização
-  if(!empresa || !responsavel || !email){ alert('Preencha corretamente os campos obrigatórios'); return; }
+  if(!responsavel || !email){ alert('Preencha corretamente os campos obrigatórios'); return; }
 
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
     document.getElementById('email').closest('.field').classList.add('field-err');
@@ -753,12 +753,19 @@ function getSelectedRadioLabel(name){
   return textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
 }
 
+function getSelectedOptionLabels(name){
+  return Array.from(document.querySelectorAll('input[name="' + name + '"]:checked'))
+    .map(input => {
+      const label = input.closest('label');
+      const textSource = label ? label.querySelector('.radio-label') || label : null;
+      return textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
+    })
+    .filter(Boolean)
+    .join('; ');
+}
+
 function checkedRadioText(name){
-  const input = document.querySelector('input[name="' + name + '"]:checked');
-  if(!input) return 'Não informado';
-  const label = input.closest('label');
-  const textSource = label ? label.querySelector('.radio-label') || label : null;
-  const text = textSource ? String(textSource.textContent || '').replace(/\s+/g,' ').trim() : '';
+  const text = getSelectedOptionLabels(name);
   return text || 'Não informado';
 }
 

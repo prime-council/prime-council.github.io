@@ -64,15 +64,31 @@
       <div class="logo-mark">
         <img class="brand-icon-img" src="../assets/prime-council-logo-texto-claro-web.webp" alt="Prime Council">
       </div>
+      <div>
+        <span class="header-brand-name">Prime Council</span>
+      </div>
     </a>
 
     <nav class="header-nav" aria-label="Navegação principal">
-      <a href="https://primecouncil.com/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="prime-council">Prime Council</a>
+      <a href="https://primecouncil.com/#evento" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva Prime</a>
       <span class="h-sep" aria-hidden="true"></span>
-      <a href="https://primecouncil.com/irfe/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnóstico Financeiro</a>
+      <a href="https://primecouncil.com/#diagnostico" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="irfe">Diagnósticos Prime</a>
       <span class="h-sep" aria-hidden="true"></span>
-      <a href="https://primecouncil.com/form/" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="event">Sessão Executiva</a>
+      <a href="https://primecouncil.com/#prime-council" target="_blank" rel="noopener noreferrer" class="header-nav-link" data-nav="council">Conselho Executivo</a>
     </nav>
+
+    <div class="header-ctas">
+      <a href="https://primecouncil.com/form/"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="btn btn-gold btn-sm"
+         aria-label="Solicitar conversa"
+         data-flow="event-entry"
+         data-entry="cold"
+         data-cta-position="header">
+        <strong>Solicitar conversa →</strong>
+      </a>
+    </div>
 
   </div>
 </header>
@@ -160,22 +176,24 @@
       </div>
       <div class="field" id="f-desafio">
         <label>Principal desafio estratégico<span class="req">*</span></label>
+        <div class="hint">Selecione uma ou mais opções aplicáveis.</div>
         <div class="radio-group" id="rg-desafio">
-          <label class="radio-opt"><input type="radio" name="desafio" value="pessoas"><div class="radio-dot"></div><span class="radio-label">Gestão de pessoas e cultura</span></label>
-          <label class="radio-opt"><input type="radio" name="desafio" value="crescimento"><div class="radio-dot"></div><span class="radio-label">Crescimento e novos mercados</span></label>
-          <label class="radio-opt"><input type="radio" name="desafio" value="processos"><div class="radio-dot"></div><span class="radio-label">Processos, eficiência e custos</span></label>
-          <label class="radio-opt"><input type="radio" name="desafio" value="sucessao"><div class="radio-dot"></div><span class="radio-label">Sucessão ou transição societária</span></label>
-          <label class="radio-opt"><input type="radio" name="desafio" value="gestao_financeira"><div class="radio-dot"></div><span class="radio-label">Estrutura financeira e caixa</span></label>
+          <label class="radio-opt"><input type="checkbox" name="desafio" value="pessoas"><div class="radio-dot"></div><span class="radio-label">Gestão de pessoas e cultura</span></label>
+          <label class="radio-opt"><input type="checkbox" name="desafio" value="crescimento"><div class="radio-dot"></div><span class="radio-label">Crescimento e novos mercados</span></label>
+          <label class="radio-opt"><input type="checkbox" name="desafio" value="processos"><div class="radio-dot"></div><span class="radio-label">Processos, eficiência e custos</span></label>
+          <label class="radio-opt"><input type="checkbox" name="desafio" value="sucessao"><div class="radio-dot"></div><span class="radio-label">Sucessão ou transição societária</span></label>
+          <label class="radio-opt"><input type="checkbox" name="desafio" value="gestao_financeira"><div class="radio-dot"></div><span class="radio-label">Estrutura financeira e caixa</span></label>
         </div>
         <div class="err-msg">Selecione o principal desafio.</div>
       </div>
       <div class="field" id="f-gestao">
         <label>Estrutura de gestão atual<span class="req">*</span></label>
+        <div class="hint">Selecione uma ou mais opções aplicáveis.</div>
         <div class="radio-group" id="rg-gestao">
-          <label class="radio-opt"><input type="radio" name="gestao" value="centralizada"><div class="radio-dot"></div><span class="radio-label">Centralizada no proprietário ou fundador</span></label>
-          <label class="radio-opt"><input type="radio" name="gestao" value="diretores"><div class="radio-dot"></div><span class="radio-label">Com diretores, sem conselho formal</span></label>
-          <label class="radio-opt"><input type="radio" name="gestao" value="governanca"><div class="radio-dot"></div><span class="radio-label">Já possui estrutura de governança</span></label>
-          <label class="radio-opt"><input type="radio" name="gestao" value="estruturando"><div class="radio-dot"></div><span class="radio-label">Em processo de estruturação</span></label>
+          <label class="radio-opt"><input type="checkbox" name="gestao" value="centralizada"><div class="radio-dot"></div><span class="radio-label">Centralizada no proprietário ou fundador</span></label>
+          <label class="radio-opt"><input type="checkbox" name="gestao" value="diretores"><div class="radio-dot"></div><span class="radio-label">Com diretores, sem conselho formal</span></label>
+          <label class="radio-opt"><input type="checkbox" name="gestao" value="governanca"><div class="radio-dot"></div><span class="radio-label">Já possui estrutura de governança</span></label>
+          <label class="radio-opt"><input type="checkbox" name="gestao" value="estruturando"><div class="radio-dot"></div><span class="radio-label">Em processo de estruturação</span></label>
         </div>
         <div class="err-msg">Selecione a estrutura de gestão.</div>
       </div>
@@ -227,15 +245,15 @@
       <div class="wizard-block-kicker">ETAPA 4 · IDENTIFICAÇÃO</div>
       <div class="question-grid question-grid-3 ident-question-grid">
         <div class="field">
-          <label>Nome da empresa<span class="req">*</span></label>
-          <input type="text" id="empresa" placeholder="Razão social ou nome fantasia" required>
+          <label>Nome da empresa</label>
+          <input type="text" id="empresa" placeholder="Razão social ou nome fantasia">
         </div>
         <div class="field">
           <label>Nome completo<span class="req">*</span></label>
           <input type="text" id="responsavel" placeholder="Seu nome completo" required>
         </div>
         <div class="field" id="f-cargo">
-          <label>Posição na empresa<span class="req">*</span></label>
+          <label>Posição na empresa</label>
           <select id="cargo">
             <option value="">Selecione</option>
             <option>Proprietário / Fundador</option>
@@ -248,7 +266,7 @@
           <div class="err-msg">Selecione sua posição.</div>
         </div>
         <div class="field field-span-2">
-          <label>E-mail corporativo<span class="req">*</span></label>
+          <label>E-mail<span class="req">*</span></label>
           <input type="email" id="email" name="email" placeholder="seu@email.com.br" required>
         </div>
         <div class="field">
