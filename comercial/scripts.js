@@ -13,6 +13,7 @@ let ultimoComercialSalvo = null;
 let envioComercialEmAndamento = false;
 let pdfComercialGeradoPendente = false;
 let pdfComercialRegistroEmAndamento = false;
+const DIAGNOSIS_FLOW_STANDARD_VERSION = '1.0';
 const DIAGNOSIS_LOADING_DURATION_MS = 4000;
 
 function calcRcc(cc){
@@ -473,6 +474,16 @@ function setComercialSubmitBusy(active){
   submit.setAttribute('aria-busy', active ? 'true' : 'false');
 }
 
+function limparEstadoConfirmadoComercial(){
+  ultimoPayloadComercial = null;
+  ultimoResultadoComercial = null;
+  ultimoComercialSalvo = null;
+  pdfComercialGeradoPendente = false;
+  window.__comercialPayloadPreview = null;
+  window.__comercialResultadoPreview = null;
+  desativarPdfComercial();
+}
+
 async function coletarPayloadComercialR1(){
   if(envioComercialEmAndamento) return;
   if(!validarTodasEtapasComerciais()) return;
@@ -507,16 +518,12 @@ async function coletarPayloadComercialR1(){
     payload.portfolio_solucoes = getDimensaoComercialScore(resultadoComercial, 'portfolio_solucoes');
     payload.conversao_valor = getDimensaoComercialScore(resultadoComercial, 'conversao_valor');
     payload.disciplina_gestao_carteira = getDimensaoComercialScore(resultadoComercial, 'disciplina_gestao_carteira');
-    window.__comercialPayloadPreview = payload;
-    window.__comercialResultadoPreview = resultadoComercial;
-    ultimoPayloadComercial = payload;
-    ultimoResultadoComercial = resultadoComercial;
     console.info('[Diagnóstico Comercial Prime] Payload declarado para envio:', payload);
     console.info('[Diagnóstico Comercial Prime] Motor Comercial V1:', resultadoComercial);
 
     envioComercialEmAndamento = true;
     setComercialSubmitBusy(true);
-    desativarPdfComercial();
+    limparEstadoConfirmadoComercial();
     setDiagnosisLoading(true);
 
     const salvamentoPromise = fetch(GAS_URL, {
@@ -538,7 +545,11 @@ async function coletarPayloadComercialR1(){
       loadingPromise
     ]);
 
-    if(resposta && resposta.success){
+    if(resposta?.success === true){
+      window.__comercialPayloadPreview = payload;
+      window.__comercialResultadoPreview = resultadoComercial;
+      ultimoPayloadComercial = payload;
+      ultimoResultadoComercial = resultadoComercial;
       ultimoComercialSalvo = {
         id_comercial: resposta.id || null,
         email: payload.email,
@@ -551,15 +562,14 @@ async function coletarPayloadComercialR1(){
       renderizarResultadoComercialV1(payload, resultadoComercial);
     } else {
       setDiagnosisLoading(false);
-      ultimoComercialSalvo = null;
+      limparEstadoConfirmadoComercial();
       console.warn('Falha ao registrar Diagnóstico Comercial no backend.', resposta);
     }
     envioComercialEmAndamento = false;
     setComercialSubmitBusy(false);
   } catch(error){
-    window.__comercialResultadoPreview = null;
     setDiagnosisLoading(false);
-    ultimoComercialSalvo = null;
+    limparEstadoConfirmadoComercial();
     envioComercialEmAndamento = false;
     setComercialSubmitBusy(false);
     console.warn('Falha ao preparar Diagnóstico Comercial.', error);
