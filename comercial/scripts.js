@@ -127,7 +127,7 @@ function renderMapaVetoresRisco(subs){
 
   clearSvg();
   addEl('title', {id:'risk-map-title'}, 'Mapa dos Vetores de Risco');
-  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais distante do centro, maior a exposição ao risco naquele vetor.');
+  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais próximo da borda, melhor o desempenho nessa área. Pontos próximos ao centro indicam aspectos que precisam de atenção.');
 
   [20,40,60,80,100].forEach(level => {
     addEl('polygon', {
@@ -961,7 +961,7 @@ function renderRadarComercial(dimensoes){
 
   clearSvg();
   addEl('title', {id:'risk-map-title'}, 'Radar de Eficácia Comercial');
-  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais distante do centro, maior o nível de estruturação naquele pilar.');
+  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais próximo da borda, melhor o desempenho nessa área. Pontos próximos ao centro indicam aspectos que precisam de atenção.');
 
   [20,40,60,80,100].forEach(level => {
     addEl('polygon', {
