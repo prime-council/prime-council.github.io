@@ -128,7 +128,7 @@ function renderMapaVetoresRisco(subs){
 
   clearSvg();
   addEl('title', {id:'risk-map-title'}, 'Mapa dos Vetores de Risco');
-  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais distante do centro, maior a exposição ao risco naquele vetor.');
+  addEl('desc', {id:'risk-map-desc'}, 'Quanto mais próximo da borda, maior a exposição ao risco nessa área. Pontos próximos ao centro indicam uma situação mais segura.');
 
   [20,40,60,80,100].forEach(level => {
     addEl('polygon', {
