@@ -3,7 +3,7 @@ if (dtEl) {
   dtEl.textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
 }
 
-const GAS_URL='https://script.google.com/macros/s/AKfycbxNYq9rDo_iI-7iTJZcsHMYnpga1pVCRhkCBcBb5ZZfWP8XCwbRPREtX1t_u49Mmew/exec';
+const GAS_URL='https://script.google.com/macros/s/AKfycbyiNvYi_7o9MvtfaP93OPUGYu1yac6JXzfi1X7gnUyMrpdZBj5q6wYvaBc0h43-_qNH/exec';
 const FRONTEND_TOKEN='prime2026-f7c9a3d41e8b4c2fa6d9b0e73a2c8f51';
 
 let ultimoIrfeSalvo = {
