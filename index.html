@@ -3,723 +3,682 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prime Council · Conselho Executivo para Decisões Estratégicas</title>
-
-  <meta name="description" content="Sessão Executiva Prime para decisores que precisam de clareza estratégica, conselho aplicado e decisão orientada. Entrada por conversa inicial com a Prime." />
-  <link rel="canonical" href="https://primecouncil.com/" />
-  <link rel="alternate" hreflang="pt-BR" href="https://primecouncil.com/" />
-  <meta name="robots" content="index, follow" />
-  <meta name="author" content="Prime Council" />
-  <meta name="theme-color" content="#1A2B3C" />
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <title>AFLOR Flow</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="pt_BR" />
-  <meta property="og:title" content="Prime Council · Conselho Executivo para Decisões Estratégicas" />
-  <meta property="og:description" content="Sessão Executiva Prime para decisores que precisam de clareza estratégica, conselho aplicado e decisão orientada. Entrada por conversa inicial com a Prime." />
-  <meta property="og:url" content="https://primecouncil.com/" />
-  <meta property="og:image" content="https://primecouncil.com/assets/og-prime.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Prime Council · Conselho Executivo para Decisões Estratégicas" />
-  <meta name="twitter:description" content="Sessão Executiva Prime para decisores que precisam de clareza estratégica, conselho aplicado e decisão orientada. Entrada por conversa inicial com a Prime." />
-  <meta name="twitter:image" content="https://primecouncil.com/assets/og-prime.png">
-  <meta name="twitter:site" content="@primecouncil" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
-        as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
-          rel="stylesheet">
-  </noscript>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css?v=2.2.1" />
 </head>
 <body>
+  <!-- ============================================================
+       AFLOR | Loading
+       ============================================================ -->
+  <div id="ld">
+    <div class="ldring"></div>
+    <div id="ld-t">Aguardando…</div>
+  </div>
 
   <!-- ============================================================
-  HEADER FIXO
-  ============================================================ -->
-  <header class="site-header">
-    <div class="site-header-inner">
-
-      <a class="header-brand" href="https://primecouncil.com/">
-        <div class="logo-mark">
-          <img class="brand-icon-img" src="./assets/prime-council-logo-texto-claro-web.webp" alt="Prime Council">
-        </div>
-      </a>
-
-      <nav class="header-nav" aria-label="Navegação principal">
-        <a href="#evento" class="header-nav-link" data-nav="event">Sessão Executiva Prime</a>
-        <span class="h-sep" aria-hidden="true"></span>
-        <a href="#diagnostico" class="header-nav-link" data-nav="irfe">Diagnósticos Prime</a>
-        <span class="h-sep" aria-hidden="true"></span>
-        <a href="#prime-council" class="header-nav-link" data-nav="council">Conselho Executivo</a>
-      </nav>
-
-      <div class="header-ctas">
-        <a href="./contato/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="btn btn-gold btn-sm"
-           aria-label="Solicitar conversa"
-           data-flow="event-entry"
-           data-entry="cold"
-           data-cta-position="header">
-          <strong>Solicitar conversa →</strong>
+       AFLOR | Topbar
+       ============================================================ -->
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-text">
+        <a class="name brand-signature" id="clientName" aria-label="Abrir site da AFLOR em nova aba">
+          <img class="brand-logo" src="assets/logo-aflor-dark.png" alt="AFLOR" />
         </a>
       </div>
-
     </div>
-  </header>
 
+    <div class="topbar-search sbox">
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#8E8E93" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="fQ" placeholder="Buscar empresa ou contato…" autocomplete="off" />
+      <button class="search-clear" id="clearSearch" type="button" aria-label="Limpar busca">×</button>
+    </div>
 
-  <main id="main-content" aria-label="Conteúdo principal">
-<!-- ============================================================
-  SEÇÃO 1 · HERO
-  ============================================================ -->
-    <section id="hero" aria-labelledby="hero-heading">
-      <div class="hero-body">
+    <div class="topbar-actions">
+      <button class="qa topbar-action" id="btnR" onclick="loadData()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>Atualizar</button>
+      <button class="qa topbar-action" id="flowHelpOpen" type="button" aria-haspopup="dialog" aria-controls="flowHelpModal"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-1.3 1.2-1.8 1.7-1.8 3.3"/><path d="M12 17h.01"/></svg>Ajuda</button>
+    </div>
 
-        <h1 id="hero-heading" class="hero-h1">
-          <strong>Sem estrutura de decisão, cada escolha estratégica é uma aposta</strong>
-          <em>A Prime Council estrutura essa decisão</em>
-        </h1>
+    <div class="aflor-wordmark" aria-hidden="true"></div>
+  </div>
 
-        <p class="hero-invest">
-          Seus gargalos são decisões sem estrutura?<br />
-          Participe da Sessão Executiva Prime e saia com:
-          problema identificado, decisão tomada e plano de ação pronto para execução imediata.
-        </p>
-
-        <div class="hero-ctas">
-          <a href="./contato/"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn btn-gold btn-sm"
-             aria-label="Conversar com a Prime"
-             data-flow="event-entry"
-             data-cta-position="hero-primary">
-            Conversar com a Prime →
-          </a>
+  <div id="module-crm">
+    <!-- ============================================================
+         AFLOR | Quickbar
+         ============================================================ -->
+    <div class="qbar">
+      <button class="qbar-toggle" id="qbarToggle" type="button" aria-label="Recolher navegação" aria-expanded="true"><span aria-hidden="true">‹</span></button>
+      <div class="qbar-left">
+        <div class="view-switch" aria-label="Modo de visualização">
+          <button class="view-tab is-active" type="button" data-view-mode="commercial" title="Oportunidades"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg>Oportunidades</button>
+          <button class="view-tab" type="button" data-view-mode="operational" title="Base Operacional"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg>Base Operacional</button>
+          <button class="view-tab" type="button" data-view-mode="intelligence" data-additional-module="diagnostics" title="Diagnósticos"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-8"/><path d="M22 19H2"/></svg>Diagnósticos</button>
+          <button class="qa qa-sheet qa-neutral" id="aflowIaGeneral" type="button" title="IA Flow" aria-label="Abrir IA Flow com o contexto geral da plataforma">
+            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m12 3 1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8L12 3Z"/></svg>IA Flow
+          </button>
         </div>
 
-        <div class="hero-testdrive">
-          <span class="hero-badge">Mesa com decisores</span>
-          <span class="hero-badge">Entrada validada por especialistas</span>
-          <span class="hero-badge">Discussão com líderes no mesmo nível</span>
-        </div>
+        <div class="qbar-divider" aria-hidden="true"></div>
 
-        <div class="hero-urgency">
-          <span>Participação avaliada · conversa inicial · próximos passos com a Prime</span>
+        <div class="ktools">
+          <div class="qbar-period" title="Período">
+            <svg class="qbar-period-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          <select id="kPeriod" title="Período">
+            <option value="all" selected>Todo o período</option>
+            <option value="month">Mês atual</option>
+            <option value="quarter">Últimos 90 dias</option>
+            <option value="year">Ano atual</option>
+          </select>
+          </div>
+          <div class="qbar-filter multiselect-filter" title="Prioridade" data-filter-id="fPr">
+            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 21V4M6 5h11l-2 4 2 4H6"/></svg>
+            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Prioridade</span><b aria-hidden="true">⌄</b></button>
+            <div class="multiselect-menu" hidden><label><input type="checkbox" value="CRÍTICO" />Crítico</label><label><input type="checkbox" value="ALTA" />Alta</label><label><input type="checkbox" value="MÉDIA" />Média</label><label><input type="checkbox" value="BAIXA" />Baixa</label></div>
+            <input type="hidden" id="fPr" value="" />
+          </div>
+          <div class="qbar-filter multiselect-filter" title="Próxima Ação" data-filter-id="fAc">
+            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.11 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8.01 9.72a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92Z"/></svg>
+            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Próxima Ação</span><b aria-hidden="true">⌄</b></button>
+            <div class="multiselect-menu" hidden><label><input type="checkbox" value="FOLLOW" />Fazer Follow-up</label><label><input type="checkbox" value="AGUARDAR" />Aguardar</label><label><input type="checkbox" value="REVISITAR" />Revisitar</label></div>
+            <input type="hidden" id="fAc" value="" />
+          </div>
+          <div class="qbar-filter multiselect-filter" title="Status" data-filter-id="fStatus">
+            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4v3h6V4M8 12l2 2 4-4M8 17h7"/></svg>
+            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Status</span><b aria-hidden="true">⌄</b></button>
+            <div class="multiselect-menu" hidden></div>
+            <input type="hidden" id="fStatus" value="" />
+          </div>
         </div>
-
+        <div class="qbar-divider" aria-hidden="true"></div>
       </div>
-    </section>
 
-<!-- ============================================================
-       SEÇÃO 2 · PARA QUEM É
-    ============================================================ -->
-    <section id="para-quem" aria-label="Para quem é a Prime Council">
-      <div class="container">
+      <div class="qbar-right">
+        <button class="qa qa-sheet qa-neutral" type="button" onclick="openCadencia()" title="Cadência Comercial"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 11a8 8 0 0 0-14.7-4L3 10"/><path d="M3 5v5h5M4 13a8 8 0 0 0 14.7 4L21 14"/><path d="M21 19v-5h-5"/></svg>Cadência Comercial</button>
 
-        <div class="section-header">
-          <span class="section-lbl">Público</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-          <h2>Para quem é <em>a Prime Council?</em></h2>
-          <p class="lead">
-            Quem já sabe o que precisa mudar — e está cansado de
-            empurrar o mesmo problema para o mês seguinte.
-          </p>
-        </div>
-
-        <div class="audience-grid">
-          <div class="audience-card">
-            <h3>O Empresário</h3>
-            <p class="audience-situation">Que toma decisões estratégicas e sente o peso de cada escolha</p>
-          </div>
-          <div class="audience-card">
-            <h3>O Executivo</h3>
-            <p class="audience-situation">Com estratégia clara e execução fragmentada</p>
-          </div>
-          <div class="audience-card">
-            <h3>O Líder</h3>
-            <p class="audience-situation">Diante de uma decisão que não pode errar</p>
-          </div>
-        </div>
-
-        <div class="audience-exclusion">
-          <span class="exclusion-label"><strong>Prime Council não é para</strong></span>
-          <p><em>Quem busca inspiração, networking ou mais teoria. O formato é de trabalho — você entra com um problema real e sai com uma decisão estruturada.</em></p>
-        </div>
-
-        <div class="section-cta-wrap">
-          <a href="./contato/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-gold"
-            data-flow="event-entry"
-            data-cta-position="para-quem">
-           Quero conversar com a Prime →
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-<!-- ============================================================
-       SEÇÃO 3 · O PROBLEMA REAL
-    ============================================================ -->
-    <section id="problema" aria-label="O problema real">
-      <div class="container">
-
-        <div class="section-header">
-          <span class="section-lbl">O problema</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-          <h2>
-            Você está tomando decisões importantes<br />
-            <em>sem uma segunda visão estratégica?</em>
-          </h2>
-        </div>
-
-
-        <div class="audience-grid">
-          <div class="audience-card">
-            <h3>A Estrutura</h3>
-            <p class="audience-situation">A maioria das empresas não falha por falta de esforço, falha por decisões não estruturadas</p>
-          </div>
-          <div class="audience-card">
-            <h3>A Estagnação</h3>
-            <p class="audience-situation">Os gargalos que travam sua operação existem há meses, consomem energia, tempo e recursos</p>
-          </div>
-          <div class="audience-card">
-            <h3>Os Riscos</h3>
-            <p class="audience-situation">O risco de decidir sozinho não é o erro — é custo e exposição. Oportunidades não esperam.</p>
-          </div>
-        </div>
-
-        <div class="qp-pivot">
-          <span class="qp-pivot-label">A causa</span>
-          <h2 class="qp-pivot-headline">
-            É decisão tomada sem <em>Conselho Executivo</em>
-          </h2>
-        </div>
-
-        <div class="section-cta-wrap">
-          <a href="./contato/"
-             target="_blank"
-             rel="noopener noreferrer"
-             class="btn btn-gold"
-             data-flow="event-entry"
-             data-cta-position="problema">
-            Entender como a Prime ajuda a resolver →
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-<!-- ============================================================
-       SEÇÃO 4 · DIAGNÓSTICOS PRIME
-    ============================================================ -->
-    <section id="diagnostico" aria-label="Diagnósticos Prime">
-      <div class="container">
-
-        <div class="irfe-outer-label">
-          <span class="section-lbl">Diagnósticos Prime · Inteligência aplicada AFLOR</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-        </div>
-
-        <div class="diagnostico-card">
-
-          <div class="irfe-headline">
-            <h2>Leituras executivas para <em>decisões inteligentes</em></h2>
-            <p>
-              Explore os Diagnósticos Prime de forma independente ou complementar. Gratuitos e rápidos, eles organizam uma leitura inicial do cenário e indicam os pontos que merecem aprofundamento.
-            </p>
-          </div>
-
-          <div class="diagnosticos-grid">
-            <div class="diagnostico-option-card">
-              <h3>Diagnóstico Financeiro Prime</h3>
-              <p class="diagnostico-option-question">Onde a estrutura financeira da empresa está mais exposta?</p>
-              <p class="diagnostico-option-desc">Avalia ciclo de caixa, margem, inadimplência, alavancagem e capacidade de sustentação operacional para identificar riscos que podem pressionar o caixa e comprometer decisões futuras.</p>
-              <div class="irfe-info-box irfe-outputs">
-                <span class="irfe-outputs-label">O diagnóstico apresenta</span>
-                <ul class="irfe-output-list">
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Leitura consolidada em 5 dimensões financeiras</span></li>
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Pontos de atenção que podem pressionar caixa e operação</span></li>
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Prioridades iniciais para orientar os próximos passos</span></li>
-                </ul>
-              </div>
-              <div class="irfe-entry-cta diagnostico-option-cta">
-                <a href="./irfe/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-primary btn-lg"
-                   data-flow="diagnostic"
-                   data-cta-position="diagnostico-financeiro">
-                  Iniciar diagnóstico financeiro →
-                </a>
-                <div class="diagnostico-cta-meta">Resultado imediato · Gratuito</div>
-              </div>
-            </div>
-
-            <div class="diagnostico-option-card">
-              <h3>Diagnóstico Comercial Prime</h3>
-              <p class="diagnostico-option-question">O que hoje limita a geração, a conversão e a recorrência comercial?</p>
-              <p class="diagnostico-option-desc">Avalia direcionamento comercial, prospecção, portfólio, conversão, carteira, relacionamento e gestão para identificar os gargalos que reduzem a previsibilidade do crescimento.</p>
-              <div class="irfe-info-box irfe-outputs">
-                <span class="irfe-outputs-label">O diagnóstico apresenta</span>
-                <ul class="irfe-output-list">
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Leitura consolidada em 5 dimensões comerciais</span></li>
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Gargalos na geração, conversão e recorrência de oportunidades</span></li>
-                  <li><span class="irfe-output-icon" aria-hidden="true">◈</span><span>Prioridades para estruturar o crescimento</span></li>
-                </ul>
-              </div>
-              <div class="irfe-entry-cta diagnostico-option-cta">
-                <a href="./comercial/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="btn btn-primary btn-lg"
-                   data-flow="diagnostic"
-                   data-cta-position="diagnostico-comercial">
-                  Iniciar diagnóstico comercial →
-                </a>
-                <div class="diagnostico-cta-meta">Resultado imediato · Gratuito</div>
-              </div>
-            </div>
-          </div>
-
-          <p class="diagnostico-section-note">Os Diagnósticos Prime organizam o cenário e direcionam os próximos passos. A decisão avança com a Prime.</p>
-
-        </div>
-
-      </div>
-    </section>
-
-<!-- ============================================================
-       SEÇÃO 5 · CONSELHO EXECUTIVO PRIME
-    ============================================================ -->
-    <section id="prime-council" aria-label="Prime Council — camada premium do ecossistema">
-      <div class="pc-bg-accent"></div>
-      <div class="container">
-
-        <div class="pc-header">
-          <span class="pc-label">Camada premium do ecossistema</span>
-          <h2 class="pc-headline">
-            Conselho Executivo com decisões <em>estruturadas e acompanhamento contínuo</em>
-          </h2>
-          <p class="pc-subhead">
-            Diagnóstico do problema, definição de prioridades e acompanhamento contínuo das decisões.
-          </p>
-        </div>
-
-        <p class="pc-pillars-label">Os quatro pilares do Conselho Executivo</p>
-        <div class="pc-pillars">
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">01</span>
-            <h3 class="pc-pillar-title">Estrutura Financeira</h3>
-            <p class="pc-pillar-desc">Ciclo de caixa, margem e exposição a risco mapeados com precisão.</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">02</span>
-            <h3 class="pc-pillar-title">Direcionamento Estratégico</h3>
-            <p class="pc-pillar-desc">Prioridades claras e decisões estruturadas com critério — não por intuição.</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">03</span>
-            <h3 class="pc-pillar-title">Organização do Crescimento</h3>
-            <p class="pc-pillar-desc">Estrutura antes da escala, processo antes da expansão, previsibilidade antes do volume.</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">04</span>
-            <h3 class="pc-pillar-title">Redução de Risco</h3>
-            <p class="pc-pillar-desc">Identificação de gargalos que drenam energia, tempo e caixa.</p>
-          </div>
-        </div>
-
-        <div class="section-header">
-          <span class="section-lbl">Decisões tomadas. Não opiniões.</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-          <h2>Resultados <em>concretos</em></h2>
-        </div>
-
-        <div class="entregaveis-grid">
-          <div class="entregavel-card">
-            <div class="entregavel-num">1</div>
-            <span class="entregavel-tag">Diagnósticos Prime</span>
-            <h3>Leitura inicial do cenário</h3>
-            <p class="entregavel-impact">→ Você identifica os principais pontos de atenção e as decisões que precisam ser aprofundadas.</p>
-          </div>
-          <div class="entregavel-card">
-            <div class="entregavel-num">2</div>
-            <span class="entregavel-tag">Estratégia · Conselho Executivo</span>
-            <h3>Protocolo de Decisão Estruturada</h3>
-            <p class="entregavel-impact">→ Aplicável na próxima decisão que você está adiando. Critério no lugar de intuição.</p>
-          </div>
-          <div class="entregavel-card">
-            <div class="entregavel-num">3</div>
-            <span class="entregavel-tag">Plano · Execução</span>
-            <h3>Direcionamento de Próximos Passos</h3>
-            <p class="entregavel-impact">→ Você sai com a decisão tomada e os próximos passos definidos para execução.</p>
-          </div>
-          <div class="entregavel-card">
-            <div class="entregavel-num">4</div>
-            <span class="entregavel-tag">Acompanhamento · Prime Council</span>
-            <h3>Conselho Executivo Contínuo</h3>
-            <p class="entregavel-impact">→ Estrutura de decisão recorrente. Não é um evento isolado. É uma experiência de entrada para um ambiente permanente de governança.</p>
-          </div>
-        </div>
-
-        <div class="pc-access">
-          <div class="pc-access-text">
-            <h3>Como entrar no Conselho Executivo</h3>
-            <p>
-              O processo pode começar pelos Diagnósticos Prime. A leitura inicial organiza o cenário e direciona o melhor caminho para avançar com a Prime.
-            </p>
-          </div>
-          <div class="pc-access-ctas">
-            <a href="./contato/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-gold btn-lg"
-               data-flow="event-entry"
-               data-cta-position="prime-council-access-primary">
-              Avançar com a Prime
-            </a>
-            <a href="#diagnostico"
-               class="btn btn-primary btn-sm"
-               data-flow="diagnostic"
-               data-cta-position="prime-council-access-secondary">
-              Explorar diagnósticos →
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-<!-- ============================================================
-       SEÇÃO 6 · PROVAS / RELATOS
-    ============================================================ -->
-    <section id="prova" aria-label="Prova social e facilitador">
-      <div class="container">
-
-        <div class="section-header">
-          <span class="section-lbl">Quem já passou pelo método</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-          <h2>Resultados <em>reais</em></h2>
-          <p class="lead">
-            O que muda quando você para de decidir por intuição e começa a decidir por estrutura.
-          </p>
-        </div>
-
-        <div class="prova-grid">
-
-          <div class="depoimento-card">
-            <div class="depoimento-text">
-              "Resultados rápidos e totalmente aplicáveis no dia a dia. A melhora nos níveis pessoais e
-               profissionais foi notória, inclusive percebida por parceiros de trabalho e família. Superação
-               e organização foram os pontos mais marcantes. Recomendo com total segurança."
-            </div>
-            <div class="depoimento-footer">
-              <div class="depoimento-author">
-                <strong>Fabricio Aquino</strong>
-                <span>Gestor Administrativo e Financeiro · Professor · Mestre em Controladoria</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="depoimento-card">
-            <div class="depoimento-text">
-              "Foi o melhor processo que participei. Agregou diretamente à minha
-              carreira e venho aplicando constantemente na empresa. Indiquei para
-              outros profissionais que também passaram a utilizar e seguem obtendo
-              resultados consistentes."
-            </div>
-            <div class="depoimento-footer">
-              <div class="depoimento-author">
-                <strong>Alexandre Ferretti</strong>
-                <span>Sócio · YAROK Auditoria e Consultoria</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="depoimento-card">
-            <div class="depoimento-text">
-              "Após poucas sessões, os resultados na vida profissional e pessoal já
-              eram notáveis. Conceitos e ferramentas que utilizo até hoje, com impacto
-              direto na minha atuação. Experiência alinhada às necessidades e com aplicação real."
-            </div>
-            <div class="depoimento-footer">
-              <div class="depoimento-author">
-                <strong>Alexandre Soares</strong>
-                <span>Head de Projetos · Akaer Group</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="depoimento-card">
-            <div class="depoimento-text">
-              "Profissional assertivo, com forte capacidade de desenvolver líderes. As mentorias
-               e estratégias contribuíram diretamente para minha evolução como profissional e gestor.
-               Um dos melhores com quem já trabalhei."
-            </div>
-            <div class="depoimento-footer">
-              <div class="depoimento-author">
-                <strong>Tamilson de Barros</strong>
-                <span>Gerente de Demanda · Indústria Farmacêutica</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-          <p class="lead prova-method-note">
-           Esses resultados não acontecem por acaso. Existe método por trás de cada decisão aplicada.
-          </p>
-
-        <div class="facilitador-grid">
-
-          <div class="facilitador-avatar">
-            <img
-              src="./assets/orozimbo.jpeg"
-              alt="Orozimbo Neto — Prime Council"
-              class="facilitador-foto"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          <div class="facilitador-body">
-            <span class="section-lbl">Quem conduz o Conselho Executivo</span>
-
-            <h2 class="facilitador-name">OROZIMBO BORGES</h2>
-
-            <p class="facilitador-role">Fundador · Prime Council</p>
-
-            <p class="facilitador-impact">Atuação direta em decisões com impacto financeiro relevante em caixa, margem e operação.</p>
-
-            <p class="facilitador-bio">
-              Executivo e consultor com atuação direta em empresas de médias e grandes operações. Formação em Administração pela Faculdade Oswaldo Cruz e em Administração, Propaganda e Marketing pela ESPM. Certificado em Executive e Master Coach pela Sociedade Brasileira de Coaching.
-            </p>
-            <p class="facilitador-bio">
-              Experiência de campo com decisores em empresas de setores distintos — indústria, logística, farmacêutico e tecnologia. O método Prime Council é construído sobre essa prática executiva acumulada, não sobre teoria de sala de aula.
-            </p>
-            <div class="facilitador-credentials">
-              <span class="cred-tag cred-tag--co">Johnson &amp; Johnson</span>
-              <span class="cred-tag cred-tag--co">Merck Sharp &amp; Dohme</span>
-              <span class="cred-tag cred-tag--co">Grupo Fiat</span>
-              <span class="cred-tag cred-tag--co">Quimicam</span>
-              <span class="cred-tag cred-tag--co">Accurate <em>Software</em></span>
-              <span class="cred-tag cred-tag--co">Rac Logística</span>
-              <span class="cred-tag cred-tag--co">BNI</span>
-            </div>
-          </div>
-
-        </div>
-</div>
-    </section>
-
-<!-- ============================================================
-       SEÇÃO 7 · EVENTO — Sessão Executiva Prime
-    ============================================================ -->
-    <section id="evento" aria-label="Sessão Executiva Prime">
-      <div class="container">
-
-        <div class="section-header">
-          <span class="section-lbl">Porta de entrada · Experiência Prime</span>
-          <div class="gold-rule" aria-hidden="true"></div>
-          <h2 class="inv">Sessão Executiva <em>Prime</em></h2>
-          <p class="lead inv">Um dia de conselho aplicado ao seu cenário real. Você não participa para entender — você participa para decidir. A conversa inicial com a Prime organiza o melhor caminho para essa sessão.</p>
-        </div>
-
-          <div class="pc-pillars">
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">01</span>
-            <h3 class="pc-pillar-title">Leitura do cenário</h3>
-            <p class="pc-pillar-desc">→ Leitura executiva inicial aplicada ao contexto real da empresa</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">02</span>
-            <h3 class="pc-pillar-title">Gargalo identificado</h3>
-            <p class="pc-pillar-desc">→ O ponto exato que está travando resultado, isolado com precisão</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">03</span>
-            <h3 class="pc-pillar-title">Discussão com decisores</h3>
-            <p class="pc-pillar-desc">→ Visão estratégica cruzada com outros líderes no mesmo nível</p>
-          </div>
-          <div class="pc-pillar">
-            <span class="pc-pillar-num">04</span>
-            <h3 class="pc-pillar-title">Decisão tomada</h3>
-            <p class="pc-pillar-desc">→ Direcionamento e estratégia prontos para implementação</p>
-          </div>
-        </div>
-
-        <p class="event-value-note event-card-val--gold">
-          <strong>Cada dia sem decisão tem um custo real. Na sessão, você elimina caminhos errados e define o próximo movimento.</strong>
-        </p>
-
-        <div class="event-grid">
-          <div class="event-card event-card--invest">
-            <div class="event-card-lbl">Conversa inicial</div>
-            <div class="event-card-val event-card-val--gold">Com a Prime</div>
-            <div class="event-card-sub">Momento, desafios e próximos passos</div>
-            
-          </div>
-          <div class="event-card">
-            <div class="event-card-lbl">Método</div>
-            <div class="event-card-val">Conselho aplicado</div>
-            <div class="event-card-sub">Leitura crítica, discussão e decisão orientada</div>
-          </div>
-          <div class="event-card">
-            <div class="event-card-lbl">SESSÃO EXECUTIVA</div>
-            <div class="event-card-val">Mesa executiva Prime</div>
-            <div class="event-card-sub">8h aplicadas ao seu cenário</div>
-          </div>
-          <div class="event-card">
-            <div class="event-card-lbl">ACESSO</div>
-            <div class="event-card-val event-card-val--gold">Participação selecionada</div>
-            <div class="event-card-sub">Decisores em ambiente reservado</div>
-          </div>
-        </div>
-
-        <div class="facilitador-credentials">
-              <span class="cred-tag cred-tag--co"><strong>Diagnósticos Prime →</strong></span>
-              <span class="cred-tag cred-tag--co"><strong>Sessão Executiva Prime →</strong></span>
-              <span class="cred-tag cred-tag--co"><strong>Conselho Executivo contínuo</strong></span>
-          </div>
-
-      <div class="cta-final-single">
-        <a href="./contato/"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="btn btn-gold btn-lg"
-           data-flow="event-entry"
-           data-cta-position="evento">
-          Conversar com a Prime →
+        <button class="qa qa-form" type="button" onclick="openNewRecord()" title="Novo Registro">
+          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Novo Registro
+        </button>
+        <a class="qa qa-sheet qa-neutral" id="baseSheetAction" target="_blank" rel="noopener noreferrer" title="Importar base" hidden>
+          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Importar base
+        </a>
+        <a class="qa qa-sheet qa-neutral" id="aflorSupportAction" target="_blank" rel="noopener noreferrer" title="Suporte AFLOR" hidden>
+          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-5Z"/><path d="M16 19c0 1.1-.9 2-2 2h-2"/></svg>Suporte AFLOR
         </a>
       </div>
-
-      </div>
-
-    </section>
+      <div class="qbar-divider qbar-footer-divider" aria-hidden="true"></div>
+    </div>
 
     <!-- ============================================================
-       SEÇÃO 8 · CTA FINAL
-    ============================================================ -->
-    <section id="cta-final" aria-label="Próximo passo Prime Council">
-      <div class="container">
-        <div class="cta-box cta-box-final">
-          <span class="section-lbl">Próximo passo</span>
-          <h2>Avance para a Sessão Executiva Prime com o caminho certo</h2>
-          <p>Se a decisão já está na mesa, a próxima etapa é conversar com a Prime para aplicar método, diagnóstico e conselho ao contexto real da sua empresa.</p>
-          <div class="final-ctas">
-            <a href="./contato/"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="btn btn-gold btn-lg"
-               data-flow="event-entry"
-               data-cta-position="cta-final-primary">
-              Conversar com a Prime →
-            </a>
-            <a href="#diagnostico"
-               class="btn btn-primary btn-sm"
-               data-flow="diagnostic"
-               data-cta-position="cta-final-secondary">
-              Explorar diagnósticos →
-            </a>
+         AFLOR | Content
+         ============================================================ -->
+    <div class="content">
+      <div class="krow view-commercial">
+        <div class="kcard ko kurgent">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Follow-ups</span></div>
+          <div class="k-val" id="kF">—</div>
+          <div class="k-lbl" id="kBadge3">Pendentes</div>
+        </div>
+
+        <div class="kcard kg kperf">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4M9 12h6M9 16h6"/></svg>Valor em Proposta</span></div>
+          <div class="k-val" id="kPipeline">—</div>
+          <div class="k-lbl" id="kBadge1">—</div>
+        </div>
+
+        <div class="kcard kr kurgent">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg>Interações</span></div>
+          <div class="k-val" id="kVencidos">—</div>
+          <div class="k-lbl" id="kBadgeVencidos">Total</div>
+        </div>
+
+        <div class="kcard kg kperf">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4V2M20 12h2M12 20v2M4 12H2"/></svg>Conversão</span></div>
+          <div class="k-val" id="kT">—</div>
+          <div class="k-lbl" id="kBadgeConv">—</div>
+        </div>
+
+      </div>
+
+      <div class="krow view-operational is-hidden">
+        <div class="kcard kb kperf">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M4 12h16"/></svg>Contratos Ativos</span></div>
+          <div class="k-val" id="kContratos">—</div>
+          <div class="k-lbl" id="kBadgeContratos">—</div>
+        </div>
+
+        <div class="kcard kr kperf">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M7 10h1M16 14h1"/></svg>Receita Pontual</span></div>
+          <div class="k-val" id="kReceita">—</div>
+          <div class="k-lbl" id="kBadge2">—</div>
+        </div>
+
+        <div class="kcard kcard-chart kb">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 19V10M12 19V5M19 19v-7"/></svg>Status</span></div>
+          <div class="cw"><canvas id="cS"></canvas></div>
+        </div>
+
+        <div class="kcard kcard-chart ko">
+          <div class="k-accent"></div>
+          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 21V4M6 5h11l-2 4 2 4H6"/></svg>Prioridade</span></div>
+          <div class="cw"><canvas id="cP"></canvas></div>
+        </div>
+      </div>
+
+      <div class="mfunnel view-commercial" aria-label="Micro Funil AFLOR">
+        <div class="mfunnel-head">
+          <div>
+            <div class="ph-title"><img class="aflor-leaf-mark" src="assets/favicon-32.png" alt="AFLOR" /><span class="view-title">AFLOR FLOW</span></div>
+            <span class="view-context" id="commercialContext">— registros · —:—</span>
+          </div>
+        </div>
+        <div class="mfunnel-grid" id="microFunnel"></div>
+      </div>
+
+
+<template id="flowModulesView"></template>
+      <div class="tpanel view-operational is-hidden">
+        <div class="tpanel-hdr">
+          <div class="ph-title"><img class="aflor-leaf-mark" src="assets/favicon-32.png" alt="AFLOR" /><span class="view-title">AFLOR FLOW</span></div>
+          <span class="view-context" id="operationalContext">— registros · —:—</span>
+        </div>
+
+        <div class="tscroll">
+          <table>
+            <thead>
+              <tr>
+                <th onclick="srt('empresa')">Empresa ↕</th>
+                <th>Nome</th>
+                <th onclick="srt('statusb')">Status ↕</th>
+                <th onclick="srt('valorProposta')">Proposta ↕</th>
+                <th>Início</th>
+                <th>Retenção</th>
+              </tr>
+            </thead>
+            <tbody id="tb"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       AFLOR | Footer
+       ============================================================ -->
+  <div class="footer">
+    <span><a href="https://aflorsa.com.br/" target="_blank" rel="noopener noreferrer">AFLOR Flow</a> · Simples na operação. Poderoso na entrega.</span>
+  </div>
+
+  <!-- ============================================================
+       AFLOR | Modal
+       ============================================================ -->
+  <div class="msk" id="msk" onclick="if(event.target===this)cm()">
+    <div class="mbox" id="mbox">
+      <div class="mhdr">
+        <button class="mclose" onclick="cm()">✕</button>
+        <div class="m-headline">
+          <div class="m-emp" id="mEmp">—</div>
+          <div class="m-sub" id="mSub">—</div>
+          <div class="m-secondary-chips" id="mQuick"></div>
+        </div>
+      </div>
+
+      <div class="mbody">
+        <div id="_reuniaoNote"></div>
+
+        <div class="msec">Relacionamento</div>
+        <div class="mgrid">
+          <div class="mfield"><label>Última Interação</label><input class="efield" type="text" id="eUltima" name="ultima_interacao_em" placeholder="dd/mm/aa" inputmode="numeric" maxlength="8" /></div>
+          <div class="mfield"><label>Telefone / WhatsApp</label><input class="efield" type="tel" id="eCelular" placeholder="Ex: (19) 99999-0000" /></div>
+          <div class="mfield"><label>E-mail</label><input class="efield" type="email" id="eEmail" placeholder="email@empresa.com" /></div>
+        </div>
+        <button class="edit-identity-toggle" id="editIdentityToggle" type="button" aria-expanded="false" aria-controls="editIdentityFields">
+          <span>Editar identificação e localização</span>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div id="editIdentityFields" hidden>
+          <div class="mgrid mgrid-edit-identification">
+            <div class="mfield"><label>Nome completo</label><input class="efield" type="text" id="eNomeCompleto" /></div>
+            <div class="mfield"><label>Empresa</label><input class="efield" type="text" id="eEmpresa" /></div>
+            <div class="mfield"><label>Posição na empresa</label><select class="efield esel" id="eCargo" name="cargo"></select></div>
+            <div class="mfield"><label>Endereço</label><input class="efield" type="text" id="eEndereco" name="endereco" /></div>
+            <div class="mfield"><label>Cidade</label><input class="efield" type="text" id="eCidade" name="cidade" /></div>
+            <div class="mfield"><label>UF</label><input class="efield" type="text" id="eUf" name="uf" maxlength="2" /></div>
+          </div>
+        </div>
+
+        <div class="msec msec-business">
+          <span id="businessSelectorField" hidden>
+            <span class="business-selector-state" id="businessSelectorState"></span>
+            <select class="efield esel business-selector" id="eNegocioAtivo" aria-label="Selecionar oportunidade" hidden></select>
+          </span>
+          <button class="chip cS msec-note" id="businessDraftToggle" type="button" aria-pressed="false">+ Nova oportunidade</button>
+        </div>
+        <div class="mgrid mgrid-business">
+          <div class="mfield">
+            <label>Estágio comercial</label>
+            <select class="efield esel" id="eStatus" name="status">
+              <option value="">Selecione</option>
+            </select>
+          </div>
+          <div class="mfield">
+            <label for="eCategoria">Categoria</label>
+            <select class="efield esel" id="eCategoria" name="categoria">
+              <option value="">Selecione</option>
+            </select>
+          </div>
+          <div class="mfield">
+            <label for="eProdutoServico">Produto / Serviço</label>
+            <div class="business-product-dropdown is-disabled" id="eProdutoServico" data-serialized-value="">
+              <button class="efield esel business-product-trigger" id="eProdutoServicoTrigger" type="button" disabled aria-expanded="false">Selecione a categoria</button>
+              <div class="business-product-menu" id="eProdutoServicoMenu" aria-label="Produto ou Serviço"></div>
+            </div>
+          </div>
+          <div class="mfield">
+            <label for="eTipoNegocio">Tipo de Oportunidade</label>
+            <select class="efield esel" id="eTipoNegocio" name="tipo_negocio">
+              <option value="">Selecione</option>
+            </select>
+          </div>
+
+          <div class="mfield"><label>Valor da Proposta</label><input class="efield" type="text" id="eValorProposta" name="valor_proposta" placeholder="R$ 0,00" inputmode="numeric" /></div>
+          <div class="mfield"><label>Proposta | Fechamento</label><input class="efield" type="text" id="eDataProposta" name="proposta_em" placeholder="dd/mm/aa" inputmode="numeric" maxlength="8" /></div>
+        </div>
+        <div class="mfield mfield-obs"><label>Observações Estratégicas</label><textarea class="etarea" id="eObs" name="observacoes_estrategicas" placeholder="Observações, contexto, próximos passos…" maxlength="5000"></textarea></div>
+
+      </div>
+
+      <div class="save-bar">
+        <div class="save-meta">
+          <span class="save-context"><strong>GESTÃO COMERCIAL</strong><span> · Atualize os campos acima e salve as alterações.</span></span>
+          <span class="save-status" id="saveStatus"></span>
+        </div>
+        <button class="btn-save" id="btnSave" onclick="saveEdit()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Salvar alterações
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       AFLOR | Cadência Comercial
+       ============================================================ -->
+  <div class="msk" id="cadMsk" onclick="if(event.target===this)closeCadencia()">
+    <div class="mbox" id="cadMbox">
+      <div class="mhdr">
+        <button class="mclose" onclick="closeCadencia()">✕</button>
+        <div class="m-headline">
+          <div class="m-title-row"><div class="m-emp">CADÊNCIA COMERCIAL</div></div>
+          <div class="m-sub">Defina os prazos utilizados pelo acompanhamento comercial.</div>
+        </div>
+      </div>
+
+      <div class="mbody">
+        <div class="mgrid" data-cadencia-status="qualificado">
+          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
+          <div class="mfield"><label>Status</label><p>Qualificado</p></div>
+          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
+          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
+        </div>
+        <div class="mgrid" data-cadencia-status="proposta">
+          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
+          <div class="mfield"><label>Status</label><p>Proposta</p></div>
+          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
+          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
+        </div>
+        <div class="mgrid" data-cadencia-status="em maturacao">
+          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
+          <div class="mfield"><label>Status</label><p>Em maturação</p></div>
+          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
+          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
+        </div>
+      </div>
+
+      <div class="save-bar">
+        <span class="save-status" id="cadenciaSaveStatus"></span>
+        <button class="btn-save" id="btnCadenciaSave" onclick="saveCadencia()">Salvar alterações</button>
+      </div>
+    </div>
+  </div>
+  <!-- ============================================================
+       AFLOR | Novo Registro
+       ============================================================ -->
+  <div class="msk" id="newMsk" onclick="if(event.target===this)closeNewRecord()">
+    <div class="mbox" id="newMbox">
+      <div class="mhdr">
+        <button class="mclose" onclick="closeNewRecord()">✕</button>
+        <div class="m-headline">
+          <div class="m-title-row">
+            <div class="m-emp">Novo Registro</div>
           </div>
         </div>
       </div>
-    </section>
-  </main>
 
+      <div class="mbody">
+        <div class="mgrid">
+          <div class="mfield"><label>Empresa *</label><input class="efield" type="text" id="nEmpresa" /></div>
+          <div class="mfield"><label>Nome *</label><input class="efield" type="text" id="nNome" /></div>
 
-  <div class="rule-black" aria-hidden="true"></div>
-  <div class="rule-gold" aria-hidden="true"></div>
+          <div class="mfield">
+            <label>Posição na empresa</label>
+            <select class="efield esel" id="nCargo">
+              <option value="">Selecione</option>
+              <option value="Sócio / Proprietário / Direção Executiva">Sócio / Proprietário / Direção Executiva</option>
+              <option value="Diretoria / Head de área">Diretoria / Head de área</option>
+              <option value="Gerência / Coordenação">Gerência / Coordenação</option>
+              <option value="Técnico / Operacional">Técnico / Operacional</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
 
+          <div class="mfield"><label>Telefone / WhatsApp</label><input class="efield" type="tel" id="nContato" placeholder="(19) 99999-9999" /></div>
 
-    <footer>
-    <div class="container">
-      <div class="footer-inner">
+          <div class="mfield">
+            <label>Colaboradores</label>
+            <select class="efield esel" id="nColaboradores">
+              <option value="">Selecione</option>
+              <option value="Até 50 colaboradores">Até 50 colaboradores</option>
+              <option value="51 a 100 colaboradores">51 a 100 colaboradores</option>
+              <option value="101 a 200 colaboradores">101 a 200 colaboradores</option>
+              <option value="Acima de 200 colaboradores">Acima de 200 colaboradores</option>
+            </select>
+          </div>
 
-        <div class="footer-brand">
-          © Prime Council 2026 · Todos os direitos reservados
-          <span class="cta-note">
-            Tecnologia e Inteligência Aplicada ·
-            <a href="https://aflorsa.com.br/" target="_blank" rel="noopener noreferrer" class="link-footer-underline">AFLOR</a>
-          </span>
-          <span>Ecossistema Executivo Prime Council</span>
+          <div class="mfield">
+            <label>Origem do Lead</label>
+            <select class="efield esel" id="nOrigemLead">
+              <option value="">Selecione</option>
+              <option value="IA · Apollo">IA</option>
+              <option value="Diagnóstico / Inteligência">Diagnóstico / Inteligência</option>
+              <option value="Prospecção ativa">Prospecção ativa</option>
+              <option value="Indicação">Indicação</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="WhatsApp">WhatsApp</option>
+              <option value="Site / Landing Page">Site / Landing Page</option>
+              <option value="Evento">Evento</option>
+              <option value="Outro">Outro</option>
+            </select>
+          </div>
+
+          <div class="mfield">
+            <label>Relacionamento</label>
+            <select class="efield esel" id="nStatus">
+              <option value="Lead" selected>Lead</option>
+              <option value="Cliente">Cliente</option>
+            </select>
+          </div>
+          <div class="mfield"><label>E-mail *</label><input class="efield" type="email" id="newEmail" autocomplete="email" inputmode="email" placeholder="nome@empresa.com.br" required /></div>
         </div>
+      </div>
 
-        <div class="footer-copy">
-          <a href="https://wa.me/5519992402233" target="_blank" rel="noopener noreferrer" class="link-footer-underline" data-flow="council-contact" data-cta-position="footer-whatsapp">
-            Fale com a Prime pelo WhatsApp →
-          </a>
-          <br />
-          <a href="./privacidade/" target="_blank" rel="noopener noreferrer" class="link-footer-underline" data-flow="privacy" data-cta-position="footer-privacy">
-            Aviso de Privacidade
-          </a>
-          <br />
-          <a href="#hero" data-flow="navigation" data-cta-position="footer-top">
-            Voltar ao topo ↑
-          </a>
+      <div class="save-bar">
+        <div class="save-meta">
+          <span class="save-context"><strong>CADASTRO</strong><span> · Preencha os dados acima e clique em Criar registro.</span></span>
+          <span class="save-status" id="newSaveStatus"></span>
         </div>
-
+        <button class="btn-save" id="btnCreate" onclick="createRecord()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Criar registro
+        </button>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <script type="application/ld+json">
-  {
-      "@context": "https://schema.org",
-      "@graph": [
-          {
-              "@type": "Organization",
-              "name": "Prime Council",
-              "url": "https://primecouncil.com/",
-              "contactPoint": {
-                  "@type": "ContactPoint",
-                  "telephone": "+55-19-99240-2233",
-                  "contactType": "customer service",
-                  "availableLanguage": "Portuguese"
-              }
-          },
-          {
-              "@type": "WebPage",
-              "name": "Prime Council — Conselho Executivo para Decisões Estratégicas",
-              "url": "https://primecouncil.com/",
-              "description": "Sessão Executiva Prime para decisores que precisam de clareza estratégica, conselho aplicado e decisão orientada. Entrada por conversa inicial com a Prime.",
-              "inLanguage": "pt-BR",
-              "isPartOf": {
-                  "@type": "WebSite",
-                  "name": "Prime Council",
-                  "url": "https://primecouncil.com/"
-              }
-          },
-          {
-              "@type": "BreadcrumbList",
-              "itemListElement": [
-                  {
-                      "@type": "ListItem",
-                      "position": 1,
-                      "name": "Home",
-                      "item": "https://primecouncil.com/"
-                  }
-              ]
-          }
-      ]
-  }
-  </script>
+  <!-- ============================================================
+       AFLOR | Importação de base
+       ============================================================ -->
+  <div class="msk" id="importMsk">
+    <div class="mbox import-mbox" id="importMbox">
+      <div class="mhdr">
+        <button class="mclose" id="importClose" type="button" aria-label="Fechar importação">✕</button>
+        <div class="m-headline">
+          <div class="m-title-row"><div class="m-emp">Importar base</div></div>
+          <div class="m-sub">Cole até 100 registros seguindo o modelo abaixo.</div>
+        </div>
+      </div>
+      <div class="mbody">
+        <div class="mfield">
+          <label for="importPaste">Nome * · Empresa * · Endereço · Cidade · UF · Telefone / WhatsApp · E-mail *</label>
+          <textarea class="etarea import-paste" id="importPaste" rows="10" spellcheck="false" placeholder="Cole aqui os dados copiados do Excel. A linha de cabeçalho é opcional."></textarea>
+          <p class="m-sub import-template-hint">Use o modelo Excel para preparar os dados antes de colar.</p>
+          <div class="import-input-error save-status err" id="importInputError" hidden></div>
+        </div>
+        <div class="import-results" id="importResults" hidden>
+          <div class="msec">Resultado da importação</div>
+          <div class="import-results-scroll">
+            <table>
+              <thead><tr><th>Linha</th><th>Resultado</th><th>Mensagem</th><th>Processado em</th></tr></thead>
+              <tbody id="importResultsBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="save-bar">
+        <div class="save-meta">
 
-  <script src="scripts.js"></script>
+          <span class="save-status" id="importStatus"></span>
+        </div>
+        <div class="import-actions">
+          <a class="chip cS" href="assets/modelo_importacao_aflow.xlsx" download="modelo_importacao_aflow.xlsx">Baixar modelo Excel</a>
+
+          <button class="btn-save" id="importProcess" type="button">Processar importação</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-help-modal" id="aflowIaReadyModal" role="dialog" aria-modal="true" aria-labelledby="aflowIaReadyTitle" hidden>
+    <div class="flow-help-panel" role="document">
+      <div class="flow-help-head">
+        <div class="flow-help-title" id="aflowIaReadyTitle">IA Flow</div>
+        <p>O contexto base está pronto. Ao abrir a IA Flow, cole a mensagem no chat e envie.</p>
+      </div>
+      <div class="flow-help-section" id="aflowIaClipboardFallback" hidden>
+        <label for="aflowIaPreparedMessage">Mensagem preparada</label>
+        <textarea class="efield" id="aflowIaPreparedMessage" rows="4" style="height:88px;padding:10px;resize:vertical;" readonly></textarea>
+        <p id="aflowIaClipboardFeedback" hidden>Não foi possível copiar automaticamente. Copie a mensagem acima e tente novamente.</p>
+      </div>
+      <div class="save-bar" style="gap:8px;flex-wrap:wrap;justify-content:flex-start;">
+        <button class="btn-save" id="aflowIaCopyOpen" type="button">Copiar e abrir IA Flow</button>
+        <button class="chip cS" id="aflowIaCancel" type="button">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-help-modal" id="flowHelpModal" role="dialog" aria-modal="true" aria-labelledby="flowHelpTitle" hidden>
+    <div class="flow-help-panel" role="document">
+      <button class="flow-help-close" id="flowHelpClose" type="button" aria-label="Fechar ajuda">✕</button>
+      <div class="flow-help-head">
+        <div class="flow-help-title" id="flowHelpTitle">Guia rápido AFLOR Flow</div>
+        <p>Use o AFLOR Flow pelo link protegido disponibilizado para este ambiente.</p>
+        <template id="flowModulesHelp1"></template>
+        <p>Na rotina, acompanhe oportunidades, relacionamentos, próximas ações e diagnósticos, mantendo as informações atualizadas sempre que houver avanço ou mudança relevante.</p>
+      </div>
+
+      <details class="flow-help-section">
+        <summary>1. Oportunidades</summary>
+        <p>Acompanhe as oportunidades comerciais ativas pelo funil:</p>
+        <p><strong>Novo → Qualificado → Proposta → Em maturação</strong></p>
+        <p>Use os filtros da barra lateral para refinar a visualização.</p>
+        <p>Nos cards:</p>
+        <ul>
+          <li>o <strong>gráfico</strong> indica diagnóstico ou inteligência disponível, quando aplicável;</li>
+          <template id="flowModulesHelp2"></template>
+          <li>o <strong>telefone</strong> indica necessidade de contato ou próxima ação;</li>
+          <li>a intensidade do telefone acompanha a urgência definida pela Cadência Comercial;</li>
+          <li>o valor da proposta aparece quando disponível.</li>
+        </ul>
+        <p><strong>Novo · Priorizar:</strong> clique com o botão direito em um card <code>Novo</code> para <strong>Priorizar</strong> ou <strong>Remover prioridade</strong>. Os cards priorizados recebem <strong>destaque visual</strong> e a seleção permanece salva neste navegador.</p>
+        <p>A priorização manual é independente da Prioridade calculada pela Cadência Comercial.</p>
+        <p><strong>Proposta / Início:</strong> durante a negociação, use <strong>Data da Proposta</strong> para registrar a data de envio. Quando a oportunidade passar para <code>Fechado</code>, atualize essa data para o <strong>início efetivo da vigência</strong>.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>2. Base Operacional</summary>
+        <p>Use a Base Operacional para consultar oportunidades em:</p>
+        <p><strong>Fechado · Encerrado · Inativo</strong></p>
+        <p>A tabela apresenta os registros correspondentes e os indicadores e gráficos apoiam a visão consolidada da operação.</p>
+        <p><strong>Início / Retenção:</strong> para oportunidades <code>Fechado</code>, a data é apresentada como <strong>INÍCIO</strong> e alimenta automaticamente a <strong>RETENÇÃO</strong>.</p>
+      </details>
+
+<details class="flow-help-section">
+        <summary>3. Diagnósticos</summary>
+        <p>Use a busca superior para localizar relacionamentos com diagnóstico ou inteligência disponível.</p>
+        <p>Selecione o relacionamento e consulte as análises e o histórico disponíveis, quando aplicável.</p>
+        <p>A existência de diagnóstico não altera automaticamente o estágio comercial da oportunidade.</p>
+        <p>A <strong>IA Flow</strong> pode combinar diagnóstico, contexto comercial e histórico para apoiar a análise.</p>
+      </details>
+      <template id="flowModulesHelp3"></template>
+
+      <details class="flow-help-section flow-help-section-ai">
+        <summary>4. IA Flow</summary>
+        <p>A <strong>IA Flow</strong> é a inteligência integrada ao AFLOR Flow. Para utilizá-la, esteja conectado à sua conta do ChatGPT.</p>
+        <p>Acesse pela barra lateral ou pelos botões disponíveis nos registros. Todos abrem a mesma IA Flow.</p>
+        <p>Clique em <strong>Copiar e abrir IA Flow</strong>, cole a mensagem no chat, envie e autorize a conexão quando solicitado.</p>
+        <p>Depois, converse normalmente. A IA consulta os dados do Flow conforme sua pergunta e pode analisar carteira, relacionamentos e diagnósticos, comparar cenários, indicar prioridades e próximos passos e revisar ou salvar <strong>Observações Estratégicas</strong> após sua confirmação.</p>
+        <p>Se precisar reconectar, use <strong>Copiar e abrir IA Flow</strong> novamente.</p>
+        <template id="flowModulesHelp4"></template>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>5. Relacionamento e Status</summary>
+        <p>O AFLOR Flow separa duas informações importantes: <strong>o relacionamento com a empresa</strong> e <strong>o estágio de cada oportunidade</strong>.</p>
+        <p><strong>Relacionamento</strong></p>
+        <dl>
+          <dt><strong>Lead</strong></dt><dd>Empresa ou contato ainda em desenvolvimento comercial.</dd>
+          <dt><strong>Cliente</strong></dt><dd>Empresa ou contato com relacionamento comercial já estabelecido.</dd>
+        </dl>
+        <p><strong>Oportunidades</strong></p>
+        <dl>
+          <dt><strong>Novo</strong></dt><dd>Oportunidade ainda não movimentada. Quando não existe uma oportunidade registrada, o Flow pode apresentar o registro como Novo.</dd>
+          <dt><strong>Qualificado</strong></dt><dd>Oportunidade com interesse ou aderência validada.</dd>
+          <dt><strong>Proposta</strong></dt><dd>Proposta apresentada ou oportunidade em negociação.</dd>
+          <dt><strong>Em maturação</strong></dt><dd>Oportunidade válida para acompanhamento e retomada no momento adequado.</dd>
+          <dt><strong>Fechado</strong></dt><dd>Oportunidade convertida.</dd>
+          <dt><strong>Encerrado</strong></dt><dd>Oportunidade sem continuidade.</dd>
+          <dt><strong>Inativo</strong></dt><dd>Oportunidade anteriormente fechada e atualmente inativa, preservada para eventual retomada.</dd>
+        </dl>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>6. Observações Estratégicas</summary>
+        <p>As <strong>Observações Estratégicas</strong> são a memória principal do relacionamento no AFLOR Flow.</p>
+        <p>Use esse campo para consolidar o que realmente importa sobre a empresa: histórico, contexto atual, decisões, avanços, pontos de atenção, próximo passo e canal mais adequado.</p>
+        <p>A Observação é única por relacionamento, mesmo quando existem várias oportunidades. Ao atualizar, preserve o que continua relevante e incorpore as novas informações, evitando anotações soltas.</p>
+        <p>A <strong>IA Flow</strong> também pode ajudar a gerar ou revisar essa síntese e, quando solicitado, salvá-la após sua confirmação.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>7. Novo Registro</summary>
+        <p>Use <strong>Novo Registro</strong> para inserir manualmente novos leads ou clientes já conhecidos.</p>
+        <p>Registros originados por ativos digitais integrados podem entrar automaticamente na base quando aplicável.</p>
+        <p>Campos obrigatórios:</p>
+        <ul>
+          <li>Empresa;</li>
+          <li>Nome;</li>
+          <li>E-mail.</li>
+        </ul>
+        <p>Os demais campos, como Endereço, Cidade, UF e Telefone / WhatsApp, são opcionais e podem ser complementados posteriormente.</p>
+        
+        
+        <p>Clique em <strong>Criar registro</strong> para concluir.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>8. Importar base</summary>
+        <p>Use <strong>Importar base</strong> para adicionar vários relacionamentos de uma vez.</p>
+        <p>É possível processar até 100 registros por lote.</p>
+        <p>Campos obrigatórios:</p>
+        <ul>
+          <li>Nome;</li>
+          <li>Empresa;</li>
+          <li>E-mail.</li>
+        </ul>
+        <p>Campos opcionais:</p>
+        <ul>
+          <li>Endereço;</li>
+          <li>Cidade;</li>
+          <li>UF;</li>
+          <li>Telefone / WhatsApp.</li>
+        </ul>
+        <p>Após preencher os dados, clique em <strong>Processar importação</strong>.</p>
+        <p>O AFLOR Flow informa o resultado de cada registro como <strong>IMPORTADO</strong>, <strong>IGNORADO</strong> ou <strong>ERRO</strong>, acompanhado de uma mensagem.</p>
+        <p>Corrija eventuais erros e processe novamente quando necessário.</p>
+        <p>Ao concluir o lote, use <strong>Nova importação</strong> para limpar a área e iniciar outro.</p>
+        <p>A importação adiciona somente relacionamentos à base. Oportunidades continuam sendo criadas normalmente pelo modal.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>9. Busca e Filtros</summary>
+        <p>Use a busca superior para localizar empresa ou contato.</p>
+        <p>Em Diagnósticos, a busca considera registros que possuem diagnóstico disponível.</p>
+        <template id="flowModulesHelp5"></template>
+        <p>O botão <strong>X</strong> limpa a busca e o contexto relacionado sem limpar os filtros da barra lateral.</p>
+        <p>Filtros disponíveis:</p>
+        <ul>
+          <li><strong>Período</strong> — define o intervalo usado nas informações de movimento e histórico quando aplicável;</li>
+          <li><strong>Prioridade</strong> — refina conforme o nível calculado;</li>
+          <li><strong>Próxima Ação</strong> — refina conforme a necessidade de contato;</li>
+          <li><strong>Status</strong> — refina conforme o estágio aplicável à área.</li>
+        </ul>
+        <p>Quando disponível, Prioridade, Próxima Ação e Status permitem seleção múltipla.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>10. Cadência Comercial</summary>
+        <p>Use <strong>Cadência Comercial</strong> para consultar ou ajustar os prazos de acompanhamento das oportunidades.</p>
+        <p>A cadência orienta:</p>
+        <ul>
+          <li>Prioridade;</li>
+          <li>Próxima Ação;</li>
+          <li>urgência do acompanhamento.</li>
+        </ul>
+        <p>Após qualquer alteração, salve a configuração.</p>
+
+      </details>
+
+      <details class="flow-help-section">
+        <summary>11. Uso no celular</summary>
+        <p>O AFLOR Flow também pode ser utilizado pelo celular, com as principais funções disponíveis no computador. Pela barra lateral, é possível acessar oportunidades, Base Operacional, Diagnósticos, busca, filtros, IA Flow e demais recursos do ambiente.</p>
+        <template id="flowModulesHelp6"></template>
+
+        <p>Use no computador ou no celular conforme for mais conveniente para a operação.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>12. Uso compartilhado</summary>
+        <p>Mais de uma pessoa pode acessar e operar o AFLOR Flow.</p>
+        <p>Evite que duas pessoas editem o mesmo registro simultaneamente.</p>
+        <p>Atualize os dados antes de editar e salve após a alteração.</p>
+      </details>
+
+      <details class="flow-help-section">
+        <summary>13. Suporte AFLOR</summary>
+        <p>Use Suporte AFLOR, no final da barra lateral, sempre que precisar de ajuda com o AFLOR Flow.</p>
+        <p>O botão abre diretamente o WhatsApp da AFLOR com a identificação deste ambiente.</p>
+        <p>Utilize o suporte em caso de dúvidas, dificuldade de uso, falha no carregamento, problema ao salvar informações ou comportamento inesperado.</p>
+        <p>O AFLOR Flow deve permanecer em ambiente protegido.</p>
+      </details>
+    </div>
+  </div>
+
+  <script src="instance-config.js?v=2.2.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth.js?v=1.1.2"></script>
+  <script src="scripts.js?v=2.2.3"></script>
 </body>
 </html>
