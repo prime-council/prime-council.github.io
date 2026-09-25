@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /crm-aflor/
+Disallow: /crm-prime/
 
-Sitemap: https://primecouncil.com/sitemap.xml
+Sitemap: https://aflorsa.com.br/sitemap.xml

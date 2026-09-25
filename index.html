@@ -3,682 +3,896 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
-  <title>AFLOR Flow</title>
+  <!-- Identidade e indexação -->
+  <title>AFLOR Flow · Gestão, Automação e Inteligência Aplicada</title>
+  <meta name="description" content="A AFLOR digitaliza e automatiza operações, integra plataformas e centraliza a gestão com o AFLOR Flow e inteligência aplicada ao contexto.">
+  <link rel="canonical" href="https://aflorsa.com.br/">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-  <link rel="stylesheet" href="style.css?v=2.2.1" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://aflorsa.com.br/">
+  <meta property="og:title" content="AFLOR Flow · Gestão, Automação e Inteligência Aplicada">
+  <meta property="og:description" content="A AFLOR digitaliza e automatiza operações, integra plataformas e centraliza a gestão com o AFLOR Flow e inteligência aplicada ao contexto.">
+  <meta property="og:image" content="https://aflorsa.com.br/assets/og-aflor.png">
+  <meta property="og:image:width" content="1731">
+  <meta property="og:image:height" content="909">
+  <meta property="og:image:alt" content="AFLOR Flow · Gestão, Automação e Inteligência Aplicada">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="AFLOR">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AFLOR Flow · Gestão, Automação e Inteligência Aplicada">
+  <meta name="twitter:description" content="A AFLOR digitaliza e automatiza operações, integra plataformas e centraliza a gestão com o AFLOR Flow e inteligência aplicada ao contexto.">
+  <meta name="twitter:image" content="https://aflorsa.com.br/assets/og-aflor.png">
+  <meta name="twitter:image:alt" content="AFLOR Flow · Gestão, Automação e Inteligência Aplicada">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://aflorsa.com.br/#organization",
+    "name": "AFLOR",
+    "url": "https://aflorsa.com.br/",
+    "logo": "https://aflorsa.com.br/assets/logo-aflor-dark.png",
+    "image": "https://aflorsa.com.br/assets/og-aflor.png",
+    "email": "neto@aflorsa.com.br",
+    "description": "A AFLOR digitaliza e automatiza operações, integra plataformas e centraliza a gestão com o AFLOR Flow e inteligência aplicada ao contexto.",
+    "sameAs": [
+      "https://www.linkedin.com/company/aflorsa/",
+      "https://www.researchgate.net/profile/Analder-Santanna-Neto"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "neto@aflorsa.com.br",
+      "telephone": "+55 19 99226-4223",
+      "contactType": "customer support",
+      "availableLanguage": "pt-BR"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://aflorsa.com.br/#website",
+    "name": "AFLOR",
+    "url": "https://aflorsa.com.br/",
+    "publisher": {
+      "@id": "https://aflorsa.com.br/#organization"
+    }
+  }
+  </script>
+
+  <!-- Fontes via Fontshare (Cabinet Grotesk + Satoshi) -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800,900&amp;f[]=satoshi@400,500,700&amp;display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css?v=20260913-nova-lp" />
 </head>
 <body>
-  <!-- ============================================================
-       AFLOR | Loading
-       ============================================================ -->
-  <div id="ld">
-    <div class="ldring"></div>
-    <div id="ld-t">Aguardando…</div>
-  </div>
 
-  <!-- ============================================================
-       AFLOR | Topbar
-       ============================================================ -->
-  <div class="topbar">
-    <div class="brand">
-      <div class="brand-text">
-        <a class="name brand-signature" id="clientName" aria-label="Abrir site da AFLOR em nova aba">
-          <img class="brand-logo" src="assets/logo-aflor-dark.png" alt="AFLOR" />
+  <!-- ==============================
+       HEADER
+  ================================ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+
+      <a href="#inicio" class="logo-link" aria-label="AFLOR – página inicial">
+        <img
+          src="assets/logo-aflor-light.png"
+          alt="AFLOR"
+          class="logo-img"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        />
+        <span class="logo-fallback" aria-hidden="true">
+          <span class="logo-text">aflor</span>
+          <span class="logo-leaf">◆</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+        <ul>
+          <li><a href="#aflor-flow">AFLOR Flow</a></li>
+          <li><a href="#dados-operacao">Operações</a></li>
+          <li><a href="#aplicacoes">Aplicações</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </nav>
+
+      <a
+        href="https://meetings.hubspot.com/analder?uuid=4fe28445-5840-4f42-94ad-234d35d57792"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-cta cta-text"
+      >
+        Fale com um especialista 
+      </a>
+
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==============================
+         SEÇÃO 1 — HERO
+    ================================ -->
+    <section class="section section-dark legacy-home-section" id="legacy-inicio" hidden>
+      <div class="container hero-grid">
+
+        <div class="hero-content">
+          <p class="section-label">AFLOR · Automação, gestão e inteligência</p>
+
+          <h2 class="hero-title">
+            Automatizamos <br class="hero-title-break-portrait">operações para <br class="hero-title-break-portrait">mais eficiência e <br class="hero-title-break-portrait">melhor gestão
+          </h2>
+
+          <p class="hero-body">
+            Estruturamos soluções digitais sob demanda, combinando tecnologia e inteligência.
+          </p>
+
+        </div>
+
+        <div class="hero-visual hero-video-frame">
+          <div class="video-embed" style="position: relative; width: 100%; aspect-ratio: 16 / 9; overflow: hidden;">
+            <video
+              class="hero-video"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="Vídeo institucional AFLOR em movimento"
+            >
+              <source src="assets/video/aflor-em-movimento.webm" type="video/webm">
+              <source src="assets/video/aflor-em-movimento.mp4" type="video/mp4">
+              Seu navegador não suporta vídeo HTML5.
+            </video>
+          </div>
+          <p class="hero-video-caption">
+            Tecnologia AFLOR para conectar equipes · <a
+              class="hero-video-link"
+              href="https://www.youtube.com/watch?v=gCMbzjs0e8k"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Assistir no YouTube ↗</a>
+          </p>
+        </div>
+
+        <div class="hero-conversion">
+          <div class="cta-group">
+            <a
+              href="ioa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary cta-text"
+            >
+              Iniciar Diagnóstico Operacional AFLOR 
+            </a>
+          </div>
+
+          <p class="microcopy">
+            Gratuito e objetivo para identificar gargalos, esforço e oportunidades de melhoria.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================
+         SEÇÃO 2 — O PROBLEMA
+    ================================ -->
+    <section class="section section-light split-section legacy-home-section" id="legacy-observamos" hidden>
+      <div class="container">
+        <div class="split-section-heading">
+          <p class="section-label section-label--dark">O problema operacional</p>
+
+          <h2 class="section-title section-title--dark">
+            Custos invisíveis travam a operação
+          </h2>
+        </div>
+
+        <div class="observamos-grid split-grid split-grid--60-40">
+          <div class="observamos-text split-content">
+
+            <p class="body-text body-text--dark">
+              Falta de controle, retrabalho e rotinas manuais consomem tempo e recursos, mas esses custos nem sempre ficam claros no dia a dia.
+            </p>
+            <p class="body-text body-text--dark problem-highlight">
+              Quando mudar parece complexo ou caro, manter o processo atual costuma ser a opção mais simples.
+            </p>
+
+        </div>
+
+        <div class="observamos-symptoms split-visual split-visual--problem">
+          <div class="problem-asset-slots">
+            <img src="assets/problema-v2.webp" width="1400" height="788" alt="Operação com excesso de controles manuais e falta de arquitetura" loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        <a href="#aflor-flow" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-inline cta-text">
+          Identificar onde minha operação trava 
         </a>
+
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="topbar-search sbox">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#8E8E93" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="fQ" placeholder="Buscar empresa ou contato…" autocomplete="off" />
-      <button class="search-clear" id="clearSearch" type="button" aria-label="Limpar busca">×</button>
-    </div>
+    <!-- ==============================
+         SEÇÃO 3 — SOLUÇÕES AFLOR
+    ================================ -->
+    <section class="section section-dark legacy-home-section" id="legacy-solucoes-aflor" hidden>
+      <div class="container">
+        <span id="como-entrega" aria-hidden="true"></span>
 
-    <div class="topbar-actions">
-      <button class="qa topbar-action" id="btnR" onclick="loadData()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>Atualizar</button>
-      <button class="qa topbar-action" id="flowHelpOpen" type="button" aria-haspopup="dialog" aria-controls="flowHelpModal"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4.3 1.7c-1.3 1.2-1.8 1.7-1.8 3.3"/><path d="M12 17h.01"/></svg>Ajuda</button>
-    </div>
+        <div class="section-header">
+          <p class="section-label">Soluções AFLOR</p>
 
-    <div class="aflor-wordmark" aria-hidden="true"></div>
-  </div>
+          <h2 class="section-title">
+            Cada operação pede uma solução diferente
+          </h2>
 
-  <div id="module-crm">
-    <!-- ============================================================
-         AFLOR | Quickbar
-         ============================================================ -->
-    <div class="qbar">
-      <button class="qbar-toggle" id="qbarToggle" type="button" aria-label="Recolher navegação" aria-expanded="true"><span aria-hidden="true">‹</span></button>
-      <div class="qbar-left">
-        <div class="view-switch" aria-label="Modo de visualização">
-          <button class="view-tab is-active" type="button" data-view-mode="commercial" title="Oportunidades"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg>Oportunidades</button>
-          <button class="view-tab" type="button" data-view-mode="operational" title="Base Operacional"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v7c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12v7c0 1.7 3.6 3 8 3s8-1.3 8-3v-7"/></svg>Base Operacional</button>
-          <button class="view-tab" type="button" data-view-mode="intelligence" data-additional-module="diagnostics" title="Diagnósticos"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 19V9"/><path d="M10 19V5"/><path d="M16 19v-8"/><path d="M22 19H2"/></svg>Diagnósticos</button>
-          <button class="qa qa-sheet qa-neutral" id="aflowIaGeneral" type="button" title="IA Flow" aria-label="Abrir IA Flow com o contexto geral da plataforma">
-            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="m12 3 1.8 7.2L21 12l-7.2 1.8L12 21l-1.8-7.2L3 12l7.2-1.8L12 3Z"/></svg>IA Flow
-          </button>
+          <p class="body-text">
+            A AFLOR não parte de uma estrutura pronta. Cada projeto começa pelo desafio.
+          </p>
         </div>
 
-        <div class="qbar-divider" aria-hidden="true"></div>
+        <div class="delivery-grid">
+          <article class="card card-dark">
+            <img src="assets/diagnosticos.webp" alt="Diagnósticos AFLOR" class="card-asset-slot" loading="lazy" decoding="async" />
+            <h3 class="card-title">Diagnósticos AFLOR</h3>
+            <p class="card-meta solution-card-subtitle"><strong>Análise, qualificação e evolução.</strong></p>
+            <p class="card-body solution-card-description">
+              Inteligências para captar oportunidades, mapear cenários e prioridades, orientando a melhoria contínua.
+            </p>
+          </article>
 
-        <div class="ktools">
-          <div class="qbar-period" title="Período">
-            <svg class="qbar-period-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
-          <select id="kPeriod" title="Período">
-            <option value="all" selected>Todo o período</option>
-            <option value="month">Mês atual</option>
-            <option value="quarter">Últimos 90 dias</option>
-            <option value="year">Ano atual</option>
-          </select>
-          </div>
-          <div class="qbar-filter multiselect-filter" title="Prioridade" data-filter-id="fPr">
-            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 21V4M6 5h11l-2 4 2 4H6"/></svg>
-            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Prioridade</span><b aria-hidden="true">⌄</b></button>
-            <div class="multiselect-menu" hidden><label><input type="checkbox" value="CRÍTICO" />Crítico</label><label><input type="checkbox" value="ALTA" />Alta</label><label><input type="checkbox" value="MÉDIA" />Média</label><label><input type="checkbox" value="BAIXA" />Baixa</label></div>
-            <input type="hidden" id="fPr" value="" />
-          </div>
-          <div class="qbar-filter multiselect-filter" title="Próxima Ação" data-filter-id="fAc">
-            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.11 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.62a2 2 0 0 1-.45 2.11L8.01 9.72a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.84.29 1.72.5 2.62.62A2 2 0 0 1 22 16.92Z"/></svg>
-            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Próxima Ação</span><b aria-hidden="true">⌄</b></button>
-            <div class="multiselect-menu" hidden><label><input type="checkbox" value="FOLLOW" />Fazer Follow-up</label><label><input type="checkbox" value="AGUARDAR" />Aguardar</label><label><input type="checkbox" value="REVISITAR" />Revisitar</label></div>
-            <input type="hidden" id="fAc" value="" />
-          </div>
-          <div class="qbar-filter multiselect-filter" title="Status" data-filter-id="fStatus">
-            <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4v3h6V4M8 12l2 2 4-4M8 17h7"/></svg>
-            <button class="multiselect-trigger" type="button" aria-expanded="false"><span>Status</span><b aria-hidden="true">⌄</b></button>
-            <div class="multiselect-menu" hidden></div>
-            <input type="hidden" id="fStatus" value="" />
-          </div>
-        </div>
-        <div class="qbar-divider" aria-hidden="true"></div>
-      </div>
+          <article class="card card-dark">
+            <img src="assets/nc.webp" alt="Plataforma AFLOR" class="card-asset-slot" loading="lazy" decoding="async" />
+            <h3 class="card-title">Plataforma AFLOR</h3>
+            <p class="card-meta solution-card-subtitle"><strong>Digitalização, execução e controle.</strong></p>
+            <p class="card-body solution-card-description">
+              Tecnologia para organizar rotinas, equipes e registros, com acompanhamento de diferentes operações em tempo real.
+            </p>
+          </article>
 
-      <div class="qbar-right">
-        <button class="qa qa-sheet qa-neutral" type="button" onclick="openCadencia()" title="Cadência Comercial"><svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M20 11a8 8 0 0 0-14.7-4L3 10"/><path d="M3 5v5h5M4 13a8 8 0 0 0 14.7 4L21 14"/><path d="M21 19v-5h-5"/></svg>Cadência Comercial</button>
-
-        <button class="qa qa-form" type="button" onclick="openNewRecord()" title="Novo Registro">
-          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Novo Registro
-        </button>
-        <a class="qa qa-sheet qa-neutral" id="baseSheetAction" target="_blank" rel="noopener noreferrer" title="Importar base" hidden>
-          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Importar base
-        </a>
-        <a class="qa qa-sheet qa-neutral" id="aflorSupportAction" target="_blank" rel="noopener noreferrer" title="Suporte AFLOR" hidden>
-          <svg class="qbar-item-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 12a8 8 0 0 1 16 0v5a2 2 0 0 1-2 2h-2v-6h4M4 13h4v6H6a2 2 0 0 1-2-2v-5Z"/><path d="M16 19c0 1.1-.9 2-2 2h-2"/></svg>Suporte AFLOR
-        </a>
-      </div>
-      <div class="qbar-divider qbar-footer-divider" aria-hidden="true"></div>
-    </div>
-
-    <!-- ============================================================
-         AFLOR | Content
-         ============================================================ -->
-    <div class="content">
-      <div class="krow view-commercial">
-        <div class="kcard ko kurgent">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>Follow-ups</span></div>
-          <div class="k-val" id="kF">—</div>
-          <div class="k-lbl" id="kBadge3">Pendentes</div>
-        </div>
-
-        <div class="kcard kg kperf">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 3h9l3 3v15H6z"/><path d="M15 3v4h4M9 12h6M9 16h6"/></svg>Valor em Proposta</span></div>
-          <div class="k-val" id="kPipeline">—</div>
-          <div class="k-lbl" id="kBadge1">—</div>
-        </div>
-
-        <div class="kcard kr kurgent">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 10h8"/></svg>Interações</span></div>
-          <div class="k-val" id="kVencidos">—</div>
-          <div class="k-lbl" id="kBadgeVencidos">Total</div>
-        </div>
-
-        <div class="kcard kg kperf">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4V2M20 12h2M12 20v2M4 12H2"/></svg>Conversão</span></div>
-          <div class="k-val" id="kT">—</div>
-          <div class="k-lbl" id="kBadgeConv">—</div>
+          <article class="card card-dark">
+            <img src="assets/aflor_flow.webp" alt="AFLOR Flow" class="card-asset-slot" loading="lazy" decoding="async" />
+            <h3 class="card-title">AFLOR Flow</h3>
+            <p class="card-meta solution-card-subtitle"><strong>Integração, gestão e inteligência.</strong></p>
+            <p class="card-body solution-card-description">
+              Análises, histórico e automações com IA Flow para orientar decisões e melhoria contínua em diferentes contextos.
+            </p>
+          </article>
         </div>
 
       </div>
+    </section>
 
-      <div class="krow view-operational is-hidden">
-        <div class="kcard kb kperf">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M9 7V5h6v2M4 12h16"/></svg>Contratos Ativos</span></div>
-          <div class="k-val" id="kContratos">—</div>
-          <div class="k-lbl" id="kBadgeContratos">—</div>
+    <!-- ==============================
+         SEÇÃO 4 — DIAGNÓSTICOS AFLOR
+    ================================ -->
+    <section class="section section-dark legacy-home-section" id="legacy-inteligencias-aplicadas" hidden>
+      <div class="container">
+        <span id="ioa" aria-hidden="true"></span>
+
+        <div class="section-header">
+          <p class="section-label">Diagnósticos AFLOR</p>
+
+          <h2 class="section-title">
+            Inteligências para diferentes decisões
+          </h2>
+
         </div>
 
-        <div class="kcard kr kperf">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M7 10h1M16 14h1"/></svg>Receita Pontual</span></div>
-          <div class="k-val" id="kReceita">—</div>
-          <div class="k-lbl" id="kBadge2">—</div>
+        <div class="diagnostics-primary-grid">
+          <article class="card card-dark diagnostic-card diagnostic-card--primary diagnostic-card--operational">
+            <img src="assets/ioa.webp" alt="Diagnóstico Operacional AFLOR" class="diagnostic-asset-slot" loading="lazy" decoding="async" />
+            <h3 class="card-title">Diagnóstico Operacional AFLOR</h3>
+            <p class="diagnostic-question">Onde sua operação perde eficiência?</p>
+            <p class="card-body">
+              Identifica gargalos, esforço e oportunidades de melhoria.
+            </p>
+            <a
+              href="ioa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-inline cta-text"
+            >
+              Iniciar Diagnóstico Operacional AFLOR 
+            </a>
+          </article>
+
+          <article class="card card-dark diagnostic-card diagnostic-card--primary">
+            <img src="assets/i-esg.webp" alt="Diagnóstico ESG AFLOR" class="diagnostic-asset-slot" loading="lazy" decoding="async" />
+            <h3 class="card-title">Diagnóstico ESG AFLOR</h3>
+            <p class="diagnostic-question">Quais práticas ESG precisam evoluir?</p>
+            <p class="card-body">
+              Avalia práticas, maturidade e prioridades ESG.
+            </p>
+            <a
+              href="i-esg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-inline cta-text"
+            >
+              Iniciar Diagnóstico ESG AFLOR 
+            </a>
+          </article>
         </div>
 
-        <div class="kcard kcard-chart kb">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 19V10M12 19V5M19 19v-7"/></svg>Status</span></div>
-          <div class="cw"><canvas id="cS"></canvas></div>
+        <div class="diagnostics-secondary-grid">
+          <article class="card card-dark diagnostic-card diagnostic-card--secondary">
+            <h3 class="card-title">Diagnósticos Prime Council</h3>
+            <p class="card-body">
+              Inteligências financeiras e comerciais integradas ao ecossistema Prime, para orientar prioridades e próximos movimentos.
+            </p>
+            <a
+              href="https://primecouncil.com/#diagnostico"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-inline cta-text"
+            >
+              Acessar Diagnósticos Prime 
+            </a>
+          </article>
+
+          <article class="card card-dark diagnostic-card diagnostic-card--secondary">
+            <h3 class="card-title">Diagnósticos sob medida</h3>
+            <p class="card-body">
+              Inteligências estruturadas para desafios comerciais, operacionais e necessidades específicas de cada organização.
+            </p>
+            <a
+              href="https://wa.me/5519992264223"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-inline btn-secondary--accent cta-text"
+            >
+              Qual é a sua ideia? 
+            </a>
+          </article>
         </div>
 
-        <div class="kcard kcard-chart ko">
-          <div class="k-accent"></div>
-          <div class="k-top"><span class="k-badge"><svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M6 21V4M6 5h11l-2 4 2 4H6"/></svg>Prioridade</span></div>
-          <div class="cw"><canvas id="cP"></canvas></div>
-        </div>
       </div>
+    </section>
 
-      <div class="mfunnel view-commercial" aria-label="Micro Funil AFLOR">
-        <div class="mfunnel-head">
-          <div>
-            <div class="ph-title"><img class="aflor-leaf-mark" src="assets/favicon-32.png" alt="AFLOR" /><span class="view-title">AFLOR FLOW</span></div>
-            <span class="view-context" id="commercialContext">— registros · —:—</span>
+    <!-- ==============================
+         SEÇÃO 6 — PLATAFORMA AFLOR
+    ================================ -->
+    <section class="section section-light legacy-home-section" id="legacy-plataforma-aflor" hidden>
+      <div class="container">
+        <div class="platform-layout">
+          <div class="section-header">
+            <p class="section-label section-label--dark">Plataforma AFLOR</p>
+
+            <h2 class="section-title section-title--dark">
+              Tecnologia adaptada à operação
+            </h2>
+
+            <p class="body-text body-text--dark">
+              Coleta estruturada de dados e evidências, planejamento e gestão, não conformidades e planos de ação, fluxos de trabalho e relatórios automatizados.
+            </p>
+          </div>
+
+          <div class="platform-visual">
+              <div class="platform-carousel" aria-label="Demonstrações da Plataforma AFLOR">
+                <div class="platform-carousel-track">
+                  <img
+                    src="assets/app.webp"
+                    alt="Plataforma AFLOR em aplicativo operacional"
+                    class="platform-app-image platform-carousel-slide is-active"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src="assets/map.webp"
+                    alt="Plataforma AFLOR com mapa e monitoramento operacional"
+                    class="platform-app-image platform-carousel-slide"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <img
+                    src="assets/nc.webp"
+                    alt="Plataforma AFLOR com gestão de não conformidades"
+                    class="platform-app-image platform-carousel-slide"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="platform-carousel-controls">
+                  <button class="platform-carousel-arrow" type="button" data-platform-carousel-prev aria-label="Imagem anterior">
+                    ←
+                  </button>
+                  <div class="platform-carousel-dots" role="group" aria-label="Selecionar imagem da plataforma">
+                    <button class="platform-carousel-dot is-active" type="button" data-platform-carousel-dot="0" aria-label="Exibir imagem 1" aria-pressed="true"></button>
+                    <button class="platform-carousel-dot" type="button" data-platform-carousel-dot="1" aria-label="Exibir imagem 2" aria-pressed="false"></button>
+                    <button class="platform-carousel-dot" type="button" data-platform-carousel-dot="2" aria-label="Exibir imagem 3" aria-pressed="false"></button>
+                  </div>
+                  <button class="platform-carousel-arrow" type="button" data-platform-carousel-next aria-label="Próxima imagem">
+                    →
+                  </button>
+                </div>
+              </div>
+          </div>
+          <div class="section-cta platform-cta">
+            <a
+              href="https://wa.me/5519992264223"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary btn-inline cta-text"
+            >
+              Qual é a sua necessidade? 
+            </a>
           </div>
         </div>
-        <div class="mfunnel-grid" id="microFunnel"></div>
       </div>
+    </section>
 
+    <!-- ==============================
+         SEÇÃO 6 — CLIENTES, OPERAÇÕES E TECNOLOGIAS
+    ================================ -->
+    <section class="section section-light legacy-home-section" id="legacy-rede-aplicacao" hidden>
+      <div class="container">
+        <span id="cases" aria-hidden="true"></span>
 
-<template id="flowModulesView"></template>
-      <div class="tpanel view-operational is-hidden">
-        <div class="tpanel-hdr">
-          <div class="ph-title"><img class="aflor-leaf-mark" src="assets/favicon-32.png" alt="AFLOR" /><span class="view-title">AFLOR FLOW</span></div>
-          <span class="view-context" id="operationalContext">— registros · —:—</span>
+        <div class="section-header">
+          <p class="section-label section-label--dark">Rede de aplicação</p>
+
+          <h2 class="section-title section-title--dark">
+            A lógica AFLOR em prática
+          </h2>
+
+          <p class="body-text body-text--dark">
+            Os destaques abaixo representam operações e registros estruturados com ativos AFLOR em diferentes contextos.
+          </p>
         </div>
 
-        <div class="tscroll">
-          <table>
-            <thead>
-              <tr>
-                <th onclick="srt('empresa')">Empresa ↕</th>
-                <th>Nome</th>
-                <th onclick="srt('statusb')">Status ↕</th>
-                <th onclick="srt('valorProposta')">Proposta ↕</th>
-                <th>Início</th>
-                <th>Retenção</th>
-              </tr>
-            </thead>
-            <tbody id="tb"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+        <div class="operations-proof">
+          <div class="operations-proof-grid">
+            <article class="operations-proof-card">
+              <h3 class="operations-proof-label">Monitoramento hídrico e controle de frota</h3>
+              <p class="operations-proof-value">+1.500</p>
+              <p class="operations-proof-detail">Dados de campo, mapas, frota e relatórios organizados em ambiente digital.</p>
+            </article>
 
-  <!-- ============================================================
-       AFLOR | Footer
-       ============================================================ -->
-  <div class="footer">
-    <span><a href="https://aflorsa.com.br/" target="_blank" rel="noopener noreferrer">AFLOR Flow</a> · Simples na operação. Poderoso na entrega.</span>
-  </div>
+            <article class="operations-proof-card">
+              <h3 class="operations-proof-label">Inspeções inteligentes em grandes obras</h3>
+              <p class="operations-proof-value">+1.000</p>
+              <p class="operations-proof-detail">Serviços, materiais e não conformidades acompanhados com mais controle e agilidade.</p>
+            </article>
 
-  <!-- ============================================================
-       AFLOR | Modal
-       ============================================================ -->
-  <div class="msk" id="msk" onclick="if(event.target===this)cm()">
-    <div class="mbox" id="mbox">
-      <div class="mhdr">
-        <button class="mclose" onclick="cm()">✕</button>
-        <div class="m-headline">
-          <div class="m-emp" id="mEmp">—</div>
-          <div class="m-sub" id="mSub">—</div>
-          <div class="m-secondary-chips" id="mQuick"></div>
-        </div>
-      </div>
+            <article class="operations-proof-card">
+              <h3 class="operations-proof-label">Segurança e riscos psicossociais</h3>
+              <p class="operations-proof-value">+400</p>
+              <p class="operations-proof-detail">Inspeções, análises de risco e registros preventivos estruturados digitalmente.</p>
+            </article>
 
-      <div class="mbody">
-        <div id="_reuniaoNote"></div>
-
-        <div class="msec">Relacionamento</div>
-        <div class="mgrid">
-          <div class="mfield"><label>Última Interação</label><input class="efield" type="text" id="eUltima" name="ultima_interacao_em" placeholder="dd/mm/aa" inputmode="numeric" maxlength="8" /></div>
-          <div class="mfield"><label>Telefone / WhatsApp</label><input class="efield" type="tel" id="eCelular" placeholder="Ex: (19) 99999-0000" /></div>
-          <div class="mfield"><label>E-mail</label><input class="efield" type="email" id="eEmail" placeholder="email@empresa.com" /></div>
-        </div>
-        <button class="edit-identity-toggle" id="editIdentityToggle" type="button" aria-expanded="false" aria-controls="editIdentityFields">
-          <span>Editar identificação e localização</span>
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </button>
-        <div id="editIdentityFields" hidden>
-          <div class="mgrid mgrid-edit-identification">
-            <div class="mfield"><label>Nome completo</label><input class="efield" type="text" id="eNomeCompleto" /></div>
-            <div class="mfield"><label>Empresa</label><input class="efield" type="text" id="eEmpresa" /></div>
-            <div class="mfield"><label>Posição na empresa</label><select class="efield esel" id="eCargo" name="cargo"></select></div>
-            <div class="mfield"><label>Endereço</label><input class="efield" type="text" id="eEndereco" name="endereco" /></div>
-            <div class="mfield"><label>Cidade</label><input class="efield" type="text" id="eCidade" name="cidade" /></div>
-            <div class="mfield"><label>UF</label><input class="efield" type="text" id="eUf" name="uf" maxlength="2" /></div>
+            <article class="operations-proof-card">
+              <h3 class="operations-proof-label">Prime Council</h3>
+              <p class="operations-proof-value operations-proof-value--text">Ecossistema empresarial</p>
+              <p class="operations-proof-detail">Diagnósticos, gestão e acompanhamento integrados em uma jornada executiva.</p>
+            </article>
           </div>
         </div>
 
-        <div class="msec msec-business">
-          <span id="businessSelectorField" hidden>
-            <span class="business-selector-state" id="businessSelectorState"></span>
-            <select class="efield esel business-selector" id="eNegocioAtivo" aria-label="Selecionar oportunidade" hidden></select>
-          </span>
-          <button class="chip cS msec-note" id="businessDraftToggle" type="button" aria-pressed="false">+ Nova oportunidade</button>
-        </div>
-        <div class="mgrid mgrid-business">
-          <div class="mfield">
-            <label>Estágio comercial</label>
-            <select class="efield esel" id="eStatus" name="status">
-              <option value="">Selecione</option>
-            </select>
-          </div>
-          <div class="mfield">
-            <label for="eCategoria">Categoria</label>
-            <select class="efield esel" id="eCategoria" name="categoria">
-              <option value="">Selecione</option>
-            </select>
-          </div>
-          <div class="mfield">
-            <label for="eProdutoServico">Produto / Serviço</label>
-            <div class="business-product-dropdown is-disabled" id="eProdutoServico" data-serialized-value="">
-              <button class="efield esel business-product-trigger" id="eProdutoServicoTrigger" type="button" disabled aria-expanded="false">Selecione a categoria</button>
-              <div class="business-product-menu" id="eProdutoServicoMenu" aria-label="Produto ou Serviço"></div>
+        <p class="rede-logos-intro">Clientes, parceiros e tecnologias que fazem parte da atuação AFLOR.</p>
+
+        <div class="parceiros-block">
+          <div class="logo-grid">
+            <div class="logo-slot">
+              <img src="assets/Logo/ciaat.jpg" alt="CIAAT" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/construcione.png" alt="Construcione" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/datascope.png" alt="DataScope" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/florestana.jpg" alt="Florestana" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/hidro_qual.png" alt="Hidro Qual" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/prime.webp" alt="Prime Council" loading="lazy" decoding="async" />
+            </div>
+            <div class="logo-slot">
+              <img src="assets/Logo/tf.png" alt="TF Engenharia" loading="lazy" decoding="async" />
             </div>
           </div>
-          <div class="mfield">
-            <label for="eTipoNegocio">Tipo de Oportunidade</label>
-            <select class="efield esel" id="eTipoNegocio" name="tipo_negocio">
-              <option value="">Selecione</option>
-            </select>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==============================
+         SEÇÃO 8 — ORIGEM TÉCNICA
+    ================================ -->
+    <section class="section section-dark split-section legacy-home-section" id="legacy-origem" hidden>
+      <div class="container">
+        <div class="origem-grid split-grid split-grid--55-45">
+
+          <div class="origem-text split-content">
+            <p class="section-label">Origem AFLOR</p>
+
+            <h2 class="section-title">
+              <span>Profundidade técnica</span>
+              <span>Entrega aplicada</span>
+            </h2>
+
+            <p class="body-text">
+              A AFLOR combina engenharia aplicada, pesquisa científica e experiência operacional para transformar desafios reais em tecnologia simples de usar.
+            </p>
+            <p class="body-text">
+              Fundada por Neto Sant’Anna, engenheiro e doutor pela ESALQ/USP, conecta conhecimento técnico à rotina das organizações.
+            </p>
           </div>
 
-          <div class="mfield"><label>Valor da Proposta</label><input class="efield" type="text" id="eValorProposta" name="valor_proposta" placeholder="R$ 0,00" inputmode="numeric" /></div>
-          <div class="mfield"><label>Proposta | Fechamento</label><input class="efield" type="text" id="eDataProposta" name="proposta_em" placeholder="dd/mm/aa" inputmode="numeric" maxlength="8" /></div>
-        </div>
-        <div class="mfield mfield-obs"><label>Observações Estratégicas</label><textarea class="etarea" id="eObs" name="observacoes_estrategicas" placeholder="Observações, contexto, próximos passos…" maxlength="5000"></textarea></div>
+          <div class="founder-asset-slot split-visual split-visual--founder">
+            <img src="assets/fundador-neto-santanna-v2.webp" width="450" height="733" alt="Neto Sant'Anna" loading="lazy" decoding="async" />
+          </div>
 
+        </div>
+
+        <div class="origin-cta-panel" id="legacy-contato">
+          <div class="cta-final-heading">
+            <p class="section-label">Próximo passo</p>
+
+            <h2 class="cta-final-title">
+              Comece pelo seu desafio
+            </h2>
+          </div>
+
+          <p class="cta-final-sub">
+            Escolha um diagnóstico ou converse com a AFLOR para definir o próximo passo.
+          </p>
+
+          <div class="cta-group cta-group--center">
+            <a
+              href="ioa/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary btn-lg cta-text"
+            >
+              Iniciar Diagnóstico Operacional AFLOR 
+            </a>
+            <a
+              href="i-esg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary cta-text"
+            >
+              Iniciar Diagnóstico ESG AFLOR 
+            </a>
+            <a
+              href="https://wa.me/5519992264223"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-secondary cta-text"
+            >
+              Conversar com a AFLOR 
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark new-lp-hero" id="inicio" data-hero-scroll>
+      <div class="new-lp-hero__sticky">
+        <div class="container new-lp-hero__grid">
+          <svg class="cv-scene" role="img" aria-labelledby="cv-scene-title cv-scene-description" viewBox="0 0 1440 820">
+            <title id="cv-scene-title">Organização progressiva</title>
+            <desc id="cv-scene-description">Dados dispersos formam uma espiral ao redor do AFLOR Flow, concentram-se e revelam a IA Flow.</desc>
+            <g class="cv-depth cv-depth--far" aria-hidden="true"></g>
+            <g class="cv-depth cv-depth--middle" aria-hidden="true"></g>
+            <g class="cv-depth cv-depth--near" aria-hidden="true"></g>
+          </svg>
+          <div class="new-lp-hero__foreground">
+            <h1 class="new-lp-hero__product">AFLOR <span>Flow</span></h1>
+            <p class="new-lp-hero__signature">Gestão automatizada com inteligência aplicada.</p>
+          </div>
+          <div class="cv-intelligence" aria-hidden="true">
+            <div class="cv-intelligence__identity">
+              <img class="cv-intelligence__symbol" src="assets/ia-flow-spark.svg" alt="">
+              <span class="cv-intelligence__label">IA Flow</span>
+            </div>
+            <div class="cv-intelligence__outcomes">
+              <span class="cv-intelligence__automation">AUTOMAÇÃO</span><span aria-hidden="true"> · </span><span>PRIORIDADE</span><span aria-hidden="true"> · </span><span>AÇÃO</span>
+            </div>
+          </div>
+          <button class="cv-pause" type="button" aria-pressed="false" aria-label="Pausar animação do Hero" hidden><span aria-hidden="true">Ⅱ</span> <span data-cv-pause-label>Pausar movimento</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light new-lp-flow" id="aflor-flow">
+      <div class="container new-lp-flow__layout">
+        <div class="new-lp-flow__intro">
+          <p class="section-label section-label--dark">PLATAFORMA DE GESTÃO</p>
+          <h2 class="new-lp-flow__title">AFLOR Flow</h2>
+          <p class="new-lp-flow__copy">Processos manuais, retrabalho e falta de controle consomem tempo e recursos. O AFLOR Flow centraliza a operação e, com a IA Flow integrada, transforma esse contexto em prioridades e próximos movimentos.</p>
+        </div>
+        <div class="new-lp-flow__media">
+          <video class="new-lp-flow__video" data-aflor-flow-demo autoplay muted playsinline loop preload="none" tabindex="0" role="button" title="Clique para ampliar" aria-label="Demonstração do AFLOR Flow. Clique para ampliar">
+            <source data-src="assets/video/AFLOR_Flow_LP.webm" type="video/webm">
+            <source data-src="assets/video/AFLOR_Flow_LP.mp4" type="video/mp4">
+          </video>
+        </div>
+        <a class="new-lp-future-cta cta-text" href="https://aflorsa.com.br/flow/demo/" target="_blank" rel="noopener">Explorar o AFLOR Flow</a>
+      </div>
+    </section>
+
+    <section class="section section-dark new-lp-data" id="dados-operacao">
+      <div class="container">
+        <div class="platform-layout">
+          <div class="section-header">
+            <p class="section-label section-label--dark">Dados e operação</p>
+            <h2 class="section-title section-title--dark">Tecnologia adaptada à operação</h2>
+            <p class="body-text body-text--dark">Coleta estruturada de dados e evidências, planejamento e gestão, não conformidades e planos de ação, fluxos de trabalho e relatórios automatizados.</p>
+          </div>
+
+          <div class="platform-visual">
+            <div class="platform-carousel" aria-label="Capacidades operacionais e Diagnósticos AFLOR">
+              <div class="platform-carousel-track">
+                <figure class="platform-carousel-slide is-active">
+                  <img src="assets/app.webp" alt="Aplicativo AFLOR Flow em operação de campo" loading="lazy" decoding="async">
+                  <figcaption class="platform-carousel-caption">
+                    <p class="new-lp-data__slide-eyebrow">App / operação</p>
+                    <h3>Controle da operação na palma da mão.</h3>
+                    <button class="cta-text new-lp-data__video-trigger" type="button" data-operation-video-open>Ver operação em vídeo</button>
+                  </figcaption>
+                </figure>
+                <figure class="platform-carousel-slide">
+                  <img src="assets/ioa.webp" alt="Diagnóstico Operacional AFLOR — IOA" loading="lazy" decoding="async">
+                  <figcaption class="platform-carousel-caption">
+                    <p class="new-lp-data__slide-eyebrow">Diagnóstico Operacional AFLOR</p>
+                    <h3>Onde sua empresa perde eficiência?</h3>
+                    <a href="https://aflorsa.com.br/ioa/" target="_blank" rel="noopener" class="cta-text">Iniciar Diagnóstico gratuito</a>
+                  </figcaption>
+                </figure>
+                <figure class="platform-carousel-slide">
+                  <img src="assets/i-esg.webp" alt="Diagnóstico ESG AFLOR — I-ESG" loading="lazy" decoding="async">
+                  <figcaption class="platform-carousel-caption">
+                    <p class="new-lp-data__slide-eyebrow">Diagnóstico ESG AFLOR</p>
+                    <h3>Quais práticas precisam evoluir?</h3>
+                    <a href="https://aflorsa.com.br/i-esg/" target="_blank" rel="noopener" class="cta-text">Iniciar Diagnóstico gratuito</a>
+                  </figcaption>
+                </figure>
+              </div>
+
+              <div class="platform-carousel-controls" aria-label="Navegação do carrossel">
+                <button class="platform-carousel-arrow" type="button" data-platform-carousel-prev aria-label="Slide anterior">←</button>
+                <button class="platform-carousel-arrow" type="button" data-platform-carousel-next aria-label="Próximo slide">→</button>
+              </div>
+              <div class="platform-carousel-dots" role="group" aria-label="Selecionar conteúdo">
+                <button class="platform-carousel-dot is-active" type="button" data-platform-carousel-dot="0" aria-label="Exibir App e operação" aria-pressed="true"></button>
+                <button class="platform-carousel-dot" type="button" data-platform-carousel-dot="1" aria-label="Exibir Diagnóstico Operacional AFLOR — IOA" aria-pressed="false"></button>
+                <button class="platform-carousel-dot" type="button" data-platform-carousel-dot="2" aria-label="Exibir Diagnóstico ESG AFLOR — I-ESG" aria-pressed="false"></button>
+              </div>
+            </div>
+          </div>
+          <div class="new-lp-data__custom">
+            <p class="new-lp-data__custom-eyebrow">ATUAÇÃO AFLOR</p>
+            <h3>Da operação à inteligência aplicada.</h3>
+            <div class="new-lp-data__fronts">
+              <div class="new-lp-data__front">
+                <h4>DIGITALIZAÇÃO E AUTOMAÇÃO</h4>
+                <p>Transformamos processos comerciais e operacionais em fluxos digitais.</p>
+              </div>
+              <div class="new-lp-data__front">
+                <h4>INTEGRAÇÃO E GESTÃO CENTRALIZADA</h4>
+                <p>Conectamos plataformas, dados e operações em uma visão única.</p>
+              </div>
+              <div class="new-lp-data__front">
+                <h4>INTELIGÊNCIA APLICADA</h4>
+                <p>Usamos o contexto operacional para apoiar prioridades, análises e decisões.</p>
+              </div>
+            </div>
+            <a href="https://wa.me/5519992264223" target="_blank" rel="noopener" class="cta-text">Conversar sobre minha operação</a>
+          </div>
+        </div>
+      </div>
+      <div class="new-lp-video-modal" data-operation-video-modal hidden aria-hidden="true">
+        <div class="new-lp-video-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="operation-video-title">
+          <div class="new-lp-video-modal__header">
+            <p id="operation-video-title">Operação AFLOR</p>
+            <button type="button" data-operation-video-close aria-label="Fechar vídeo">Fechar</button>
+          </div>
+          <div class="new-lp-video-modal__mount" data-operation-video-mount></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light new-lp-applications" id="aplicacoes">
+      <div class="container">
+        <div class="new-lp-applications__heading">
+          <p class="section-label section-label--dark">Aplicações</p>
+          <h2 class="section-title section-title--dark">Um Flow. Diferentes processos.</h2>
+        </div>
+        <ol class="new-lp-applications__grid">
+          <li class="new-lp-application">
+            <h3>Monitoramento hídrico e operação de campo</h3>
+            <p class="new-lp-application__number">+ 1.500</p>
+            <p>Registros/OS com execução, localização, parâmetros técnicos e evidências.</p>
+            <p class="new-lp-application__note">220 viagens gerenciadas</p>
+          </li>
+          <li class="new-lp-application">
+            <h3>Inspeções inteligentes em grandes obras</h3>
+            <p class="new-lp-application__number">+ 1.100</p>
+            <p>Serviços, materiais e não conformidades acompanhados com mais controle e agilidade.</p>
+          </li>
+          <li class="new-lp-application">
+            <h3>Segurança do trabalho e riscos psicossociais</h3>
+            <p class="new-lp-application__number">+ 420</p>
+            <p>Inspeções e registros preventivos em obras, com análises de riscos psicossociais NR-1 em empresas — tudo estruturado digitalmente e em tempo real.</p>
+          </li>
+          <li class="new-lp-application">
+            <h3>Auditorias FSC</h3>
+            <p class="new-lp-application__number">+ 230</p>
+            <p>Geração automatizada de relatórios, gestão, rastreabilidade e histórico das auditorias.</p>
+          </li>
+          <li class="new-lp-application">
+            <h3>Restauração ecológica</h3>
+            <p class="new-lp-application__number">+ 340</p>
+            <p>Projetos e diagnósticos automatizados, com gestão operacional integrada.</p>
+            <p class="new-lp-application__note">A primeira aplicação que originou o método AFLOR.</p>
+          </li>
+          <li class="new-lp-application">
+            <h3>Ecossistema empresarial</h3>
+            <h3 class="new-lp-application__prime-title">Prime Council</h3>
+            <p>Diagnósticos, gestão e acompanhamento comercial integrados em uma jornada executiva.</p>
+            <a href="https://primecouncil.com/#diagnostico" target="_blank" rel="noopener" class="cta-text new-lp-application__cta">Explorar os Diagnósticos Prime</a>
+          </li>
+        </ol>
+
+        <p class="new-lp-applications__logos-intro">Organizações e tecnologias que fazem parte da atuação AFLOR.</p>
+        <div class="new-lp-applications__logos" aria-label="Prova institucional">
+          <div class="logo-grid">
+            <div class="logo-slot"><img src="assets/Logo/ciaat.jpg" alt="CIAAT" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/construcione.png" alt="Construcione" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/datascope.png" alt="DataScope" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/florestana.jpg" alt="Florestana" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/hidro_qual.png" alt="Hidro Qual" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/prime.webp" alt="Prime Council" loading="lazy" decoding="async"></div>
+            <div class="logo-slot"><img src="assets/Logo/tf.png" alt="TF Engenharia" loading="lazy" decoding="async"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark new-lp-proof" id="aflor">
+      <div class="container">
+        <div class="origem-grid split-grid split-grid--55-45">
+          <div class="origem-text split-content">
+            <p class="section-label">Origem AFLOR</p>
+            <h2 class="section-title"><span>Profundidade técnica</span><span>Entrega aplicada</span></h2>
+            <p class="body-text">A AFLOR combina engenharia aplicada, pesquisa científica e experiência operacional para transformar desafios reais em tecnologia simples de usar.</p>
+            <p class="body-text">Fundada por Neto Sant’Anna, engenheiro e doutor pela ESALQ/USP, conecta conhecimento técnico à rotina das organizações.</p>
+          </div>
+          <div class="founder-asset-slot split-visual split-visual--founder">
+            <img src="assets/fundador-neto-santanna-v2.webp" width="450" height="733" alt="Neto Sant'Anna" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <div class="origin-cta-panel" id="contato">
+          <div class="cta-final-heading">
+            <p class="section-label">PRÓXIMO PASSO</p>
+            <h2 class="cta-final-title">Comece pelo seu desafio</h2>
+          </div>
+          <p class="cta-final-sub">Explore o AFLOR Flow, identifique oportunidades com o Diagnóstico Operacional ou converse com a AFLOR para definir o caminho mais adequado.</p>
+          <div class="cta-group cta-group--center new-lp-origin-cta-links">
+            <a href="https://aflorsa.com.br/flow/demo/" target="_blank" rel="noopener" class="cta-text">Explorar o AFLOR Flow</a>
+            <a href="https://wa.me/5519992264223" target="_blank" rel="noopener" class="cta-text">Conversar com a AFLOR</a>
+            <a href="https://aflorsa.com.br/ioa/" target="_blank" rel="noopener" class="cta-text">Iniciar Diagnóstico Operacional</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==============================
+       RODAPÉ
+  ================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <a href="#inicio" class="logo-link" aria-label="AFLOR – topo da página">
+          <img
+            src="assets/logo-aflor-dark.png"
+            alt="AFLOR"
+            class="logo-img footer-logo"
+            loading="lazy"
+            decoding="async"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <span class="logo-fallback" aria-hidden="true">
+            <span class="logo-text">aflor</span>
+            <span class="logo-leaf">◆</span>
+          </span>
+        </a>
       </div>
 
-      <div class="save-bar">
-        <div class="save-meta">
-          <span class="save-context"><strong>GESTÃO COMERCIAL</strong><span> · Atualize os campos acima e salve as alterações.</span></span>
-          <span class="save-status" id="saveStatus"></span>
-        </div>
-        <button class="btn-save" id="btnSave" onclick="saveEdit()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Salvar alterações
-        </button>
+      <nav class="footer-nav" aria-label="Navegação rodapé">
+        <ul>
+          <li><a href="#aflor-flow">AFLOR Flow</a></li>
+          <li><a href="#dados-operacao">Operações</a></li>
+          <li><a href="#aplicacoes">Aplicações</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="https://aflorsa.com.br/privacidade/" target="_blank" rel="noopener noreferrer">Aviso de Privacidade</a></li>
+          <li><a href="https://aflorsa.com.br/condicoes-gerais/" target="_blank" rel="noopener noreferrer">Condições Gerais de Contratação</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-links">
+        <a
+          href="https://wa.me/5519992264223"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          WhatsApp
+        </a>
+        <a
+          href="mailto:neto@aflorsa.com.br"
+          class="footer-link"
+        >
+          E-mail
+        </a>
+        <a
+          href="https://www.linkedin.com/company/aflorsa/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          LinkedIn
+        </a>
+        <a
+          href="https://www.researchgate.net/profile/Analder-Santanna-Neto"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-link"
+        >
+          ResearchGate
+        </a>
       </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="footer-copy">© AFLOR <span id="footer-year">2026</span> · Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="back-to-top" type="button" data-back-to-top aria-label="Voltar ao topo">↑</button>
+
+  <div class="solution-lightbox" id="solution-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagem ampliada da solução AFLOR">
+    <div class="solution-lightbox__dialog">
+      <button class="solution-lightbox__close" type="button" aria-label="Fechar imagem ampliada">×</button>
+      <img class="solution-lightbox__image" src="" alt="" />
     </div>
   </div>
 
-  <!-- ============================================================
-       AFLOR | Cadência Comercial
-       ============================================================ -->
-  <div class="msk" id="cadMsk" onclick="if(event.target===this)closeCadencia()">
-    <div class="mbox" id="cadMbox">
-      <div class="mhdr">
-        <button class="mclose" onclick="closeCadencia()">✕</button>
-        <div class="m-headline">
-          <div class="m-title-row"><div class="m-emp">CADÊNCIA COMERCIAL</div></div>
-          <div class="m-sub">Defina os prazos utilizados pelo acompanhamento comercial.</div>
-        </div>
-      </div>
-
-      <div class="mbody">
-        <div class="mgrid" data-cadencia-status="qualificado">
-          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
-          <div class="mfield"><label>Status</label><p>Qualificado</p></div>
-          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
-          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
-        </div>
-        <div class="mgrid" data-cadencia-status="proposta">
-          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
-          <div class="mfield"><label>Status</label><p>Proposta</p></div>
-          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
-          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
-        </div>
-        <div class="mgrid" data-cadencia-status="em maturacao">
-          <div class="mfield"><label>Ativo</label><input type="checkbox" data-cadencia-field="ativo" /></div>
-          <div class="mfield"><label>Status</label><p>Em maturação</p></div>
-          <div class="mfield"><label>Dias</label><input class="efield" type="number" min="1" max="365" step="1" data-cadencia-field="dias" /></div>
-          <div class="mfield"><label>Tipo</label><select class="efield esel" data-cadencia-field="tipo"><option value="uteis">Dias úteis</option><option value="corridos">Dias corridos</option></select></div>
-        </div>
-      </div>
-
-      <div class="save-bar">
-        <span class="save-status" id="cadenciaSaveStatus"></span>
-        <button class="btn-save" id="btnCadenciaSave" onclick="saveCadencia()">Salvar alterações</button>
-      </div>
-    </div>
-  </div>
-  <!-- ============================================================
-       AFLOR | Novo Registro
-       ============================================================ -->
-  <div class="msk" id="newMsk" onclick="if(event.target===this)closeNewRecord()">
-    <div class="mbox" id="newMbox">
-      <div class="mhdr">
-        <button class="mclose" onclick="closeNewRecord()">✕</button>
-        <div class="m-headline">
-          <div class="m-title-row">
-            <div class="m-emp">Novo Registro</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="mbody">
-        <div class="mgrid">
-          <div class="mfield"><label>Empresa *</label><input class="efield" type="text" id="nEmpresa" /></div>
-          <div class="mfield"><label>Nome *</label><input class="efield" type="text" id="nNome" /></div>
-
-          <div class="mfield">
-            <label>Posição na empresa</label>
-            <select class="efield esel" id="nCargo">
-              <option value="">Selecione</option>
-              <option value="Sócio / Proprietário / Direção Executiva">Sócio / Proprietário / Direção Executiva</option>
-              <option value="Diretoria / Head de área">Diretoria / Head de área</option>
-              <option value="Gerência / Coordenação">Gerência / Coordenação</option>
-              <option value="Técnico / Operacional">Técnico / Operacional</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-
-          <div class="mfield"><label>Telefone / WhatsApp</label><input class="efield" type="tel" id="nContato" placeholder="(19) 99999-9999" /></div>
-
-          <div class="mfield">
-            <label>Colaboradores</label>
-            <select class="efield esel" id="nColaboradores">
-              <option value="">Selecione</option>
-              <option value="Até 50 colaboradores">Até 50 colaboradores</option>
-              <option value="51 a 100 colaboradores">51 a 100 colaboradores</option>
-              <option value="101 a 200 colaboradores">101 a 200 colaboradores</option>
-              <option value="Acima de 200 colaboradores">Acima de 200 colaboradores</option>
-            </select>
-          </div>
-
-          <div class="mfield">
-            <label>Origem do Lead</label>
-            <select class="efield esel" id="nOrigemLead">
-              <option value="">Selecione</option>
-              <option value="IA · Apollo">IA</option>
-              <option value="Diagnóstico / Inteligência">Diagnóstico / Inteligência</option>
-              <option value="Prospecção ativa">Prospecção ativa</option>
-              <option value="Indicação">Indicação</option>
-              <option value="LinkedIn">LinkedIn</option>
-              <option value="WhatsApp">WhatsApp</option>
-              <option value="Site / Landing Page">Site / Landing Page</option>
-              <option value="Evento">Evento</option>
-              <option value="Outro">Outro</option>
-            </select>
-          </div>
-
-          <div class="mfield">
-            <label>Relacionamento</label>
-            <select class="efield esel" id="nStatus">
-              <option value="Lead" selected>Lead</option>
-              <option value="Cliente">Cliente</option>
-            </select>
-          </div>
-          <div class="mfield"><label>E-mail *</label><input class="efield" type="email" id="newEmail" autocomplete="email" inputmode="email" placeholder="nome@empresa.com.br" required /></div>
-        </div>
-      </div>
-
-      <div class="save-bar">
-        <div class="save-meta">
-          <span class="save-context"><strong>CADASTRO</strong><span> · Preencha os dados acima e clique em Criar registro.</span></span>
-          <span class="save-status" id="newSaveStatus"></span>
-        </div>
-        <button class="btn-save" id="btnCreate" onclick="createRecord()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-          Criar registro
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ============================================================
-       AFLOR | Importação de base
-       ============================================================ -->
-  <div class="msk" id="importMsk">
-    <div class="mbox import-mbox" id="importMbox">
-      <div class="mhdr">
-        <button class="mclose" id="importClose" type="button" aria-label="Fechar importação">✕</button>
-        <div class="m-headline">
-          <div class="m-title-row"><div class="m-emp">Importar base</div></div>
-          <div class="m-sub">Cole até 100 registros seguindo o modelo abaixo.</div>
-        </div>
-      </div>
-      <div class="mbody">
-        <div class="mfield">
-          <label for="importPaste">Nome * · Empresa * · Endereço · Cidade · UF · Telefone / WhatsApp · E-mail *</label>
-          <textarea class="etarea import-paste" id="importPaste" rows="10" spellcheck="false" placeholder="Cole aqui os dados copiados do Excel. A linha de cabeçalho é opcional."></textarea>
-          <p class="m-sub import-template-hint">Use o modelo Excel para preparar os dados antes de colar.</p>
-          <div class="import-input-error save-status err" id="importInputError" hidden></div>
-        </div>
-        <div class="import-results" id="importResults" hidden>
-          <div class="msec">Resultado da importação</div>
-          <div class="import-results-scroll">
-            <table>
-              <thead><tr><th>Linha</th><th>Resultado</th><th>Mensagem</th><th>Processado em</th></tr></thead>
-              <tbody id="importResultsBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="save-bar">
-        <div class="save-meta">
-
-          <span class="save-status" id="importStatus"></span>
-        </div>
-        <div class="import-actions">
-          <a class="chip cS" href="assets/modelo_importacao_aflow.xlsx" download="modelo_importacao_aflow.xlsx">Baixar modelo Excel</a>
-
-          <button class="btn-save" id="importProcess" type="button">Processar importação</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="flow-help-modal" id="aflowIaReadyModal" role="dialog" aria-modal="true" aria-labelledby="aflowIaReadyTitle" hidden>
-    <div class="flow-help-panel" role="document">
-      <div class="flow-help-head">
-        <div class="flow-help-title" id="aflowIaReadyTitle">IA Flow</div>
-        <p>O contexto base está pronto. Ao abrir a IA Flow, cole a mensagem no chat e envie.</p>
-      </div>
-      <div class="flow-help-section" id="aflowIaClipboardFallback" hidden>
-        <label for="aflowIaPreparedMessage">Mensagem preparada</label>
-        <textarea class="efield" id="aflowIaPreparedMessage" rows="4" style="height:88px;padding:10px;resize:vertical;" readonly></textarea>
-        <p id="aflowIaClipboardFeedback" hidden>Não foi possível copiar automaticamente. Copie a mensagem acima e tente novamente.</p>
-      </div>
-      <div class="save-bar" style="gap:8px;flex-wrap:wrap;justify-content:flex-start;">
-        <button class="btn-save" id="aflowIaCopyOpen" type="button">Copiar e abrir IA Flow</button>
-        <button class="chip cS" id="aflowIaCancel" type="button">Cancelar</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="flow-help-modal" id="flowHelpModal" role="dialog" aria-modal="true" aria-labelledby="flowHelpTitle" hidden>
-    <div class="flow-help-panel" role="document">
-      <button class="flow-help-close" id="flowHelpClose" type="button" aria-label="Fechar ajuda">✕</button>
-      <div class="flow-help-head">
-        <div class="flow-help-title" id="flowHelpTitle">Guia rápido AFLOR Flow</div>
-        <p>Use o AFLOR Flow pelo link protegido disponibilizado para este ambiente.</p>
-        <template id="flowModulesHelp1"></template>
-        <p>Na rotina, acompanhe oportunidades, relacionamentos, próximas ações e diagnósticos, mantendo as informações atualizadas sempre que houver avanço ou mudança relevante.</p>
-      </div>
-
-      <details class="flow-help-section">
-        <summary>1. Oportunidades</summary>
-        <p>Acompanhe as oportunidades comerciais ativas pelo funil:</p>
-        <p><strong>Novo → Qualificado → Proposta → Em maturação</strong></p>
-        <p>Use os filtros da barra lateral para refinar a visualização.</p>
-        <p>Nos cards:</p>
-        <ul>
-          <li>o <strong>gráfico</strong> indica diagnóstico ou inteligência disponível, quando aplicável;</li>
-          <template id="flowModulesHelp2"></template>
-          <li>o <strong>telefone</strong> indica necessidade de contato ou próxima ação;</li>
-          <li>a intensidade do telefone acompanha a urgência definida pela Cadência Comercial;</li>
-          <li>o valor da proposta aparece quando disponível.</li>
-        </ul>
-        <p><strong>Novo · Priorizar:</strong> clique com o botão direito em um card <code>Novo</code> para <strong>Priorizar</strong> ou <strong>Remover prioridade</strong>. Os cards priorizados recebem <strong>destaque visual</strong> e a seleção permanece salva neste navegador.</p>
-        <p>A priorização manual é independente da Prioridade calculada pela Cadência Comercial.</p>
-        <p><strong>Proposta / Início:</strong> durante a negociação, use <strong>Data da Proposta</strong> para registrar a data de envio. Quando a oportunidade passar para <code>Fechado</code>, atualize essa data para o <strong>início efetivo da vigência</strong>.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>2. Base Operacional</summary>
-        <p>Use a Base Operacional para consultar oportunidades em:</p>
-        <p><strong>Fechado · Encerrado · Inativo</strong></p>
-        <p>A tabela apresenta os registros correspondentes e os indicadores e gráficos apoiam a visão consolidada da operação.</p>
-        <p><strong>Início / Retenção:</strong> para oportunidades <code>Fechado</code>, a data é apresentada como <strong>INÍCIO</strong> e alimenta automaticamente a <strong>RETENÇÃO</strong>.</p>
-      </details>
-
-<details class="flow-help-section">
-        <summary>3. Diagnósticos</summary>
-        <p>Use a busca superior para localizar relacionamentos com diagnóstico ou inteligência disponível.</p>
-        <p>Selecione o relacionamento e consulte as análises e o histórico disponíveis, quando aplicável.</p>
-        <p>A existência de diagnóstico não altera automaticamente o estágio comercial da oportunidade.</p>
-        <p>A <strong>IA Flow</strong> pode combinar diagnóstico, contexto comercial e histórico para apoiar a análise.</p>
-      </details>
-      <template id="flowModulesHelp3"></template>
-
-      <details class="flow-help-section flow-help-section-ai">
-        <summary>4. IA Flow</summary>
-        <p>A <strong>IA Flow</strong> é a inteligência integrada ao AFLOR Flow. Para utilizá-la, esteja conectado à sua conta do ChatGPT.</p>
-        <p>Acesse pela barra lateral ou pelos botões disponíveis nos registros. Todos abrem a mesma IA Flow.</p>
-        <p>Clique em <strong>Copiar e abrir IA Flow</strong>, cole a mensagem no chat, envie e autorize a conexão quando solicitado.</p>
-        <p>Depois, converse normalmente. A IA consulta os dados do Flow conforme sua pergunta e pode analisar carteira, relacionamentos e diagnósticos, comparar cenários, indicar prioridades e próximos passos e revisar ou salvar <strong>Observações Estratégicas</strong> após sua confirmação.</p>
-        <p>Se precisar reconectar, use <strong>Copiar e abrir IA Flow</strong> novamente.</p>
-        <template id="flowModulesHelp4"></template>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>5. Relacionamento e Status</summary>
-        <p>O AFLOR Flow separa duas informações importantes: <strong>o relacionamento com a empresa</strong> e <strong>o estágio de cada oportunidade</strong>.</p>
-        <p><strong>Relacionamento</strong></p>
-        <dl>
-          <dt><strong>Lead</strong></dt><dd>Empresa ou contato ainda em desenvolvimento comercial.</dd>
-          <dt><strong>Cliente</strong></dt><dd>Empresa ou contato com relacionamento comercial já estabelecido.</dd>
-        </dl>
-        <p><strong>Oportunidades</strong></p>
-        <dl>
-          <dt><strong>Novo</strong></dt><dd>Oportunidade ainda não movimentada. Quando não existe uma oportunidade registrada, o Flow pode apresentar o registro como Novo.</dd>
-          <dt><strong>Qualificado</strong></dt><dd>Oportunidade com interesse ou aderência validada.</dd>
-          <dt><strong>Proposta</strong></dt><dd>Proposta apresentada ou oportunidade em negociação.</dd>
-          <dt><strong>Em maturação</strong></dt><dd>Oportunidade válida para acompanhamento e retomada no momento adequado.</dd>
-          <dt><strong>Fechado</strong></dt><dd>Oportunidade convertida.</dd>
-          <dt><strong>Encerrado</strong></dt><dd>Oportunidade sem continuidade.</dd>
-          <dt><strong>Inativo</strong></dt><dd>Oportunidade anteriormente fechada e atualmente inativa, preservada para eventual retomada.</dd>
-        </dl>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>6. Observações Estratégicas</summary>
-        <p>As <strong>Observações Estratégicas</strong> são a memória principal do relacionamento no AFLOR Flow.</p>
-        <p>Use esse campo para consolidar o que realmente importa sobre a empresa: histórico, contexto atual, decisões, avanços, pontos de atenção, próximo passo e canal mais adequado.</p>
-        <p>A Observação é única por relacionamento, mesmo quando existem várias oportunidades. Ao atualizar, preserve o que continua relevante e incorpore as novas informações, evitando anotações soltas.</p>
-        <p>A <strong>IA Flow</strong> também pode ajudar a gerar ou revisar essa síntese e, quando solicitado, salvá-la após sua confirmação.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>7. Novo Registro</summary>
-        <p>Use <strong>Novo Registro</strong> para inserir manualmente novos leads ou clientes já conhecidos.</p>
-        <p>Registros originados por ativos digitais integrados podem entrar automaticamente na base quando aplicável.</p>
-        <p>Campos obrigatórios:</p>
-        <ul>
-          <li>Empresa;</li>
-          <li>Nome;</li>
-          <li>E-mail.</li>
-        </ul>
-        <p>Os demais campos, como Endereço, Cidade, UF e Telefone / WhatsApp, são opcionais e podem ser complementados posteriormente.</p>
-        
-        
-        <p>Clique em <strong>Criar registro</strong> para concluir.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>8. Importar base</summary>
-        <p>Use <strong>Importar base</strong> para adicionar vários relacionamentos de uma vez.</p>
-        <p>É possível processar até 100 registros por lote.</p>
-        <p>Campos obrigatórios:</p>
-        <ul>
-          <li>Nome;</li>
-          <li>Empresa;</li>
-          <li>E-mail.</li>
-        </ul>
-        <p>Campos opcionais:</p>
-        <ul>
-          <li>Endereço;</li>
-          <li>Cidade;</li>
-          <li>UF;</li>
-          <li>Telefone / WhatsApp.</li>
-        </ul>
-        <p>Após preencher os dados, clique em <strong>Processar importação</strong>.</p>
-        <p>O AFLOR Flow informa o resultado de cada registro como <strong>IMPORTADO</strong>, <strong>IGNORADO</strong> ou <strong>ERRO</strong>, acompanhado de uma mensagem.</p>
-        <p>Corrija eventuais erros e processe novamente quando necessário.</p>
-        <p>Ao concluir o lote, use <strong>Nova importação</strong> para limpar a área e iniciar outro.</p>
-        <p>A importação adiciona somente relacionamentos à base. Oportunidades continuam sendo criadas normalmente pelo modal.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>9. Busca e Filtros</summary>
-        <p>Use a busca superior para localizar empresa ou contato.</p>
-        <p>Em Diagnósticos, a busca considera registros que possuem diagnóstico disponível.</p>
-        <template id="flowModulesHelp5"></template>
-        <p>O botão <strong>X</strong> limpa a busca e o contexto relacionado sem limpar os filtros da barra lateral.</p>
-        <p>Filtros disponíveis:</p>
-        <ul>
-          <li><strong>Período</strong> — define o intervalo usado nas informações de movimento e histórico quando aplicável;</li>
-          <li><strong>Prioridade</strong> — refina conforme o nível calculado;</li>
-          <li><strong>Próxima Ação</strong> — refina conforme a necessidade de contato;</li>
-          <li><strong>Status</strong> — refina conforme o estágio aplicável à área.</li>
-        </ul>
-        <p>Quando disponível, Prioridade, Próxima Ação e Status permitem seleção múltipla.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>10. Cadência Comercial</summary>
-        <p>Use <strong>Cadência Comercial</strong> para consultar ou ajustar os prazos de acompanhamento das oportunidades.</p>
-        <p>A cadência orienta:</p>
-        <ul>
-          <li>Prioridade;</li>
-          <li>Próxima Ação;</li>
-          <li>urgência do acompanhamento.</li>
-        </ul>
-        <p>Após qualquer alteração, salve a configuração.</p>
-
-      </details>
-
-      <details class="flow-help-section">
-        <summary>11. Uso no celular</summary>
-        <p>O AFLOR Flow também pode ser utilizado pelo celular, com as principais funções disponíveis no computador. Pela barra lateral, é possível acessar oportunidades, Base Operacional, Diagnósticos, busca, filtros, IA Flow e demais recursos do ambiente.</p>
-        <template id="flowModulesHelp6"></template>
-
-        <p>Use no computador ou no celular conforme for mais conveniente para a operação.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>12. Uso compartilhado</summary>
-        <p>Mais de uma pessoa pode acessar e operar o AFLOR Flow.</p>
-        <p>Evite que duas pessoas editem o mesmo registro simultaneamente.</p>
-        <p>Atualize os dados antes de editar e salve após a alteração.</p>
-      </details>
-
-      <details class="flow-help-section">
-        <summary>13. Suporte AFLOR</summary>
-        <p>Use Suporte AFLOR, no final da barra lateral, sempre que precisar de ajuda com o AFLOR Flow.</p>
-        <p>O botão abre diretamente o WhatsApp da AFLOR com a identificação deste ambiente.</p>
-        <p>Utilize o suporte em caso de dúvidas, dificuldade de uso, falha no carregamento, problema ao salvar informações ou comportamento inesperado.</p>
-        <p>O AFLOR Flow deve permanecer em ambiente protegido.</p>
-      </details>
-    </div>
-  </div>
-
-  <script src="instance-config.js?v=2.2.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="auth.js?v=1.1.2"></script>
-  <script src="scripts.js?v=2.2.3"></script>
+  <script src="scripts.js?v=20260913-nova-lp"></script>
 </body>
 </html>
