@@ -34,6 +34,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=20260730-comercial-r13-loading-dark">
+<link rel="stylesheet" href="../mobile-nav.css">
+<script src="../mobile-nav.js" defer></script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -90,7 +92,16 @@
       </a>
     </div>
 
+    <button class="prime-mobile-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="prime-mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <nav class="prime-mobile-nav" id="prime-mobile-nav" aria-label="Menu mobile" hidden>
+    <a href="https://primecouncil.com/#evento">Sessão Executiva Prime</a>
+    <a href="https://primecouncil.com/#diagnostico">Diagnósticos Prime</a>
+    <a href="https://primecouncil.com/#prime-council">Conselho Executivo</a>
+    <a class="prime-mobile-cta" href="https://primecouncil.com/contato/" target="_blank" rel="noopener noreferrer" data-flow="event-entry" data-entry="cold" data-cta-position="header">Solicitar conversa →</a>
+  </nav>
 </header>
 
 <!-- ══ DARK HERO ════════════════════════════════════════════════ -->
