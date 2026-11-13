@@ -1,0 +1,114 @@
+.prime-mobile-toggle,
+.prime-mobile-nav {
+  display: none;
+}
+
+@media screen and (max-width: 860px) {
+  .site-header[data-prime-mobile-nav] .header-nav,
+  .site-header[data-prime-mobile-nav] .header-ctas {
+    display: none;
+  }
+
+  .site-header[data-prime-mobile-nav] .prime-mobile-toggle {
+    display: flex;
+    flex: 0 0 44px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-inline-start: auto;
+    border: 0;
+    background: transparent;
+    color: var(--paper);
+    cursor: pointer;
+  }
+
+  .prime-mobile-toggle span {
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .prime-mobile-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .prime-mobile-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .prime-mobile-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .site-header[data-prime-mobile-nav] .prime-mobile-nav:not([hidden]) {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    inset-inline: 0;
+    flex-direction: column;
+    max-height: calc(100vh - 61px);
+    max-height: calc(100dvh - 61px);
+    overflow-y: auto;
+    padding: 8px 16px 16px;
+    background: var(--ink);
+    border-block: 1px solid var(--gold);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
+    font: 600 1rem/1.4 var(--sans);
+  }
+
+  .prime-mobile-nav a {
+    padding: 12px 4px;
+    color: var(--paper);
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+
+  .prime-mobile-nav a + a {
+    border-top: 1px solid rgba(191, 160, 107, 0.22);
+  }
+
+  .prime-mobile-nav a.prime-mobile-cta {
+    margin-top: 8px;
+    color: var(--gold-light);
+  }
+
+  .prime-mobile-toggle:focus-visible,
+  .prime-mobile-nav a:focus-visible {
+    outline: 2px solid var(--gold-light);
+    outline-offset: -2px;
+  }
+}
+
+@media screen {
+  #evento,
+  #diagnostico,
+  #prime-council {
+    scroll-margin-top: 68px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #evento,
+  #diagnostico,
+  #prime-council {
+    scroll-margin-top: 66px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prime-mobile-toggle span {
+    transition: none;
+  }
+}
+
+@media print {
+  .prime-mobile-toggle,
+  .prime-mobile-nav {
+    display: none !important;
+  }
+}
